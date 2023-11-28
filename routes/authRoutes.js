@@ -1,7 +1,7 @@
 // authRoutes.js
 const express = require('express');
 const router = express.Router();
-const users = require('../users');
+const users = require('../user');
 
 router.post('/login', (req, res) => {
   const { userName, password } = req.body;

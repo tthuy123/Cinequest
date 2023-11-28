@@ -6,14 +6,18 @@ const searchRoutes = require('./routes/searchRoutes');
 const userRoutes = require('./routes/userListRoutes');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
+const cors = require('cors');
+
+expressApp.set('view engine', 'ejs');
+expressApp.use(cors());
 
 // Kết nối cơ sở dữ liệu
 connectDB();
 // Sử dụng tuyến đường phim
-expressApp.use('/api', filmsRoutes);
-expressApp.use('/api', DetailsFilmsRoutes);
-expressApp.use('/api', searchRoutes);
-expressApp.use('/api', userRoutes);
+expressApp.use('/', filmsRoutes);
+expressApp.use('/', DetailsFilmsRoutes);
+expressApp.use('/', searchRoutes);
+expressApp.use('/', userRoutes);
 
 expressApp.use(bodyParser.json());
 
