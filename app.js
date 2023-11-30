@@ -1,3 +1,4 @@
+
 const expressApp = require('./config/express');
 const connectDB = require('./config/database');
 const filmsRoutes = require('./routes/filmsRoutes');
@@ -7,7 +8,9 @@ const userRoutes = require('./routes/userListRoutes');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const cors = require('cors');
+const path = require('path');
 
+expressApp.set('views', path.join(__dirname, 'views'));
 expressApp.set('view engine', 'ejs');
 expressApp.use(cors());
 
@@ -23,6 +26,10 @@ expressApp.use(bodyParser.json());
 
 expressApp.use('/auth', authRoutes);
 
+
+expressApp.get('/', (req, res) => {
+    res.render('index');
+});
 // Khởi chạy server
 const PORT = process.env.PORT || 3000;
 expressApp.listen(PORT, () => {

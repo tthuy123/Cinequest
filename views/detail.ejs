@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="./assets/images/icon.png" type="image/png">
+  <title>CineFlix</title>
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/media_query.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Shantell+Sans:wght@300&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900" rel="stylesheet" />
+</head>
+
+<body>
+      <!--
+    - main container
+  -->
+  <div class="container">
+
+    <!--
+      - #HEADER SECTION
+    -->
+
+    <header class="">
+      <div class="navbar">
+
+        <!--
+          - menu button for small screen
+        -->
+        <button class="navbar-menu-btn">
+          <span class="one"></span>
+          <span class="two"></span>
+          <span class="three"></span>
+        </button>
+
+
+        <a href="#" class="navbar-brand">
+          <img src="assets/images/logo.png">
+        </a>
+
+        <!--
+          - navbar navigation
+        -->
+
+        <nav class="">
+          <ul class="navbar-nav">
+
+            <li> <a href="index.html" class="navbar-link">Home</a> </li>
+            <li> <a href="#category" class="navbar-link">Category</a> </li>
+            <li> <a href="#live" class="navbar-link  indicator">LIVE</a> </li>
+
+          </ul>
+        </nav>
+
+        <!--
+          - search and sign-in
+        -->
+
+        <div class="navbar-actions">
+
+          <form action="#" class="navbar-form">
+            <input type="text" name="search" placeholder="I'm looking for..." class="navbar-form-search">
+
+            <button class="navbar-form-btn">
+              <ion-icon name="search-outline"></ion-icon>
+            </button>
+
+            <button class="navbar-form-close">
+              <ion-icon name="close-circle-outline"></ion-icon>
+            </button>
+          </form>
+
+
+          <!--
+            - search button for small screen
+          -->
+
+          <button class="navbar-search-btn">
+            <ion-icon name="search-outline"></ion-icon>
+          </button>
+
+          <a href="#" class="navbar-signin">
+            <span>Sign in</span>
+            <ion-icon name="log-in-outline"></ion-icon>
+          </a>
+
+        </div>
+
+      </div>
+    </header>
+    <!--
+        Main section
+    -->
+
+    <main>
+      <div class = "banner-card">
+        <img src = "./assets/images/pages/interstelllar/background.jpg" class = "banner-img">
+      </div>
+
+
+      <div class = "film-profile" id = "filmProfile">
+        <img src = "assets/images/pages/interstelllar/image.jpg" class = "profile-img">
+        <div class ="details">
+          <h1 class = "film-title">
+            <%= film.title %>
+          </h1>
+          <p>
+            2014 Directed by <a class = "director"><%= film.director %></a>
+          </p>
+          <p class = "description">
+            <span class = "quote">
+              MANKIND WAS BORN ON EARTH. IT WAS NEVER MEANT TO DIE HERE.
+            </span>
+            <%= film.sypnosis %>
+          </p>
+          
+        </div>
+        <div class = "action-wrapper">
+          <div class = "action-list">
+            <ul>
+              <li>
+                <div class = "watched-action">
+                  <ion-icon name = "eye-outline"></ion-icon>
+                  <label>Watched</label>
+                </div>
+                <div class = "like-action">
+                  <ion-icon name = "heart-outline"></ion-icon>
+                  <label>Like</label>
+                </div>
+                
+              </li>
+              <li>Rate</li>
+              <li>Share your reviews</li>
+              <li>Add to list</li>
+            </ul>
+          </div>
+        </div>
+        
+      </div>
+      
+    </main>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>

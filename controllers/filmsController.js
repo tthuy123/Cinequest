@@ -1,16 +1,21 @@
 // xu ly logic
+
 const Film = require('../models/Film');
 
 const filmsController = {
     getAllFilms: (req, res) => {
-        Film.getAllFilms((err, film) => {
-            if (err) {
-                console.error('Error getting movies: ', err.stack);
-                res.status(500).send('Internal Server Error');
-                return;
-            }
+        const offset = parseInt(req.query.offset) || 0;
+    const limit = parseInt(req.query.limit) || 10;
+
+    Film.getAllFilms(offset, limit, (err, films) => {
+        if (err) {
+            console.error('Error getting movies: ', err.stack);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+        res.json(films);
             
-           res.render('films/list', { film });
+          // res.render('films/list', { film });
 
             // Tạo một đoạn HTML đơn giản để hiển thị danh sách phim
     // let htmlContent = '<h1>Films List</h1><ul>';
@@ -33,12 +38,18 @@ const filmsController = {
                 res.status(500).send('Internal Server Error');
                 return;
             }
+            //res.json(films);
             if (films.length > 0) {
                 const film = films[0];  // Access the first element of the array
-            res.render('films/detail', { film });
+            res.render('detail', { film });
         } else {
             res.status(404).send('Film not found');
-        }
+        } 
+        //     if (films.length > 0) {
+        //         const film = films[0];  // Access the first element of the array
+        // } else {
+        //     res.status(404).send('Film not found');
+        // }
             // let htmlContent = '';
             // //res.render('film/detail', { film });
             // // Tạo một đoạn HTML đơn giản để hiển thị chi tiết phim 

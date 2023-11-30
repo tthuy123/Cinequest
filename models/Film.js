@@ -2,8 +2,9 @@
 const connection = require('../config/database');
 
 const Film = {
-    getAllFilms: (callback) => {
-        connection().query('SELECT * FROM film',callback);
+    getAllFilms: (offset, limit, callback) => {
+        const query = 'SELECT * FROM film LIMIT ?, ?';
+        connection().query(query, [offset, limit], callback);
     },
     // get film detail 
     getFilmDetails: (idfilm,callback) => {
@@ -29,17 +30,20 @@ const Film = {
             connection().query(SQLquery, [idfilm], callback);
         },
         // search film by genre
-        searchFilmsByGenre: (genre, callback) => {
+        searchFilmsByGenre: (genre, offset, limit, callback) => {
             const SQLquery = `
-                SELECT film.title, film.poster
-                FROM film
-                LEFT JOIN isgenre ON isgenre.film_idfilm = film.idfilm
-                LEFT JOIN genre ON genre.idGenre = isgenre.Genre_idGenre
-                WHERE genre.name = ?
-                GROUP BY film.idfilm`;
-    
-            connection().query(SQLquery, [genre], callback);
-        },
+              SELECT film.title, film.year, film.idfilm
+              FROM film
+              LEFT JOIN isgenre ON isgenre.film_idfilm = film.idfilm
+              LEFT JOIN genre ON genre.idGenre = isgenre.Genre_idGenre
+              WHERE genre.name = ?
+              GROUP BY film.idfilm
+              LIMIT ?
+      OFFSET ?`; // Add LIMIT clause for pagination
+          
+            connection().query(SQLquery, [genre, limit, offset], callback);
+          },
+          
         searchFilmsByActor: (actor, callback) => {
             const SQLquery = `
                 SELECT film.idfilm, film.title, film.poster
@@ -78,6 +82,14 @@ const Film = {
                 callback(null, { message: 'Review added successfully' });
             });
         },
+        searchFilmsByTitle: (title, callback) => {
+            const SQLquery = `
+              SELECT film.idfilm, film.title, film.year, film.genre, film.poster, film.rating
+              FROM film
+              WHERE film.title LIKE ?`;
+          
+            connection().query(SQLquery, [`%${title}%`], callback);
+        }
        
 };
 module.exports = Film; 
