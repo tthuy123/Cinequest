@@ -3,9 +3,14 @@
 const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userListController');
+const authenticateToken = require('./authMiddleware');
+
+
+//router.use(authenticateToken);
+
 
 // Define a route for getting user movie lists
-router.get('/user-movie-lists', userController.getUserMovieLists);
+router.get('/user-movie-lists', authenticateToken, userController.getUserMovieLists);
 
 // Define a route for getting a movie list
 

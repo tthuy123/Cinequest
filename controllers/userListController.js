@@ -2,9 +2,10 @@
 const UserList = require('../models/UserList');
 
 const getUserMovieLists = (req, res) => {
-    const userId = req.user.id; // Assuming you have user information stored in req.user after authentication
-
-    UserList.getUserMovieLists(userId, (err, movieLists) => {
+    console.log('User info:', req.user); // Log user information
+    const userName = req.user.userName; // Assuming you have user information stored in req.user after authentication
+    console.log('userName:', userName); // Log the userName value
+    UserList.getUserMovieLists(userName, (err, movieLists) => {
         if (err) {
             console.error('Error getting user movie lists: ', err.stack);
             res.status(500).send('Internal Server Error');

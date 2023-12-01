@@ -9,11 +9,10 @@ const UserList = {
         const SQLquery = `
         SELECT list.idlist, list.title
         FROM list
-        JOIN addlist ON list.idList = addlist.List_idList
-        JOIN user ON addlist.user_userName = user.userName
+        JOIN user ON list.userName = user.userName
         WHERE user.username = ?
         ORDER BY list.idlist;`;
-
+        console.log('Executing SQL query:', SQLquery, 'with userName:', userName);
         connection().query(SQLquery, [userName], callback);
     },
     // chi tiet list film cua 1 list

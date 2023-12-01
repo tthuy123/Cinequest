@@ -24,7 +24,7 @@ expressApp.use('/', userRoutes);
 
 expressApp.use(bodyParser.json());
 
-expressApp.use('/auth', authRoutes);
+expressApp.use('/', authRoutes);
 
 
 expressApp.get('/', (req, res) => {
