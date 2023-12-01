@@ -9,7 +9,7 @@ const Film = {
     // get film detail 
     getFilmDetails: (idfilm,callback) => {
         const SQLquery = 
-        `SELECT film.idfilm, film.title, film.year, film.runtime, film.sypnosis, film.poster, (
+        `SELECT film.idfilm, film.title, film.year, film.runtime, film.sypnosis, film.backdrop, film.poster, (
             SELECT person.name
             FROM person
             INNER JOIN partakes ON partakes.person_idperson = person.idperson
@@ -46,7 +46,7 @@ const Film = {
           
         searchFilmsByActor: (actor, callback) => {
             const SQLquery = `
-                SELECT film.idfilm, film.title, film.poster
+                SELECT film.idfilm, film.title, film.backdrop, film.poster
                 FROM film
                 LEFT JOIN stars ON stars.film_idfilm = film.idfilm
                 WHERE stars.character_name = ?
@@ -84,7 +84,7 @@ const Film = {
         },
         searchFilmsByTitle: (title, callback) => {
             const SQLquery = `
-              SELECT film.idfilm, film.title, film.year, film.genre, film.poster, film.rating
+              SELECT film.idfilm, film.title, film.year, film.genre, film.backdrop, film.poster, film.rating
               FROM film
               WHERE film.title LIKE ?`;
           
