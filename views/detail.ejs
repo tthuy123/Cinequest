@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="./assets/images/icon.png" type="image/png">
-  <title>CineFlix</title>
+  <title>Cinequest</title>
 
   <!--
     - custom css link
@@ -106,10 +106,9 @@
 
     <main>
       <div class = "banner-card">
-        <img src = "./assets/images/pages/interstelllar/background.jpg" class = "banner-img">
+        <img src = <%= film.backdrop %> class = "banner-img">
       </div>
-
-
+      
       <div class = "film-profile" id = "filmProfile">
         <img src = <%= film.poster %> class = "profile-img">
         <div class ="details">
@@ -117,12 +116,12 @@
             <%= film.title %>
           </h1>
           <p>
-            2014 Directed by <a class = "director"><%= film.director %></a>
+            <%= film.year %> Directed by <a class = "director"><%= film.director %></a>
           </p>
           <p class = "description">
-            <span class = "quote">
+            <!-- <span class = "quote">
               MANKIND WAS BORN ON EARTH. IT WAS NEVER MEANT TO DIE HERE.
-            </span>
+            </span> -->
             <%= film.sypnosis %>
           </p>
           
