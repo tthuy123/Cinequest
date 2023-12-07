@@ -13,7 +13,7 @@ const getUserMovieLists = (req, res) => {
         }
 
         // Render or send the movie lists in the desired format (JSON or HTML)
-        res.json({ movieLists });
+        res.json(movieLists);
     });
 };
 const getMovieList = (req, res) => {
@@ -31,7 +31,7 @@ const getMovieList = (req, res) => {
     });
 };
 const createList = (req, res) => {
-    const userName = req.body.userName; // Assuming you have user information stored in req.user after authentication
+    const userName = req.user.userName; // Assuming you have user information stored in req.user after authentication
     const title = req.body.title;
 
     UserList.createList(userName, title, (err, newList) => {
@@ -49,7 +49,7 @@ const createList = (req, res) => {
 
 const addFilmToList = (req, res) => {
     const listId = req.body.listId;
-    const userName = req.body.userName; // Assuming you have user information stored in req.user after authentication
+    const userName = req.user.userName; // Assuming you have user information stored in req.user after authentication
     const filmId = req.body.filmId;
 
     UserList.addFilmToList(listId,userName,filmId, (err, newList) => {

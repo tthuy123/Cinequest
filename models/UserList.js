@@ -20,8 +20,8 @@ const UserList = {
         const SQLquery = `
         SELECT film.idfilm, film.title, film.poster
         FROM film
-        JOIN addlist ON film.idfilm = addlist.film_idfilm
-        JOIN list ON addlist.List_idList = list.idList
+        JOIN addtolist ON film.idfilm = addtolist.film_idfilm
+        JOIN list ON addtolist.List_idList = list.idList
         WHERE list.idList = ?
         ORDER BY film.idfilm;`;
 

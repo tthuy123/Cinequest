@@ -1,20 +1,23 @@
-<!-- user-movie-lists.ejs -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Your head elements -->
-    <title>User Movie Lists</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie List</title>
 </head>
 <body>
-    <h1>User Movie Lists</h1>
 
-    <ul>
-        <% data.movieLists.forEach(list => { %>
-            <li><%= list.title %></li>
-        <% }); %>
-    </ul>
-    
-    <!-- Your other HTML content or styling -->
+    <h1>User Movie List</h1>
+
+    <div id="listLink" style="display:none;">
+        <a href="#" id="getList">Get Movie List</a>
+    </div>
+
+    <div id="movieList"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="list.js"></script>
+
 </body>
 </html>
+```

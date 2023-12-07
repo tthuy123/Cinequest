@@ -30,6 +30,9 @@ expressApp.use('/', authRoutes);
 expressApp.get('/', (req, res) => {
     res.render('index');
 });
+expressApp.get('/movie-list', (req, res) => {
+    res.render('user-movie-list');
+});
 // Khởi chạy server
 const PORT = process.env.PORT || 3000;
 expressApp.listen(PORT, () => {

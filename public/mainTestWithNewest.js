@@ -1,61 +1,81 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const newestButton = document.getElementById("newest");
     const genreSelect = document.getElementById("genreSelect");
+    const yearSelect = document.getElementById("yearSelect");
     const movieGrid = document.getElementById("movieGrid");
     const loadMoreButton = document.getElementById("loadMore");
-  
+
     let offset = 0;
     const batchSize = 14;
-  
-    // Function to fetch and render movies
-    const fetchAndRenderMovies = (selectedGenre) => {
-      let apiUrl;
-  
-      if (selectedGenre === "all genres") {
-        apiUrl = `http://localhost:3000/films?offset=${offset}&limit=${batchSize}`;
-      } else {
-        apiUrl = `http://localhost:3000/search-by-genre?genre=${selectedGenre}&limit=${batchSize}&offset=${offset}`;
-      }
-  
-      fetch(apiUrl)
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.length > 0) {
-            // Clear existing content only when selectedGenre is not "all genres"
-            if (selectedGenre !== "all genres") {
-              movieGrid.innerHTML = "";
-            }
-  
-            data.forEach((movie) => {
-              const movieCard = createMovieCard(movie);
-              movieGrid.appendChild(movieCard);
-            });
-  
-            offset += batchSize;
-            loadMoreButton.style.display = "block"; // Show the "Load More" button
-          } else {
-            // If no more movies, hide the "Load More" button
-            loadMoreButton.style.display = "none";
-          }
-        })
-        .catch((error) => console.error("Error fetching movies:", error));
-    };
-  
-    // Event listener for the "Load More" button
-    loadMoreButton.addEventListener("click", () => fetchAndRenderMovies(genreSelect.value));
-  
-    // Lắng nghe sự kiện thay đổi của dropdown
-    genreSelect.addEventListener("change", () => {
-      const selectedGenre = genreSelect.value;
-      offset = 0; // Reset offset when genre changes
-      fetchAndRenderMovies(selectedGenre);
-    });
-  
-    // Initial load of movies
-    fetchAndRenderMovies(genreSelect.value);
-  });
-  
 
-  function renderMovies(startIndex, batchSize) {
+    const fetchAndRenderMovies = (selectedGenre, selectedYear) => {
+        let apiUrl;
+
+        if (selectedGenre === "all genres" && selectedYear === "all years") {
+            apiUrl = `http://localhost:3000/films?offset=${offset}&limit=${batchSize}`;
+        }
+         if (selectedGenre !== "all genres") {
+            apiUrl = `http://localhost:3000/search-by-genre?genre=${selectedGenre}&limit=${batchSize}&offset=${offset}`;
+        }
+         if (selectedYear !== "all years" && selectedGenre === "all genres") {
+            const [fromYear, toYear] = selectedYear.split('-');
+            apiUrl = `http://localhost:3000/search-by-year-rage?fromYear=${fromYear}&toYear=${toYear}&limit=${batchSize}&offset=${offset}`;
+           // apiUrl = `http://localhost:3000/search-by-year-rage?fromYear=${selectedYear.split('-')[0]}&toYear=${selectedYear.split('-')[1]}&limit=${batchSize}&offset=${offset}`;
+        }
+        if (selectedGenre !== "all genres" && selectedYear !== "all years") {
+            const [fromYear, toYear] = selectedYear.split('-');
+            apiUrl = `http://localhost:3000/search-by-genre-and-year-rage?genre=${selectedGenre}&fromYear=${fromYear}&toYear=${toYear}&limit=${batchSize}&offset=${offset}`;
+           // apiUrl = `http://localhost:3000/search-by-genre-and-year-rage?genre=${selectedGenre}&fromYear=${selectedYear.split('-')[0]}&toYear=${selectedYear.split('-')[1]}&limit=${batchSize}&offset=${offset}`;
+        }
+        // Add logic for year range
+        // if (selectedYear !== "all years") {
+        //     apiUrl += `&startYear=${selectedYear.split('-')[0]}&endYear=${selectedYear.split('-')[1]}`;
+        // }
+
+        fetch(apiUrl)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.length > 0) {
+                    // if (selectedGenre !== "all genres") {
+                    //     movieGrid.innerHTML = "";
+                    // }
+                    genreSelect.addEventListener("change", () => {
+                    movieGrid.innerHTML = "";});
+                    yearSelect.addEventListener("change", () => {
+                    movieGrid.innerHTML = "";});
+
+                    data.forEach((movie) => {
+                        const movieCard = createMovieCard(movie);
+                        movieGrid.appendChild(movieCard);
+                    });
+
+                    offset += batchSize;
+                    loadMoreButton.style.display = "block";
+                } else {
+                    loadMoreButton.style.display = "none";
+                }
+            })
+            .catch((error) => console.error("Error fetching movies:", error));
+    };
+
+    loadMoreButton.addEventListener("click", () => fetchAndRenderMovies(genreSelect.value, yearSelect.value));
+
+    genreSelect.addEventListener("change", () => {
+        const selectedGenre = genreSelect.value;
+        offset = 0;
+        fetchAndRenderMovies(selectedGenre, yearSelect.value);
+    });
+
+    yearSelect.addEventListener("change", () => {
+        const selectedYear = yearSelect.value;
+        offset = 0;
+        fetchAndRenderMovies(genreSelect.value, selectedYear);
+    });
+
+    // Initial load of movies
+    fetchAndRenderMovies(genreSelect.value, yearSelect.value);
+});
+function renderMovies(startIndex, batchSize) {
     const movieGrid = document.getElementById("movieGrid");
     movieGrid.innerHTML = ""; // Clear existing content
   
@@ -152,4 +172,3 @@ document.addEventListener("DOMContentLoaded", () => {
   
     return movieCard;
   }
-

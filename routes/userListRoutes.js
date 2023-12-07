@@ -17,8 +17,8 @@ router.get('/user-movie-lists', authenticateToken, userController.getUserMovieLi
 router.get('/movie-list/:id', userController.getMovieList);
 
 // Define a route for creating a new list
-router.post('/create-movie-list', userController.createList);
+router.post('/create-movie-list', authenticateToken, userController.createList);
 
-router.post('/add-film-to-list', userController.addFilmToList);
+router.post('/add-film-to-list',authenticateToken, userController.addFilmToList);
 
 module.exports = router;

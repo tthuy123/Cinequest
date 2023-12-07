@@ -13,7 +13,7 @@ const Film = {
             SELECT person.name
             FROM person
             INNER JOIN partakes ON partakes.person_idperson = person.idperson
-            WHERE partakes.film_idfilm = film.idfilm AND partakes.person_role = 'director'
+            WHERE partakes.film_idfilm = film.idfilm AND partakes.person_role = 'Director'
             ) AS director,
             GROUP_CONCAT(DISTINCT stars.character_name) AS cast,
             GROUP_CONCAT(DISTINCT genre.name) AS genres,
@@ -32,7 +32,7 @@ const Film = {
         // search film by genre
         searchFilmsByGenre: (genre, offset, limit, callback) => {
             const SQLquery = `
-              SELECT film.title, film.year, film.idfilm
+              SELECT film.title, film.year, film.idfilm, film.backdrop, film.poster
               FROM film
               LEFT JOIN isgenre ON isgenre.film_idfilm = film.idfilm
               LEFT JOIN genre ON genre.idGenre = isgenre.Genre_idGenre
@@ -53,6 +53,40 @@ const Film = {
                 GROUP BY film.idfilm`;
     
             connection().query(SQLquery, [actor], callback);
+        },
+        searchFilmsByYearRange: (fromYear,toYear, offset,limit, callback) => {
+            const SQLquery = `
+              SELECT film.idfilm, film.title, film.backdrop, film.poster, film.year
+              FROM film
+              WHERE film.year BETWEEN ? AND ?
+              GROUP BY film.idfilm
+              LIMIT ? 
+              OFFSET ?`;
+        
+            connection().query(SQLquery, [fromYear, toYear,limit,offset], callback);
+          },
+        searchFilmsByGenreAndYearRange: (genre, fromYear, toYear, offset, limit, callback) => {
+            const SQLquery = `
+              SELECT film.idfilm, film.title, film.backdrop, film.poster, film.year
+              FROM film
+              LEFT JOIN isgenre ON isgenre.film_idfilm = film.idfilm
+              LEFT JOIN genre ON genre.idGenre = isgenre.Genre_idGenre
+              WHERE genre.name = ? AND film.year BETWEEN ? AND ?
+              GROUP BY film.idfilm
+              LIMIT ?
+              OFFSET ?`;
+        
+            connection().query(SQLquery, [genre, fromYear, toYear, limit, offset], callback);
+          },
+        searchNewestFilm: (offset,limit,callback) => {
+            const SQLquery = `
+                SELECT film.idfilm, film.title, film.year, film.backdrop, film.poster
+                FROM film
+                ORDER BY film.year DESC
+                LIMIT ?
+                OFFSET ?`;
+    
+            connection().query(SQLquery, [limit,offset],callback);
         },
         addToWatched: (userName, filmId, callback) => {
             const SQLquery = `

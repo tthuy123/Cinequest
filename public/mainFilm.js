@@ -80,11 +80,15 @@ function renderMovies(startIndex, batchSize) {
     cardHead.className = "card-head";
   
     // Movie image
-    const img = document.createElement("img");
-    img.src = movie.imgSrc; // Assuming you have imgSrc in your movie object
-    img.alt = ""; // Add alt text if available
-    img.className = "card-img";
-  
+const img = document.createElement("img");
+img.src = movie.poster;
+
+// Log the image source for debugging
+console.log("Image Source:", movie.poster);
+
+img.alt = "poster"; // Add alt text if available
+img.className = "card-img";
+
     // Card overlay
     const cardOverlay = document.createElement("div");
     cardOverlay.className = "card-overlay";
