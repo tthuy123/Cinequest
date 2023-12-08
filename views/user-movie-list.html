@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- user's display name's list, e.g. linh's lists -->
+    <title>film lists</title>
+    <link rel="stylesheet" href="style/userlist.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&display=swap');
+    </style>
+</head>
+
+<body>
+    <section>
+        <nav class="main-nav">
+            <ul>
+                <li>
+                    <img class="user-pfp" src="https://phinf.wevpstatic.net/MjAyMjA2MTdfMTc0/MDAxNjU1NDU5MDg0MTQ1.uhAb2lBf3Lk8GOfkphocPqGS7u6oFwNI7Ivz6rRaWmcg.n0E2y1GmuLThK-cOpCtqX9DBi8tYnuApBrId5g8Khu4g.JPEG/94812742464747b1a001b5009d130302447.jpg?type=w670">
+                </li>
+                <li><a href="#">username</a></li>
+                <li><a href="#">films</a></li>
+                <li><a href="#">lists</a></li>
+                <li><a href="#">members</a></li>
+                <li><a href="#">log out</a></li>
+                <li>
+                    <button id = "search-button" type = "submit">
+                        <img class ="button-img" src="images/search-icon.png">
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </section>
+
+    <section id = "main-content">
+        <div class = "intro-container">
+            <div id = "intro">
+                Track films you've watched.<br>
+                Save those you want to see.<br>
+                Tell your friends what's good. 
+            </div>
+        </div>
+        <div id ="select-container">
+            <p>Sort by</p>
+            <select>
+                <option value="title" selected>Title</option>
+                <optgroup label = "Date modified">
+                    <option value = "date-modified-asc">Newest first</option>
+                    <option value = "date-modified-desc">Oldest first</option>
+                </optgroup>
+                <optgroup label = "Date created">
+                    <option value = "date-added-asc">Newest first</option>
+                    <option value = "date-added-desc">Oldest first</option>
+                </optgroup>
+            </select>
+        </div>
+
+        <div class = "list-container">
+            <div id = "list-set">
+                <div class = "list-card">
+                    <div id = "list-posters">
+                        <img class = "poster-1" src = "https://m.media-amazon.com/images/M/MV5BNTNiOGI4ZWUtZTc1OC00ZTIzLWExNWMtYWQ5MGNiYjI0ZjkxXkEyXkFqcGdeQXVyMTA4NjE0NjEy._V1_.jpg">
+                        <img class = "poster-2" src = "https://image.tmdb.org/t/p/original/wby9315QzVKdW9BonAefg8jGTTb.jpg">
+                        <img class = "poster-3" src = "https://image.tmdb.org/t/p/original/gQB8Y5RCMkv2zwzFHbUJX3kAhvA.jpg">
+                        <img class = "poster-4" src = "https://image.tmdb.org/t/p/original/ekstpH614fwDX8DUln1a2Opz0N8.jpg">
+                        <img class = "poster-5" src = "https://image.tmdb.org/t/p/original/3bhkrj58Vtu7enYsRolD1fZdja1.jpg">
+                    </div>
+
+                    <div class = "list-details">
+                        <h1>summer watchlist</h1>
+                        <p>5 films</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+    </section>
+</body>
+</html>
+
