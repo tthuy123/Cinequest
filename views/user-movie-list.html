@@ -42,19 +42,16 @@
 
         <div class ="sort-by-wrapper">
             <p>Sort by</p>
-            <!-- <div class = "select-container">
-                <select class = "select-box">
-                    <option value="title" selected>Title</option>
-                    <optgroup label = "Date modified">
-                        <option value = "date-modified-asc">Newest first</option>
-                        <option value = "date-modified-desc">Oldest first</option>
-                    </optgroup>
-                    <optgroup label = "Date created">
-                        <option value = "date-added-asc">Newest first</option>
-                        <option value = "date-added-desc">Oldest first</option>
-                    </optgroup>
-                </select>
-            </div> -->
+
+            <ul class = "select-container">
+                <li id = "title">Title</li>
+                <ul id = "Date-modified">Date modified</ul>
+                    <li id = "modified-newest-first">Newest first</li>
+                    <li id = "modified-oldest-first">Oldest first</li>
+                <ul id = "when-created">When created</ul>
+                    <li id = "created-newest-first">Newest first</li>
+                    <li id = "created-oldest-first">Oldest first</li>
+            </ul>
 
         </div>
 

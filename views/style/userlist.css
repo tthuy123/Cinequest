@@ -72,7 +72,36 @@ body {
     font-size: 30px;
     text-align: center;
     color: rgb(255, 255, 255);
-}  
+}
+
+.sort-by-wrapper p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    margin-left: 900px;
+    display: flex;
+    flex-direction: row;
+    padding-top: 0px;
+
+}
+
+.select-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 930px;
+    margin-top: -33px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+
+    align-items: left;
+
+    border-radius: 2px;
+    border-width: 1px;
+    border-color: rgb(0, 0, 0);
+}
 
 .list-container {
     display: flex;
