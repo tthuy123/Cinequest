@@ -1,3 +1,8 @@
+a {
+    text-decoration: none; /* Remove underline from anchor elements */
+    color: inherit; /* Optional: Maintain the default link color */
+}
+
 body {
     background-color: grey;
     display: flex;
@@ -36,11 +41,6 @@ body {
     align-self: center;
 }
 
-.main-nav li a {
-    text-decoration: none; /* Remove underline from anchor elements */
-    color: inherit; /* Optional: Maintain the default link color */
-}
-
 .main-nav li button {
     background-color: transparent;
     border: none;
@@ -74,40 +74,79 @@ body {
     color: rgb(255, 255, 255);
 }
 
-.sort-by-wrapper p {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    font-size: 15px;
-    color: rgb(255, 255, 255);
-    margin-left: 900px;
+.sort-by-wrapper {
+    align-items: left;
+    margin-left: auto;
+    margin-right: 50px;
+
     display: flex;
     flex-direction: row;
-    padding-top: 0px;
-
-}
-
-.select-container {
-    display: flex;
-    flex-direction: column;
-    margin-left: 930px;
-    margin-top: -33px;
 
     font-family: 'Montserrat', sans-serif;
     font-weight: bold;
     font-size: 15px;
-
-    align-items: left;
 
     border-radius: 2px;
     border-width: 1px;
-    border-color: rgb(0, 0, 0);
+    border-style: transparent;
+    border-color: rgb(255, 255, 255);
+
 }
 
-.list-container {
+.sort-by-wrapper p {
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+    margin-top: 0px;
+    background-color: transparent;
+}
+
+.select-container {
+    margin-left: 20px;
+    padding-left:0px;
+    background-color: grey;
+    border-radius: 3px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+}
+
+#sort-title {
+    padding: 0;
+    margin: 0;
+    border-color: black;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.date-created, .date-modified {
+    padding: 0;
+    margin: 0;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    padding-bottom: 5px;
+}
+
+#modified-newest-first, 
+#modified-oldest-first, 
+#created-newest-first, 
+#created-oldest-first {
+    padding-left: 3px;
+}
+
+#modified-newest-first:hover,
+#modified-oldest-first:hover,
+#created-newest-first:hover,
+#created-oldest-first:hover {
+    background-color: #686868	;
+}
+
+/* .list-container {
     display: flex;
     flex-direction: row;
     align-items: left;
-}
+} */
 
 #list-set {
     display: flex;
