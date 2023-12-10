@@ -88,6 +88,34 @@ const searchNewestFilm = (req, res) => {
         res.json( movies);
     });
 }
+const searchMostRateFilm = (req, res) => {
+    const { offset, limit } = req.query;
+    // Set default values for offset and limit if not provided
+    const parsedOffset = parseInt(offset) || 0;
+    const parsedLimit = parseInt(limit) || 10; // You can adjust the default limit
+    Film.searchMostRateFilm(parsedOffset, parsedLimit, (error, results) => {
+        if (error) {
+            console.error('Error:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            res.status(200).json(results);
+        }
+    });
+};
+const searchPopularFilm = (req, res) => {
+    const { offset, limit } = req.query;
+    // Set default values for offset and limit if not provided
+    const parsedOffset = parseInt(offset) || 0;
+    const parsedLimit = parseInt(limit) || 10; // You can adjust the default limit
+    Film.searchPopularFilm(parsedOffset, parsedLimit, (error, results) => {
+        if (error) {
+            console.error('Error:', error);
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            res.status(200).json(results);
+        }
+    });
+};
   
 const searchFilmsByActor = (req, res) => {
     const { actor } = req.query;
@@ -120,5 +148,8 @@ const searchFilmsByTitle = (req, res) => {
   };
 
 module.exports = {
-    searchFilmsByGenre, searchFilmsByActor, searchFilmsByTitle, searchFilmsByYearRange, searchFilmsByGenreAndYearRange, searchNewestFilm,
+    searchFilmsByGenre, searchFilmsByActor, searchFilmsByTitle, 
+    searchFilmsByYearRange, searchFilmsByGenreAndYearRange, searchNewestFilm,
+    searchMostRateFilm, 
+    searchPopularFilm,
 };

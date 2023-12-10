@@ -12,6 +12,7 @@ router.get('/search-by-genre', searchController.searchFilmsByGenre);
 router.get('/search-by-actor', searchController.searchFilmsByActor);
 router.get('/search-by-genre-and-year-rage', searchController.searchFilmsByGenreAndYearRange);
 router.get('/search-newest-film', searchController.searchNewestFilm);
-
+router.get('/search-by-most-rate', searchController.searchMostRateFilm);
+router.get('/search-by-popular', searchController.searchPopularFilm);
 
 module.exports = router;

@@ -1,9 +1,12 @@
 
 const connection = require('../config/database');
-
 const Film = {
     getAllFilms: (offset, limit, callback) => {
-        const query = 'SELECT * FROM film LIMIT ?, ?';
+        const query = `
+        SELECT film.idfilm, film.title, film.year,film.poster, ROUND(AVG(reviews.rating),1) AS rating
+                 FROM film LEFT JOIN reviews ON film.idfilm = reviews.film_idfilm
+                 GROUP BY film.idfilm
+         LIMIT ?, ?`;
         connection().query(query, [offset, limit], callback);
     },
     // get film detail 
@@ -17,7 +20,7 @@ const Film = {
             ) AS director,
             GROUP_CONCAT(DISTINCT stars.character_name) AS cast,
             GROUP_CONCAT(DISTINCT genre.name) AS genres,
-            AVG(reviews.rating) AS rating
+            ROUND(AVG(reviews.rating),1) AS rating
             FROM film
             LEFT JOIN partakes ON partakes.film_idfilm = film.idfilm
             LEFT JOIN person ON person.idperson = partakes.person_idperson
@@ -87,6 +90,30 @@ const Film = {
                 OFFSET ?`;
     
             connection().query(SQLquery, [limit,offset],callback);
+        },
+        searchMostRateFilm: (offset, limit, callback) => {
+            const SQLquery = `
+                SELECT film.idfilm, film.title, film.year, film.backdrop, film.poster, ROUND(AVG(reviews.rating), 1) as rating
+                FROM film
+                INNER JOIN reviews ON film.idfilm = reviews.film_idfilm
+                GROUP BY film.idfilm
+                ORDER BY rating DESC
+                LIMIT ?
+                OFFSET ?`;
+        
+            connection().query(SQLquery, [limit, offset], callback);
+        },
+        searchPopularFilm: (offset, limit, callback) => {
+            const SQLquery = `
+                SELECT film.idfilm, film.title, film.year, film.backdrop, film.poster, COUNT(log.idLog) as Logcount
+                FROM film
+                INNER JOIN log ON film.idfilm = log.film_idfilm
+                GROUP BY film.idfilm
+                ORDER BY Logcount DESC
+                LIMIT ?
+                OFFSET ?`;
+        
+            connection().query(SQLquery, [limit, offset], callback);
         },
         addToWatched: (userName, filmId, callback) => {
             const SQLquery = `
