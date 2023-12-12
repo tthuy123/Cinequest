@@ -167,7 +167,7 @@
         </div>
     </div>
       <div class = "banner-card">
-        <img src = <%= film.backdrop %> class = "banner-img">
+        <img src = ''  class = "banner-img" id="filmBackdrop">
       </div>
       
 
@@ -177,15 +177,15 @@
           <ion-icon name = "close" class = "close-button"></ion-icon>
         </a>
         <div class = "movie-img">
-            <img src = <%= film.backdrop %> class = "profile-img">
+            <img src = '' class = "profile-img">
         </div>
         <div class = "log-details">
             <p>I WATCHED...</p>
-            <h1 class = "film-title">
-                <%= film.title %>
+            <h1 class = "film-title" id="filmTitle">
+                
             </h1>
             <p>
-                <%= film.year %> Directed by <a class = "director"><%= film.director %></a>
+                 Directed by <a class = "director"></a>
             </p>
             <form action = "#">
                 <p class = "watch-date-data">
@@ -236,10 +236,10 @@
 
 
       <!--Film profile-->
-      <div class = "film-profile" id="filmProfile">
+      <div class = "film-profile">
         <div class = "left">
           <div class = "movie-img">
-            <img src = <%= film.poster %> class = "profile-img">
+            <img src = ' ' class = "profile-img" id="filmPoster" alt="Film Poster">
           </div>
         </div>
         
@@ -247,57 +247,42 @@
         
         <div class ="details">
           <h1 class = "film-title">
-            <%= film.title %>
+            <span id="filmTitle2"></span>
           </h1>
           <p>
-            <%= film.year %> Directed by <a class = "director"><%= film.director %></a>
+            Directed by <a class = "director" id="filmDirector"></a>
           </p>
           <p class = "description">
-            <!-- <span class = "quote">
-              MANKIND WAS BORN ON EARTH. IT WAS NEVER MEANT TO DIE HERE.
-            </span> -->
-            <%= film.sypnosis %>
+            <span class = "description-content" id="filmDescription"></span>
           </p>
 
 
           
 
-           <div class = "cast-crew-wrapper">
-            <div class = "title">
-              <ul class = "cast-crew-list">
-                <li class = "cast-crew-list-contents">
-                  <a href = "#">CAST</a>
-                </li>
-                <li class = "cast-crew-list-contents">
-                  <a href = "./crew">CREW</a>
-                </li>
-                <li class = "cast-crew-list-contents">
-                  <a>DETAILS</a>
-                </li>
-              </ul>
+          <div class="cast-crew-wrapper">
+            <div class="title">
+                <ul class="cast-crew-list">
+                    <li class="cast-crew-list-contents">
+                        <a href="#" id="cast-link">CAST</a>
+                    </li>
+                    <li class="cast-crew-list-contents">
+                        <a href="#" id="crew-link">CREW</a>
+                    </li>
+                    <li class="cast-crew-list-contents">
+                        <a href="#" id="genres-link">GENRES</a>
+                    </li>
+                    <li class="cast-crew-list-contents">
+                        <a href="#" id="studio-link">STUDIO</a>
+                    </li>
+                </ul>
             </div>
 
-
-            <div class = "cast-contents">
-              <!-- <a href = "ChristopherNolan.html">Christopher Nolan</a>
-              <a>Matthew McConaughey</a>
-              <a>Anne Hathaway</a>
-              <a>Jessica Chastain</a>
-              <a>Michael Caine</a>
-              <a>Bill Irwin</a>
-              <a>Ellen Burstyn</a>
-              <a>Mackenzie Foy</a> -->
-              <% if (film.cast) { %>
-                <% const castArray = film.cast.split(','); %>
-                <% castArray.forEach(member => { %>
-                    <a href=""><%= member.trim() %></a>
-                <% }); %>
-            <% } else { %>
-                <!-- Handle the case where film.cast is not available -->
-                <p>No cast information available.</p>
-            <% } %>
-            </div>
         
+
+            <div class="cast-contents" id="Detailcontents">
+              
+          </div>
+          
           </div>
 
         </div>
@@ -532,10 +517,12 @@
     </footer>
   </div>
 
-    <script src="main.js"></script>
-    <script src="filmDetail.js"></script>
-    
+    <script src="/main.js"></script>
+    <script src="/filmsDetail.js"></script>
+
+
 
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
+

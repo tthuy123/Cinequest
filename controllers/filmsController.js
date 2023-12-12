@@ -41,10 +41,12 @@ const filmsController = {
             //res.json(films);
             if (films.length > 0) {
                 const film = films[0];  // Access the first element of the array
-            res.render('filmDetail', { film });
-        } else {
-            res.status(404).send('Film not found');
-        } 
+                res.json(film);
+                
+              
+            } else {
+                res.status(404).send('Film not found');
+            }
         //     if (films.length > 0) {
         //         const film = films[0];  // Access the first element of the array
         // } else {

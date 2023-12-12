@@ -124,7 +124,7 @@ img.className = "card-img";
     // Movie title (wrapped in a link)
     const cardTitle = document.createElement("a");
     // i want the href o be dynamic change by idfilm
-    cardTitle.href = 'films/' + movie.idfilm;
+    cardTitle.href = `/film/${movie.id}`;
    // cardTitle.href = movie.link; // Assuming you have a link in your movie object
     cardTitle.className = "card-title";
     cardTitle.textContent = movie.title;
