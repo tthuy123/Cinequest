@@ -709,31 +709,45 @@
  /*---Movies Pages---*/
  
  .film-profile{
-   display: flex;
-   margin-left: 150px;
    
+   margin-left: 150px;
+   width: 1050px;
+ }
+ 
+ .left{
+   width: 230px;
+   display: inline-block;
+   overflow: hidden;
+ }
+ 
+ .movie-img{
+   
+   height: 350px; 
+   width: 230px;
  }
  
  .profile-img{
+   
    position: left;
    height: 350px;
    width: 230px;
    object-fit: contain;
-   border-radius: 10px;
-   border-style: ridge;
-   display: inline;
+   border-radius: 5px;
+   border-style: solid;
  }
- .film-title{
-   font-family: 'EB Garamond', serif;
-   font-size: 40px;
-   font-weight: bold;
- }
- 
  .details{
    padding-top: 25px;
    display: inline-block;
    vertical-align: top;
    margin-left: 50px;
+   width: 500px;
+ }
+ 
+ .film-title{
+   display: inline-block;
+   font-family: 'EB Garamond', serif;
+   font-size: 40px;
+   font-weight: bold;
  }
  
  .director {
@@ -741,6 +755,7 @@
  }
  
  .description{
+   display: inline-block;
    padding-top: 20px;
    width: 500px;
    font-family: 'EB Garamond', serif;
@@ -753,9 +768,12 @@
    padding-bottom: 5px;
  }
  
+ 
+ 
  .watch-platforms{
+   margin-top: 20px;
    display: inline-block;
-   width: 230px;
+   width: 200px;
  }
  
  .platforms-list{
@@ -765,39 +783,69 @@
    padding-left: 5px;
    padding-top: 5px;
    padding-bottom: 5px;
-   background-color: gray;
+   background-color: rgb(53, 53, 53);
    border-radius: 5px;
  }
  
  .list-of-platforms{
-   font-size: 13px;
+   
    padding-bottom: 10px;
-   border-style: ridge;
-   border-radius: 5px;
-   border-color: gray;
-   border: 2px;
-   cursor: pointer;
+   border-top-left-radius: 3px;
+   border-top-right-radius: 3px;
+   border-bottom: 1px solid grey;
+   
  }
- .list-of-platforms:hover{
-   color: rgb(0, 179, 255) ;
+ .list-of-platforms label{
+   font-size: 13px;
+ }
+ .list-of-platforms label:hover{
+   color: rgb(5, 114, 238) ;
    text-decoration: underline;
  }
  
- .cast-crew{
+ .cast-crew-wrapper{
+   width: 450px;
+   margin-top: 150px;
    vertical-align: top;
    display: inline-block;
+   
  }
+ 
+ .cast-crew-wrapper .title {
+   border-bottom: 2px grey solid;
+   border-radius: 5px;
+ }
+ 
  .cast-crew-list-contents{
    margin-top: 5px;
-   margin-left: 50px;
+   
    padding-top: 15px;
+   padding-bottom: 10px;
+   margin-right: 50px;
    display: inline-block;
+ }
+ 
+ .cast-crew-list-contents a:hover {
+   color:rgb(5, 114, 238);
+   text-decoration: underline;
+ }
+ 
+ .cast-crew-wrapper .cast-contents a{
+   margin: 10px 5px 10px 5px;
+   padding: 10px;
+   display: inline-block;
+   background-color: rgb(53, 53, 53);
+   border: 1px;
+   border-radius: 5px;
+   font-size: 10px;
  }
  
  .action-wrapper{
    margin-top: 20px;
    display: inline-block;
    position: relative;
+   width: 250px;
+   vertical-align: top;
  }
  
  .action-list li {
@@ -806,7 +854,12 @@
    border-top-right-radius: 3px;
    border-bottom: 1px solid rgba(0, 0, 0, .5);
  
-   padding: 20px 10px 20px 10px;
+   padding: 20px 10px 20px 20px;
+ }
+ 
+ .action-list .rate-wrapper{
+   text-align: center;
+   align-items: center;
  }
  
  .action-list .like-action{
@@ -820,6 +873,29 @@
    align-items: center;
  }
  
+ 
+ 
+ .review-action .add-button {
+   background-color: transparent;
+   backdrop-filter: blur(4);
+   display: inline-block;
+   font-size: 15px;
+   position: relative;
+   margin-left: 10px;
+   border: white 1px solid;
+   border-radius: 5px;
+   vertical-align: middle;
+ }
+ .review-action .add-button:hover{
+   border: rgb(5, 114, 238) 1px solid;
+   color: rgb(5, 114, 238);
+   cursor: pointer;
+ }
+ 
+ .review-action .add{
+   display: none;
+ }
+ 
  .action-list .like-action,
  .action-list .watched-action{
    position: relative;
@@ -829,7 +905,35 @@
    width: 100px;
    align-content: center;
  }
+/*  
+ .watched-action {
+   
+ } */
  
+ .watched-action .watch-icon{
+   padding-left: 20px;
+ }
+ 
+ .watched-action .watch-icon:hover{
+   color: yellow;
+   cursor: pointer;
+ }
+ 
+ .like-action .like-icon:hover{
+   cursor: pointer;
+   color: palevioletred;
+ }
+ 
+ .action-list .bookmark-icon{
+   font-size: 1em;
+   display: inline-block;
+   padding-left: 10px;
+ }
+ 
+ .action-list .bookmark-icon:hover{
+   color: rgb(5, 114, 238);
+   cursor: pointer;
+ }
  
  /*--Sign in function--*/
  
@@ -972,3 +1076,558 @@
    transition: .5s;
  }
  
+ 
+ /*---Rating function--*/
+ 
+ #half-stars-example {
+ 
+   /* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
+   .rating-group {
+     display: inline-flex;
+   }
+   
+   /* make hover effect work properly in IE */
+   .rating__icon {
+     pointer-events: none;
+   }
+   
+   /* hide radio inputs */
+   .rating__input {
+    position: absolute !important;
+    left: -9999px !important;
+   }
+ 
+   /* set icon padding and size */
+   .rating__label {
+     cursor: pointer;
+     /* if you change the left/right padding, update the margin-right property of .rating__label--half as well. */
+     padding: 0 0.1em;
+     font-size: 2rem;
+   }
+ 
+   /* add padding and positioning to half star labels */
+   .rating__label--half {
+     padding-right: 0;
+     margin-right: -0.6em;
+     z-index: 2;
+   }
+   
+   /* set default star color */
+   .rating__icon--star {
+     color: rgb(5, 114, 238);
+   }
+   
+   /* set color of none icon when unchecked */
+   .rating__icon--none {
+     color: #eee;
+   }
+ 
+   /* if none icon is checked, make it red */
+   .rating__input--none:checked + .rating__label .rating__icon--none {
+     color: red;
+   }
+ 
+   /* if any input is checked, make its following siblings grey */
+   .rating__input:checked ~ .rating__label .rating__icon--star {
+     color: #ddd;
+   }
+   
+   /* make all stars orange on rating group hover */
+   .rating-group:hover .rating__label .rating__icon--star,
+   .rating-group:hover .rating__label--half .rating__icon--star {
+     color: rgb(5, 114, 238);
+   }
+ 
+   /* make hovered input's following siblings grey on hover */
+   .rating__input:hover ~ .rating__label .rating__icon--star,
+   .rating__input:hover ~ .rating__label--half .rating__icon--star {
+     color: #ddd;
+   }
+   
+   /* make none icon grey on rating group hover */
+   .rating-group:hover .rating__input--none:not(:hover) + .rating__label .rating__icon--none {
+      color: #eee;
+   }
+ 
+   /* make none icon red on hover */
+   .rating__input--none:hover + .rating__label .rating__icon--none {
+     color: red;
+   }
+ }
+ 
+ /*---Reviews section---*/
+ 
+ .reviews-wrapper{
+   width: 850px;
+   margin: 100px 0 300px 150px;
+ }
+ 
+ .reviews-wrapper h1{
+   margin-bottom: 20px;
+   padding-bottom: 5px;
+   border-bottom: rgb(53, 53, 53) solid 2px;
+   border-radius: 5px;
+ }
+ 
+ .rounded-circle{
+   border-radius: 20px;
+   height: 40px;
+   width: 40px;
+   object-fit: contain;
+   display: inline-block;
+   vertical-align: middle;
+ }
+ 
+ .reviews{
+   margin-bottom: 20px;
+   padding-bottom: 10px;
+   border-bottom: 2px solid rgba(5, 114, 238, 0.276);
+   height: 100%;
+ }
+ 
+ .reviews .attribution{
+   display: inline-block;
+   margin: 0 10px 0px 10px;
+   vertical-align: middle;
+ }
+ 
+ .reviews .attribution .context span {
+   color: rgba(246, 246, 246, 0.847);
+ }
+ 
+ .reviews .review-date{
+   color: rgba(246, 246, 246, 0.6);
+   font-size: 10px;
+ }
+ 
+ .reviews p{
+   margin-top: 20px;
+   margin-bottom: 20px;
+ }
+ 
+ .reviews .like-review-button{
+   display: inline-block;
+   margin-left: 20px;
+   margin-right: 20px;
+   color: rgba(246, 246, 246, 0.6);
+   font-size: 13px;
+ }
+ 
+ .reviews .like-review-button:hover {
+   cursor: pointer;
+   opacity: 0.8;
+ }
+ 
+ .reviews .number-of-likes{
+   color: rgba(246, 246, 246, 0.6);
+   font-size: 13px;
+   display: inline-block;
+ }
+ 
+ /*---log-section---*/
+ 
+ 
+ .log-wrapper{
+   overflow: hidden;
+   display: none;
+   /*position: relative;*/
+   margin: auto;
+   width: 65%;
+   height: 600px;
+   background-color: rgb(53, 53, 53);
+   border: rgb(5, 114, 238) solid 2px;
+   border-radius: 5px;
+   padding-top: 30px;
+   transition: transform .5s ease, height .2s ease;
+   transform: scale(1);
+ }
+ 
+ 
+ /*ref
+ .login-wrapper{
+   position: relative;
+   margin-left: 450px;
+   width: 400px;
+   height: 440px;
+   background: transparent;
+   border: 2px solid whitesmoke;
+   border-radius: 20px;
+   backdrop-filter: blur(20px);
+   box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+   display: none;
+   align-items: center;
+   overflow: hidden;
+   transition: transform .5s ease, height .2s ease;
+   transform: scale(0);
+ }
+ .login-wrapper.active{
+   height: 520px;
+ }
+ .login-wrapper.active-popup{
+   transform: scale(1);
+   display: flex;
+   transition: transform .10s ease, height .2s ease;
+ }
+ ref*/
+ 
+ .log-wrapper .close-button{
+   background-color: rgb(5, 114, 238);
+   position: absolute;
+   top: 0px;
+   right: 0px;
+   height: 30px;
+   width: 30px;
+   border-radius: 5px;
+ }
+ 
+ .log-wrapper .close-button:hover{
+   cursor: pointer;
+   opacity: 0.8;
+ }
+ 
+ .log-wrapper .movie-img{
+   display: inline-block;
+   margin-left: 50px;
+ }
+ 
+ .log-wrapper .profile-img{
+   height: 200px;
+   width: 150px;
+ }
+ 
+ .log-wrapper .log-details {
+   margin-left: 20px;
+   display: inline-block;
+   vertical-align: top;
+   width: 400px;
+ }
+ 
+ .log-wrapper .log-details h1{
+   font-size: 30px;
+ }
+ 
+ .log-wrapper .log-details .watch-date-data{
+   margin-top: 10px;
+   font-size: 13px;
+   color: rgba(246, 246, 246, 0.6);
+ }
+ 
+ .log-wrapper .log-details .watch-date{
+   display: block;
+   margin-top: 10px;
+   margin-bottom: 10px;
+   background-color: aliceblue;
+   padding: 5px;
+   font-size: 15px;
+   width: 180px;
+   border: solid black 2px;
+   border-radius: 5px;
+ }
+ 
+ .log-details .add-review{
+   background-color: aliceblue;
+   margin-top: 10px;
+   padding: 5px;
+   width: 100%;
+   font-family: Arial, Helvetica, sans-serif;
+   transition: .8s;
+ }
+ 
+ .log-details .add-review:focus {
+   width: 450px;
+   height: 150px;
+ }
+ 
+ 
+ .log-details .rating-group {
+   display: inline-flex;
+ }
+ 
+ /* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
+ .log-details .rating-group {
+   display: inline-flex;
+ }
+ 
+ /* make hover effect work properly in IE */
+ .log-details .rating__icon {
+   pointer-events: none;
+ }
+ 
+ /* hide radio inputs */
+ .log-details .rating__input {
+  position: absolute !important;
+  left: -9999px !important;
+ }
+ 
+ /* set icon padding and size */
+ .log-details .rating__label {
+   cursor: pointer;
+   /* if you change the left/right padding, update the margin-right property of .rating__label--half as well. */
+   padding: 0 0.1em;
+   font-size: 30px;
+ }
+ 
+ /* add padding and positioning to half star labels */
+ .log-details .rating__label--half {
+   padding-right: 0;
+   margin-right: -0.6em;
+   z-index: 2;
+ }
+ 
+ /* set default star color */
+ .log-details .rating__icon--star {
+   color: rgb(5, 114, 238);
+ }
+ 
+ /* set color of none icon when unchecked */
+ .log-details .rating__icon--none {
+   color: #eee;
+ }
+ 
+ /* if none icon is checked, make it red */
+ .log-details .rating__input--none:checked + .rating__label .rating__icon--none {
+   color: red;
+ }
+ 
+ /* if any input is checked, make its following siblings grey */
+ .log-details .rating__input:checked ~ .rating__label .rating__icon--star {
+   color: #ddd;
+ }
+ 
+ /* make all stars orange on rating group hover */
+ .log-details .rating-group:hover .rating__label .rating__icon--star,
+ .rating-group:hover .rating__label--half .rating__icon--star {
+   color: rgb(5, 114, 238);
+ }
+ 
+ /* make hovered input's following siblings grey on hover */
+ .log-details .rating__input:hover ~ .rating__label .rating__icon--star,
+ .log-details .rating__input:hover ~ .rating__label--half .rating__icon--star {
+   color: #ddd;
+ }
+ 
+ /* make none icon grey on rating group hover */
+ .log-details .rating-group:hover .rating__input--none:not(:hover) + .rating__label .rating__icon--none {
+    color: #eee;
+ }
+ 
+ /* make none icon red on hover */
+ .log-details .rating__input--none:hover + .rating__label .rating__icon--none {
+   color: red;
+ }
+ 
+ .log-details .rating-action{
+   margin-bottom: 10px;
+   margin-right: 20px;
+   display: inline-block;
+ }
+ 
+ .log-details .rate{
+   margin-top: 10px;
+   margin-bottom: 10px;
+ }
+ 
+ .log-details .like-action {
+   display: inline-block;
+   vertical-align: top;
+   margin-top: 10px;
+   margin-left: 90px;
+   width: 50px;
+ }
+ 
+ .log-details .like-action ion-icon{
+   margin-top: 10px;
+   font-size: 30px;
+   position: relative;
+   align-items: center;
+ }
+ 
+ .log-details .like-action ion-icon:hover{
+   color: pink;
+ }
+ 
+ .log-details .does-contain-spoiler{
+   margin-top: 50px;
+   width: 150px;
+ }
+ 
+ .log-details .does-contain-spoiler label{
+   font-size: 15px;
+ }
+ 
+ /* The container */
+ .contain-spoilers {
+   display: block;
+   position: relative;
+   margin-bottom: 12px;
+   cursor: pointer;
+   font-size: 22px;
+   -webkit-user-select: none;
+   -moz-user-select: none;
+   -ms-user-select: none;
+   user-select: none;
+ }
+ 
+ /* Hide the browser's default checkbox */
+ .contain-spoilers input {
+   position: absolute;
+   opacity: 0;
+   cursor: pointer;
+   height: 0;
+   width: 0;
+ }
+ 
+ /* Create a custom checkbox */
+ .checkmark {
+   position: absolute;
+   bottom: 0;
+   right: 0;
+   height: 20px;
+   width: 20px;
+   background-color: #eee;
+ }
+ 
+ /* On mouse-over, add a grey background color */
+ .contain-spoilers:hover input ~ .checkmark {
+   background-color: #ccc;
+ }
+ 
+ /* When the checkbox is checked, add a blue background */
+ .contain-spoilers input:checked ~ .checkmark {
+   background-color: #2196F3;
+ }
+ 
+ /* Create the checkmark/indicator (hidden when not checked) */
+ .checkmark:after {
+   content: "";
+   position: absolute;
+   display: none;
+ }
+ 
+ /* Show the checkmark when checked */
+ .contain-spoilers input:checked ~ .checkmark:after {
+   display: block;
+ }
+ 
+ /* Style the checkmark/indicator */
+ .contain-spoilers .checkmark:after {
+   left: 9px;
+   top: 5px;
+   width: 5px;
+   height: 10px;
+   border: solid white;
+   border-width: 0 3px 3px 0;
+   -webkit-transform: rotate(45deg);
+   -ms-transform: rotate(45deg);
+   transform: rotate(45deg);
+ }
+ 
+ .log-wrapper .save-button{
+   background-color: rgb(5, 114, 238);
+   position: absolute;
+   right: 80px;
+   bottom: 80px;
+   padding: 10px;
+   border-radius: 5px;
+ }
+ 
+ .log-wrapper .save-button:hover{
+   opacity: 0.8;
+ }
+ 
+ @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+ 
+ /* Ratings widget */
+ .rate {
+     display: block;
+     border: 0;
+ }
+ /* Hide radio */
+ .rate > input {
+     display: none;
+ }
+ /* Order correctly by floating highest to the right */
+ .rate > label {
+     float: right;
+ }
+ /* The star of the show */
+ .rate > label:before {
+     display: inline-block;
+     font-size: 25px;
+     padding: .3rem .2rem;
+     margin: 0;
+     cursor: pointer;
+     font-family: FontAwesome;
+     content: "\f005 "; /* full star */
+ }
+ /* Zero stars rating */
+ .rate > label:last-child:before {
+     content: "\f006 "; /* empty star outline */
+ }
+ /* Half star trick */
+ .rate .half:before {
+     content: "\f089 "; /* half star no outline */
+     position: absolute;
+     padding-right: 0;
+ }
+ /* Click + hover color */
+ input:checked ~ label, /* color current and previous stars on checked */
+ label:hover, label:hover ~ label { color: rgb(5, 114, 238);  } /* color previous stars on hover */
+ 
+ /* Hover highlights */
+ input:checked + label:hover, input:checked ~ label:hover, /* highlight current and previous stars */
+ input:checked ~ label:hover ~ label, /* highlight previous selected stars for new rating */
+ label:hover ~ input:checked ~ label /* highlight previous selected stars */ { color:  rgb(5, 114, 238);  } 
+ 
+ 
+ /*Person Section*/
+ 
+ .person-wrapper{
+   margin-top: 50px;
+   margin-left: 100px;
+   display: flex;
+ }
+ 
+ .film-list{
+   display: inline-block;
+   width: 800px;
+ }
+ .starred-by-person{
+   border-bottom: rgb(53, 53, 53) solid 2px;
+   border-radius: 5px;
+   padding-bottom: 20px;
+ }
+ .starred-by-person .person-label{
+   color: rgba(246, 246, 246, 0.6);
+   display: block;
+ }
+ .starred-by-person .director{
+   font-size: 20px;
+ }
+ 
+ .person-wrapper .film-list .filter-bar{
+   padding: 5px;
+ }
+ 
+ .person-wrapper .person-profile{
+   display: inline-block;
+   width: 450px;
+   padding: 30px;
+   vertical-align: top;
+   border-top: rgb(53, 53, 53) 1px solid;
+   border-left: rgb(53, 53, 53) 1px solid;
+   border-radius: 5px;
+   margin: 50px;
+ }
+ 
+ .person-profile .person-img{
+   height: 300px;
+   width: 60%;
+   object-fit: contain;
+   margin: auto;
+ }
+ 
+ .person-profile .person-description p{
+   font-size: 15px;
+   color: rgba(246, 246, 246, 0.6);
+ }

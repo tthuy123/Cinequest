@@ -53,4 +53,17 @@ iconClose.addEventListener('click', ()=> {
 });
 
 
+// Lấy nút và div bằng class
+var button = document.querySelector('.review-action');
+var reviewWrapper = document.querySelector('.log-wrapper');
+var closeLog = document.querySelector('.close-function');
 
+// Thêm sự kiện click vào nút
+button.addEventListener('click', function() {
+  // Kiểm tra nếu div đang ẩn, hiển thị nó; nếu không, ẩn nó
+    reviewWrapper.style.display = 'block';
+});
+
+closeLog.addEventListener('click', function(){
+  reviewWrapper.style.display = 'none';
+});

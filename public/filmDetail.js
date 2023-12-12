@@ -12,8 +12,7 @@ function createFilmDetailPage(film) {
     document.querySelector('.container').appendChild(filmProfile);
   }
   document.addEventListener("DOMContentLoaded", () => {
-    // Truyền dữ liệu trực tiếp từ template EJS
-    const filmData = <%= JSON.stringify(film) %>;
+    const filmData = film; // Remove the <%= JSON.stringify(film) %> code and directly pass the film object
     createFilmDetailPage(filmData);
   });
   

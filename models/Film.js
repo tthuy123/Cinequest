@@ -12,24 +12,53 @@ const Film = {
     // get film detail 
     getFilmDetails: (idfilm,callback) => {
         const SQLquery = 
-        `SELECT film.idfilm, film.title, film.year, film.runtime, film.sypnosis, film.backdrop, film.poster, (
+        `SELECT
+        film.idfilm,
+        film.title,
+        film.year,
+        film.runtime,
+        film.sypnosis,
+        film.backdrop,
+        film.poster,
+        (
             SELECT person.name
             FROM person
             INNER JOIN partakes ON partakes.person_idperson = person.idperson
             WHERE partakes.film_idfilm = film.idfilm AND partakes.person_role = 'Director'
-            ) AS director,
-            GROUP_CONCAT(DISTINCT stars.character_name) AS cast,
-            GROUP_CONCAT(DISTINCT genre.name) AS genres,
-            ROUND(AVG(reviews.rating),1) AS rating
-            FROM film
-            LEFT JOIN partakes ON partakes.film_idfilm = film.idfilm
-            LEFT JOIN person ON person.idperson = partakes.person_idperson
-            LEFT JOIN stars ON stars.film_idfilm = film.idfilm
-            LEFT JOIN isgenre ON isgenre.film_idfilm = film.idfilm
-            LEFT JOIN genre ON genre.idGenre = isgenre.Genre_idGenre
-            LEFT JOIN reviews ON reviews.film_idfilm = film.idfilm
-            WHERE film.idfilm = ?
-            GROUP BY film.idfilm`;
+            LIMIT 1
+        ) AS director,
+        GROUP_CONCAT(DISTINCT CONCAT(realName, ' as ', stars.character_name)) AS cast,
+        GROUP_CONCAT(DISTINCT genre.name) AS genres,
+        ROUND(AVG(reviews.rating), 1) AS rating,
+        GROUP_CONCAT(DISTINCT CONCAT(crewName, ' as ', partakes.person_role)) AS crew
+    FROM
+        film
+    LEFT JOIN (
+        SELECT
+            stars.film_idfilm,
+            stars.character_name,
+            person.name AS realName
+        FROM
+            stars
+        LEFT JOIN person ON person.idperson = stars.person_idperson
+    ) AS stars ON stars.film_idfilm = film.idfilm
+    LEFT JOIN (
+         SELECT 
+              partakes.person_role,
+              partakes.film_idfilm,
+              person.name as crewName
+		FROM 
+            partakes
+		LEFT JOIN person ON person.idperson = partakes.person_idperson
+    ) AS partakes ON partakes.film_idfilm = film.idfilm
+    LEFT JOIN isgenre ON isgenre.film_idfilm = film.idfilm
+    LEFT JOIN genre ON genre.idGenre = isgenre.Genre_idGenre
+    LEFT JOIN reviews ON reviews.film_idfilm = film.idfilm
+    WHERE
+        film.idfilm = ?
+    GROUP BY
+        film.idfilm;
+    `;
             connection().query(SQLquery, [idfilm], callback);
         },
         // search film by genre
@@ -145,9 +174,11 @@ const Film = {
         },
         searchFilmsByTitle: (title, callback) => {
             const SQLquery = `
-              SELECT film.idfilm, film.title, film.year, film.genre, film.backdrop, film.poster, film.rating
-              FROM film
-              WHERE film.title LIKE ?`;
+            SELECT film.idfilm, film.title, film.year,film.poster, ROUND(AVG(reviews.rating),1) AS rating
+            FROM film LEFT JOIN reviews ON film.idfilm = reviews.film_idfilm
+            WHERE film.title LIKE ?
+            GROUP BY film.idfilm
+              `;
           
             connection().query(SQLquery, [`%${title}%`], callback);
         }
