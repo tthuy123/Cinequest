@@ -1,5 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const newestButton = document.getElementById("newest");
+    const filterRadios = document.querySelectorAll('.filter-radios input[name="grade"]');
+
+   // const newestButton = document.getElementById("newest");
     const genreSelect = document.getElementById("genreSelect");
     const yearSelect = document.getElementById("yearSelect");
     const movieGrid = document.getElementById("movieGrid");
@@ -8,41 +10,48 @@ document.addEventListener("DOMContentLoaded", () => {
     let offset = 0;
     const batchSize = 14;
 
-    const fetchAndRenderMovies = (selectedGenre, selectedYear) => {
-        let apiUrl;
+    const fetchAndRenderMovies = (selectedGenre, selectedYear, selectedFilter) => {
 
-        if (selectedGenre === "all genres" && selectedYear === "all years") {
-            apiUrl = `http://localhost:3000/films?offset=${offset}&limit=${batchSize}`;
+        let apiUrl;
+        if (selectedFilter === "newest") {
+            apiUrl = `http://localhost:3000/search-newest-film?offset=${offset}&limit=${batchSize}`;
+        } else if (selectedFilter === "mostRate") {
+            apiUrl = `http://localhost:3000/search-by-most-rate?offset=${offset}&limit=${batchSize}`;
+
+        } else if (selectedFilter === "popular") {
+            apiUrl = `http://localhost:3000/search-by-popular?offset=${offset}&limit=${batchSize}`;
+        } else {
+            if (selectedGenre === "all genres" && selectedYear === "all years") {
+                apiUrl = `http://localhost:3000/films?offset=${offset}&limit=${batchSize}`;
+            }
+             if (selectedGenre !== "all genres") {
+                apiUrl = `http://localhost:3000/search-by-genre?genre=${selectedGenre}&limit=${batchSize}&offset=${offset}`;
+            }
+             if (selectedYear !== "all years" && selectedGenre === "all genres") {
+                const [fromYear, toYear] = selectedYear.split('-');
+                apiUrl = `http://localhost:3000/search-by-year-rage?fromYear=${fromYear}&toYear=${toYear}&limit=${batchSize}&offset=${offset}`;
+               // apiUrl = `http://localhost:3000/search-by-year-rage?fromYear=${selectedYear.split('-')[0]}&toYear=${selectedYear.split('-')[1]}&limit=${batchSize}&offset=${offset}`;
+            }
+            if (selectedGenre !== "all genres" && selectedYear !== "all years") {
+                const [fromYear, toYear] = selectedYear.split('-');
+                apiUrl = `http://localhost:3000/search-by-genre-and-year-rage?genre=${selectedGenre}&fromYear=${fromYear}&toYear=${toYear}&limit=${batchSize}&offset=${offset}`;
+            }
+
         }
-         if (selectedGenre !== "all genres") {
-            apiUrl = `http://localhost:3000/search-by-genre?genre=${selectedGenre}&limit=${batchSize}&offset=${offset}`;
-        }
-         if (selectedYear !== "all years" && selectedGenre === "all genres") {
-            const [fromYear, toYear] = selectedYear.split('-');
-            apiUrl = `http://localhost:3000/search-by-year-rage?fromYear=${fromYear}&toYear=${toYear}&limit=${batchSize}&offset=${offset}`;
-           // apiUrl = `http://localhost:3000/search-by-year-rage?fromYear=${selectedYear.split('-')[0]}&toYear=${selectedYear.split('-')[1]}&limit=${batchSize}&offset=${offset}`;
-        }
-        if (selectedGenre !== "all genres" && selectedYear !== "all years") {
-            const [fromYear, toYear] = selectedYear.split('-');
-            apiUrl = `http://localhost:3000/search-by-genre-and-year-rage?genre=${selectedGenre}&fromYear=${fromYear}&toYear=${toYear}&limit=${batchSize}&offset=${offset}`;
-           // apiUrl = `http://localhost:3000/search-by-genre-and-year-rage?genre=${selectedGenre}&fromYear=${selectedYear.split('-')[0]}&toYear=${selectedYear.split('-')[1]}&limit=${batchSize}&offset=${offset}`;
-        }
-        // Add logic for year range
-        // if (selectedYear !== "all years") {
-        //     apiUrl += `&startYear=${selectedYear.split('-')[0]}&endYear=${selectedYear.split('-')[1]}`;
-        // }
 
         fetch(apiUrl)
             .then((response) => response.json())
             .then((data) => {
                 if (data.length > 0) {
-                    // if (selectedGenre !== "all genres") {
-                    //     movieGrid.innerHTML = "";
-                    // }
                     genreSelect.addEventListener("change", () => {
                     movieGrid.innerHTML = "";});
                     yearSelect.addEventListener("change", () => {
                     movieGrid.innerHTML = "";});
+                    filterRadios.forEach((radio) => {
+                        radio.addEventListener("change", (event) => {
+                            movieGrid.innerHTML = "";
+                        });
+                    });
 
                     data.forEach((movie) => {
                         const movieCard = createMovieCard(movie);
@@ -56,25 +65,39 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
             })
             .catch((error) => console.error("Error fetching movies:", error));
+
+            if(selectedFilter === "all"){
+                loadMoreButton.addEventListener("click", () => fetchAndRenderMovies(genreSelect.value, yearSelect.value,"all")); 
+                } else {
+                    loadMoreButton.addEventListener("click", () => fetchAndRenderMovies("all genres","all years", selectedFilter));
+                }
     };
 
-    loadMoreButton.addEventListener("click", () => fetchAndRenderMovies(genreSelect.value, yearSelect.value));
-
+    filterRadios.forEach((radio) => {
+        radio.addEventListener("change", (event) => {
+            console.log('Radio button changed');
+            const selectedFilter = event.target.id;
+            console.log('Selected Filter:', selectedFilter);
+            offset = 0;
+            fetchAndRenderMovies("all genres","all years", selectedFilter);
+        });
+    });
     genreSelect.addEventListener("change", () => {
         const selectedGenre = genreSelect.value;
         offset = 0;
-        fetchAndRenderMovies(selectedGenre, yearSelect.value);
+        fetchAndRenderMovies(selectedGenre, yearSelect.value,"all");
     });
 
     yearSelect.addEventListener("change", () => {
         const selectedYear = yearSelect.value;
         offset = 0;
-        fetchAndRenderMovies(genreSelect.value, selectedYear);
+        fetchAndRenderMovies(genreSelect.value, selectedYear,"all");
     });
-
     // Initial load of movies
-    fetchAndRenderMovies(genreSelect.value, yearSelect.value);
+    fetchAndRenderMovies(genreSelect.value, yearSelect.value,"all"); // Default to "Featured" on initial load
 });
+
+
 function renderMovies(startIndex, batchSize) {
     const movieGrid = document.getElementById("movieGrid");
     movieGrid.innerHTML = ""; // Clear existing content
@@ -139,7 +162,7 @@ function renderMovies(startIndex, batchSize) {
     // Movie title (wrapped in a link)
     const cardTitle = document.createElement("a");
     // i want the href o be dynamic change by idfilm
-    cardTitle.href = 'films/' + movie.idfilm;
+    cardTitle.href = 'film/' + movie.idfilm;
    // cardTitle.href = movie.link; // Assuming you have a link in your movie object
     cardTitle.className = "card-title";
     cardTitle.textContent = movie.title;

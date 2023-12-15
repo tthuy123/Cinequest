@@ -33,6 +33,11 @@ expressApp.get('/', (req, res) => {
 expressApp.get('/movie-list', (req, res) => {
     res.render('user-movie-list');
 });
+
+// Add the route for film details
+expressApp.get('/film/:id', (req, res) => {
+    res.render('filmDetail');
+});
 // Khởi chạy server
 const PORT = process.env.PORT || 3000;
 expressApp.listen(PORT, () => {
