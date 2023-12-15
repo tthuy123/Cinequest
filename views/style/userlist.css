@@ -1,0 +1,243 @@
+a {
+    text-decoration: none; /* Remove underline from anchor elements */
+    color: inherit; /* Optional: Maintain the default link color */
+}
+
+body {
+    background-color: grey;
+    display: flex;
+    flex-direction: column;
+}
+
+.user-pfp {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border-color: white;
+    border-style: solid;
+    border-width: 2px;
+}
+
+.main-nav {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    background-color: black;
+}
+
+.main-nav ul, li {
+    display: flex;
+    flex-direction: row;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.main-nav li {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    color: rgb(255, 255, 255);
+    margin-left: 25px;
+    align-self: center;
+}
+
+.main-nav li button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.button-img {
+    width: 25px;
+    height: 25px;
+}
+
+#main-content {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0px;
+    justify-content: center;
+    background-color: grey;
+}
+
+#main-content .intro {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    width: 100%;
+    height: auto;
+    align-self: center;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    color: rgb(255, 255, 255);
+}
+
+.sort-by-wrapper {
+    align-items: left;
+    margin-left: auto;
+    margin-right: 50px;
+
+    display: flex;
+    flex-direction: row;
+
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+
+    border-radius: 2px;
+    border-width: 1px;
+    border-style: transparent;
+    border-color: rgb(255, 255, 255);
+
+}
+
+.sort-by-wrapper p {
+    font-size: 15px;
+    color: rgb(0, 0, 0);
+    margin-top: 0px;
+    background-color: transparent;
+}
+
+.select-container {
+    margin-left: 20px;
+    padding-left:0px;
+    background-color: grey;
+    border-radius: 3px;
+    border-width: 2px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+}
+
+#sort-title {
+    padding: 0;
+    margin: 0;
+    border-color: black;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.date-created, .date-modified {
+    padding: 0;
+    margin: 0;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    padding-bottom: 5px;
+}
+
+#modified-newest-first, 
+#modified-oldest-first, 
+#created-newest-first, 
+#created-oldest-first {
+    padding-left: 3px;
+}
+
+#modified-newest-first:hover,
+#modified-oldest-first:hover,
+#created-newest-first:hover,
+#created-oldest-first:hover {
+    background-color: #686868	;
+}
+
+#list-set {
+    margin-top: 50px;
+    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+hr {
+    width: 90%;
+    height: 1px;
+    background-color: rgb(56, 56, 56);
+    border: none;
+    margin-bottom: 20px;
+}
+
+.list-card {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    margin-right: auto;
+    padding-right: 40px;
+}
+
+#list-posters {
+    display: grid;
+    grid-template-columns: repeat(6, 60.7px);
+}
+
+#list-posters:hover {
+    border-radius: 5px;
+    border-width: 1.5px;
+    border-style: solid;
+    border-color: rgb(255, 255, 255);
+}
+
+.poster-1 {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row: 1;
+    z-index: 5;
+}
+
+.poster-2 {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row: 1;
+    z-index: 4;
+}
+
+.poster-3 {
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row: 1;
+    z-index: 3;
+}
+
+.poster-4 {
+    grid-column-start: 4;
+    grid-column-end: 5;
+    grid-row: 1;
+    z-index: 2;
+}
+
+.poster-5 {
+    grid-column-start: 5;
+    grid-column-end: 6;
+    grid-row: 1;
+    z-index: 1;
+}
+
+#list-posters > img {
+    aspect-ratio: 0.65 / 1;
+    width: 120px;
+    height: auto;
+    border-radius: 2%;
+    border-width: 1px;
+    border-color: rgb(255, 255, 255);
+    border-style: solid;
+}
+
+.list-details {
+    margin-left: 20px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    font-size: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.list-details > a {
+    font-size: 15px;
+    margin-top: 5px;
+}
+
+.list-details p {
+    font-size: 10px;
+    margin-top: 5px;
+}
