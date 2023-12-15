@@ -97,6 +97,8 @@
    display:         flex;
    justify-content: space-between;
    align-items:     center;
+   border-bottom: solid rgb(5, 114, 238) 2px;
+   border-radius: 5px;
  }
  
  /**
@@ -331,7 +333,7 @@
     * variable for changing position and size
     * besed on radio checked 
     */
-   --width: 85px;
+   --width: 45px;
    --left:   5px;
  
    background: var(--oxford-blue);
@@ -343,15 +345,21 @@
    border-radius: 10px;
  }
  
+ #mostRate:checked ~ .checked-radio-bg{
+   --width: 85px;
+   --left: 50px;
+ }
+ 
  #popular:checked ~ .checked-radio-bg {
    --width: 73px;
-   --left:  90px;
+   --left:  138px;
  }
  
  #newest:checked ~ .checked-radio-bg {
    --width:  81px;
-   --left:  163px;
+   --left:  210px;
  }
+ 
  
  
  /**
@@ -812,13 +820,12 @@
  }
  
  .cast-crew-wrapper .title {
-   border-bottom: 2px grey solid;
+   border-bottom: 2px rgba(128, 128, 128, 0.301) solid;
    border-radius: 5px;
  }
  
- .cast-crew-list-contents{
+ .cast-crew-list li{
    margin-top: 5px;
-   
    padding-top: 15px;
    padding-bottom: 10px;
    margin-right: 50px;
@@ -830,14 +837,45 @@
    text-decoration: underline;
  }
  
- .cast-crew-wrapper .cast-contents a{
-   margin: 10px 5px 10px 5px;
+ .contents{
+   margin-top: 10px;
+ }
+ 
+ .cast-crew-wrapper .contents a{
+   margin: 0px 5px 10px 5px;
    padding: 10px;
    display: inline-block;
    background-color: rgb(53, 53, 53);
    border: 1px;
    border-radius: 5px;
    font-size: 10px;
+ }
+ .cast-crew-wrapper .contents a:hover{
+   opacity: 0.8;
+ }
+ .info{
+   margin-bottom: 15px;
+ }
+ .info div{
+   display: inline-block;
+ }
+ .info .role-context{
+   width: 50%;
+   height: auto;
+ }
+ .info .role-content{
+   width: 200px;
+   vertical-align: top;
+ }
+ .role{
+   color: rgba(245, 245, 245, 0.301);
+   font-size: 13px;
+ }
+ .selected{
+   border-bottom: rgb(5, 114, 238) solid 2px;
+ }
+ .selected a{
+   color: rgb(5, 114, 238);
  }
  
  .action-wrapper{
@@ -870,7 +908,6 @@
    display: block;
    font-size: 2em;
    position: relative;
-   align-items: center;
  }
  
  
@@ -898,25 +935,27 @@
  
  .action-list .like-action,
  .action-list .watched-action{
-   position: relative;
-   font-size: 1em;
-   display: inline-block;
-   align-items: center;
-   width: 100px;
-   align-content: center;
- }
-/*  
- .watched-action {
    
- } */
+   
+   display: inline-block;
+   
+ }
+ 
+ .watched-action {
+   margin: auto;
+   width: 100%;
+   padding: 10px;
+   text-align: center;
+ }
  
  .watched-action .watch-icon{
-   padding-left: 20px;
+   margin: auto;
  }
  
  .watched-action .watch-icon:hover{
-   color: yellow;
+   color: rgba(5, 114, 238, 0.5);
    cursor: pointer;
+   margin: auto;
  }
  
  .like-action .like-icon:hover{
@@ -1198,6 +1237,11 @@
  .reviews .review-date{
    color: rgba(246, 246, 246, 0.6);
    font-size: 10px;
+   display: inline-block;
+ }
+ 
+ .attribution .user-rate{
+   margin-left: 50px;
  }
  
  .reviews p{
@@ -1614,8 +1658,8 @@
    width: 450px;
    padding: 30px;
    vertical-align: top;
-   border-top: rgb(53, 53, 53) 1px solid;
-   border-left: rgb(53, 53, 53) 1px solid;
+   border-top: rgb(53, 53, 53) 2px solid;
+   border-left: rgb(53, 53, 53) 2px solid;
    border-radius: 5px;
    margin: 50px;
  }
@@ -1630,4 +1674,223 @@
  .person-profile .person-description p{
    font-size: 15px;
    color: rgba(246, 246, 246, 0.6);
+ }
+ 
+ .search-result {
+   padding: 20px;
+   margin-left: 100px;
+   margin-top: 10px;
+   margin-right: 100px;
+   margin-bottom: 20px;
+   border-bottom: solid 2px rgb(53, 53, 53);
+   border-radius: 5px;
+ }
+ /*---User Profile Section---*/
+ 
+ .user-wrapper{
+   
+ }
+ 
+ 
+ .user-profile{
+   
+   margin: 20px 100px;
+   padding: 20px;
+ }
+ 
+ .user-avatar{
+   height: 110px;
+   width: 110px;
+   object-fit: contain;
+   display: inline-block;
+   vertical-align: top;
+   border: solid 1px rgba(245, 245, 245, 0.301);
+   border-radius: 50%;
+   background-color: black;
+ }
+ 
+ .user-bio{
+   display: inline-block;
+   width: 500px;
+   overflow-x: hidden;
+   overflow-y: auto;
+ }
+ 
+ .user-name{
+   display: inline-block;
+   vertical-align: middle;
+   margin-top: 20px;
+   margin-left: 50px;
+   font-size: 25px;
+ }
+ 
+ .edit-button{
+   vertical-align: bottom;
+   padding: 3px;
+   margin-left: 8px;
+   display: inline-block;
+   transition: .1s;
+ }
+ .edit-button:hover{
+   color:rgb(5, 114, 238);
+   cursor: pointer;
+   transition: .1s;
+ }
+ 
+ .user-description{
+   margin-top: 20px;
+   margin-left: 50px;
+   color: rgba(246, 246, 246, 0.6);
+ }
+ 
+ .activities-record{
+   display: inline-block;
+   vertical-align: top;
+ }
+ 
+ .activities-record a{
+   display: inline-block;
+   padding: 0 15px;
+   border-right: solid rgb(53, 53, 53) 2px;
+   
+ }
+ .activities-record span{
+   display: block;
+ }
+ 
+ .activities-record .value{
+   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   font-size: 20px;
+   font-weight: bold;
+   margin-bottom: 10px;
+   text-align: center;
+ }
+ 
+ .activities-record .definition{
+   font-size: 15px;
+   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+   color: rgba(245, 245, 245, 0.301);
+ }
+ 
+ .recent-films{
+   width: 1000px;
+   margin-left: 100px;
+   margin-right: 100px;
+   margin-top: 20px;
+ }
+ .recent-films h2{
+   font-size: 15px;
+   color: rgba(245, 245, 245, 0.5);
+   margin-bottom: 15px;
+   padding-bottom: 5px;
+   border-bottom: rgb(53, 53, 53) solid 2px;
+   border-radius: 5px;
+ }
+ 
+ .recent-reviews{
+   width: 1000px;
+   margin-left: 100px;
+   margin-right: 100px;
+   margin-top: 20px;
+ }
+ 
+ .recent-reviews h2{
+   font-size: 15px;
+   color: rgba(245, 245, 245, 0.5);
+   margin-bottom: 15px;
+   padding-bottom: 5px;
+   border-bottom: rgb(53, 53, 53) solid 2px;
+   border-radius: 5px;
+ }
+ 
+ 
+ .user-film{
+   display: inline-block;
+   width: 76px;
+   height: 111px;
+   object-fit: contain;
+   border: solid whitesmoke 1.5px;
+   border-radius: 5px;
+ }
+ .user-film:hover{
+   border: solid 1.5px rgb(5, 114, 238);
+   transition: .5s;
+ }
+ .user-film img{
+   border-radius: 5px;
+ }
+ 
+ .review-details{
+   display: inline-block;
+   vertical-align: top;
+   margin-left: 10px;
+ }
+ .review-details .film-title{
+   font-size: 20px;
+   margin-right: 10px;
+   margin-bottom: 15px;
+ }
+ .review-details .film-title:hover{
+   color: rgb(5, 114, 238);
+   transition: .5s;
+ }
+ 
+ 
+ .user-rate {
+   margin-left: 50px;
+   margin-top: 5px;
+   color: rgba(246, 246, 246, 0.6);
+   display: inline-block;
+   font-size: 15px;
+ }
+ .star-icon{
+   color: rgb(5, 114, 238);
+ }
+ 
+ .year{
+   color: rgba(245, 245, 245, 0.301);
+   font-size: 15px;
+ }
+ 
+ /*--Edit-profile--*/
+ 
+ .form-control:focus {
+   box-shadow: none;
+   border-color: #BA68C8
+ }
+ 
+ .profile-button {
+   background: rgb(99, 39, 120);
+   box-shadow: none;
+   border: none
+ }
+ 
+ .profile-button:hover {
+   background: #682773
+ }
+ 
+ .profile-button:focus {
+   background: #682773;
+   box-shadow: none
+ }
+ 
+ .profile-button:active {
+   background: #682773;
+   box-shadow: none
+ }
+ 
+ .back:hover {
+   color: #682773;
+   cursor: pointer
+ }
+ 
+ .labels {
+   font-size: 11px
+ }
+ 
+ .add-experience:hover {
+   background: #BA68C8;
+   color: #fff;
+   cursor: pointer;
+   border: solid 1px #BA68C8
  }

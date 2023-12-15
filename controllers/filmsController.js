@@ -1,6 +1,8 @@
 // xu ly logic
 
 const Film = require('../models/Film');
+const authenticateToken = require('../routes/authMiddleware.js'); // Import your actual authentication middleware
+
 
 const filmsController = {
     getAllFilms: (req, res) => {
@@ -42,40 +44,21 @@ const filmsController = {
             if (films.length > 0) {
                 const film = films[0];  // Access the first element of the array
                 res.json(film);
-                
-              
             } else {
                 res.status(404).send('Film not found');
             }
-        //     if (films.length > 0) {
-        //         const film = films[0];  // Access the first element of the array
-        // } else {
-        //     res.status(404).send('Film not found');
-        // }
-            // let htmlContent = '';
-            // //res.render('film/detail', { film });
-            // // Tạo một đoạn HTML đơn giản để hiển thị chi tiết phim 
-            // if (films.length > 0) {
-            //     const film = films[0];  // Access the first element of the array
-    
-            //     // Tạo một đoạn HTML đơn giản để hiển thị chi tiết phim 
-            //     htmlContent += '<h1>Movie Details</h1>';
-            //     htmlContent += `<h2>${film.title}</h2>`;
-            //     htmlContent += `<ul>
-            //       <li>Year: ${film.year}</li>
-            //       <li>Runtime: ${film.runtime}</li>
-            //       <li>Director: ${film.director}</li>
-            //       <li>Cast: ${film.cast}</li>
-            //       <li>Genres: ${film.genres}</li>
-            //       <li>Rating: ${film.rating}</li>
-            //         <li>Sypnosis: ${film.sypnosis}</li>
-            //          </ul>`;
-            //     // Trả về nội dung HTML trực tiếp
-            //     res.send(htmlContent);
-
-            // } else {
-            //     res.status(404).send('Film not found');
-            // }
+});
+    },
+    showReviews: (req, res) => {
+        const idfilm = req.params.id;
+        Film.showReviews(idfilm, (err, reviews) => {
+            console.log(reviews);
+            if (err) {
+                console.error('Error getting movies: ', err.stack);
+                res.status(500).send('Internal Server Error');
+                return;
+            }
+           res.json(reviews)
 });
     },
     addToWatched: (req, res) => {
@@ -91,19 +74,31 @@ const filmsController = {
             res.status(200).json(result);
         });
     },
-    addReview: (req, res) => {
-        const { userName, filmId, rating, review } = req.body;
+    addReview: async (req, res) => {
+        try {
+            // Sử dụng middleware để xác minh token
+            authenticateToken(req, res, async () => {
+                // Nếu token hợp lệ, bạn có thể tiếp tục xử lý thêm review
+                const { filmId, rating, review } = req.body;
+                const userInfo = req.user.userName; // Lấy thông tin người dùng từ middleware
 
-        Film.addReview(userName, filmId, rating, review, (err, result) => {
-            if (err) {
-                console.error('Error adding review: ', err.stack);
-                res.status(500).send('Internal Server Error');
-                return;
-            }
+                // Sử dụng thông tin người dùng và các thông tin khác để thêm review
+                Film.addReview(userInfo, filmId, rating, review, (err, result) => {
+                    if (err) {
+                        console.error('Error adding review: ', err.stack);
+                        res.status(500).send('Internal Server Error');
+                        return;
+                    }
 
-            res.status(200).json(result);
-        });
+                    res.status(200).json(result);
+                });
+            });
+        } catch (error) {
+            console.error('Error in addReview:', error);
+            res.status(500).send('Internal Server Error');
+        }
     }
+
 }
 
 module.exports = filmsController;

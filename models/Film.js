@@ -185,7 +185,18 @@ const Film = {
               `;
           
             connection().query(SQLquery, [`%${title}%`], callback);
-        }
+        },
+        showReviews: (idfilm,callback) => {
+            const SQLquery = 
+            `              
+            SELECT reviews.rating, reviews.comment, DATE(reviews.reviewTime) as date, reviews.user_userName,
+       user.avatar
+FROM reviews
+INNER JOIN user ON reviews.user_userName = user.userName
+WHERE reviews.film_idfilm = ?
+        `;
+                connection().query(SQLquery, [idfilm], callback);
+            },
        
 };
 module.exports = Film; 
