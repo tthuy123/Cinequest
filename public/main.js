@@ -67,3 +67,37 @@ button.addEventListener('click', function() {
 closeLog.addEventListener('click', function(){
   reviewWrapper.style.display = 'none';
 });
+
+// Lấy nút và div bằng class
+var button = document.querySelector('.review-action');
+var reviewWrapper = document.querySelector('.log-wrapper');
+var closeLog = document.querySelector('.close-function');
+
+// Thêm sự kiện click vào nút
+button.addEventListener('click', function() {
+  // Kiểm tra nếu div đang ẩn, hiển thị nó; nếu không, ẩn nó
+    reviewWrapper.style.display = 'block';
+});
+
+closeLog.addEventListener('click', function(){
+  reviewWrapper.style.display = 'none';
+});
+
+var button = document.querySelector('.watch-icon');
+var span = document.querySelector('.log');
+
+// Store the original state
+var originalText = span.textContent;
+var originalColor = button.style.color;
+
+button.addEventListener('click', function() {
+    if (span.textContent === originalText) {
+        // Change to the new state
+        span.textContent = 'IsLogged';
+        this.style.color = 'rgb(5, 114, 238)';
+    } else {
+        // Revert to the original state
+        span.textContent = originalText;
+        this.style.color = originalColor;
+    }
+});
