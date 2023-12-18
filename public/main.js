@@ -101,3 +101,20 @@ button.addEventListener('click', function() {
         this.style.color = originalColor;
     }
 });
+
+function showContent(cat) {
+  // Get all the content sections
+  var sections = document.getElementById("content").children;
+  // Loop through the sections and hide or show them
+  for (var i = 0; i < sections.length; i++) {
+    // If the section id matches the category, show it
+    if (sections[i].id == cat) {
+      sections[i].classList.toggle("w3-show");
+    }
+    // Otherwise, hide it
+    else {
+      sections[i].classList.remove("w3-show");
+      sections[i].classList.add("w3-hide");
+    }
+  }
+}

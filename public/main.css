@@ -850,6 +850,26 @@
    border-radius: 5px;
    font-size: 10px;
  }
+ .cast-crew-wrapper .navigation-bar .category{
+   display: inline-block;
+   width: 60px;
+   padding: 0px 10px 0px 10px;
+   margin: 15px;
+ }
+ .navigation-bar .category:hover{
+   color: rgb(5, 114, 238);
+ }
+ .navigation-bar .category onclick{
+   color: rgb(5, 114, 238);
+ }
+ 
+ .w3-hide{
+   display: none;
+ }
+ .w3-show{
+   display: block;
+ }
+ 
  .cast-crew-wrapper .contents a:hover{
    opacity: 0.8;
  }
@@ -1687,9 +1707,10 @@
  }
  /*---User Profile Section---*/
  
- /* .user-wrapper{
+ .user-wrapper{
    
- }  */
+ }
+ 
  
  .user-profile{
    
@@ -1893,3 +1914,5 @@
    cursor: pointer;
    border: solid 1px #BA68C8
  }
+ 
+ 
