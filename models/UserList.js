@@ -7,18 +7,21 @@ const UserList = {
 
     getUserMovieLists: (userName, callback) => {
         const SQLquery = `
-        SELECT list.idlist, list.title
-        FROM list
-        JOIN user ON list.userName = user.userName
-        WHERE user.username = ?
-        ORDER BY list.idlist;`;
+        SELECT list.idlist, list.title, COUNT(film.idfilm) AS movie_count
+FROM list
+JOIN user ON list.userName = user.userName
+LEFT JOIN addtolist ON list.idList = addtolist.List_idList
+LEFT JOIN film ON addtolist.film_idfilm = film.idfilm
+WHERE user.username = ?
+GROUP BY list.idlist, list.title
+ORDER BY list.idlist;`;
         console.log('Executing SQL query:', SQLquery, 'with userName:', userName);
         connection().query(SQLquery, [userName], callback);
     },
     // chi tiet list film cua 1 list
     getMovieList: (listId, callback) => {
         const SQLquery = `
-        SELECT film.idfilm, film.title, film.poster
+        SELECT film.idfilm, film.title, film.poster, list.title as ListTitle
         FROM film
         JOIN addtolist ON film.idfilm = addtolist.film_idfilm
         JOIN list ON addtolist.List_idList = list.idList

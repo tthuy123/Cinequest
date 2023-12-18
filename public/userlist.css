@@ -4,7 +4,7 @@ a {
 }
 
 body {
-    background-color: grey;
+    background-color: black;
     display: flex;
     flex-direction: column;
 }
@@ -18,12 +18,12 @@ body {
     border-width: 2px;
 }
 
-.main-nav {
+/* .main-nav {
     justify-content: center;
     display: flex;
     flex-direction: row;
     background-color: black;
-}
+} */
 
 .main-nav ul, li {
     display: flex;
@@ -57,7 +57,7 @@ body {
     flex-direction: column;
     padding-top: 0px;
     justify-content: center;
-    background-color: grey;
+    background-color: black;
 }
 
 #main-content .intro {
