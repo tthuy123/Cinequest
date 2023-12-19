@@ -5,6 +5,7 @@ const filmsRoutes = require('./routes/filmsRoutes');
 const DetailsFilmsRoutes = require('./routes/filmDetailsRoutes');
 const searchRoutes = require('./routes/searchRoutes');
 const userRoutes = require('./routes/userListRoutes');
+const userProfileRoutes = require('./routes/userProfileRoutes');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/authRoutes');
 const cors = require('cors');
@@ -21,6 +22,7 @@ expressApp.use('/', filmsRoutes);
 expressApp.use('/', DetailsFilmsRoutes);
 expressApp.use('/', searchRoutes);
 expressApp.use('/', userRoutes);
+expressApp.use('/', userProfileRoutes);
 
 expressApp.use(bodyParser.json());
 
@@ -32,6 +34,9 @@ expressApp.get('/', (req, res) => {
 });
 expressApp.get('/movie-list', (req, res) => {
     res.render('user-movie-list');
+});
+expressApp.get('/create-movie-list', (req, res) => {
+    res.render('create-movie-list');
 });
 
 // Add the route for film details
