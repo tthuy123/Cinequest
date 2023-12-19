@@ -1,39 +1,72 @@
-document.addEventListener('DOMContentLoaded', function () {
+// Function to fetch movie list data
+function fetchMovieListData() {
     // Check if the user is logged in and has a token
     const token = localStorage.getItem('authToken');
 
     if (token !== null) {
-        // User is logged in, show the "LIST" link
-        document.getElementById('listLink').style.display = 'inline';
+        fetch('http://localhost:3000/user-movie-lists', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+                // Add other headers as needed
+            },
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Call the displayMovieList function with the fetched data
+            displayMovieList(data);
+        })
+        .catch(error => console.error('Error:', error));
+    } else {
+        console.error('Error: User is not logged in.');
+    }
+}
 
-        // Add a click event listener to the "LIST" link
-        document.getElementById('listLink').addEventListener('click', function (event) {
-            event.preventDefault();
-            console.log('Clicked on LIST link');
+// Function to display movie list
+function displayMovieList(data) {
+    const listSetContainer = document.getElementById('list-set');
 
-            // Redirect to the user's list page or perform any other action
+    if (listSetContainer) {
+        listSetContainer.innerHTML = ''; // Clear existing content
 
-            fetch('http://localhost:3000/user-movie-lists', {
-                method: 'GET',
-                headers: {
-                    'Authorization': `Bearer ${token}`,
-                    'Content-Type': 'application/json',
-                    // Add other headers as needed
-                },
-            })
-            .then(response => response.json())
-            .then(data => {
-                // Handle the response data, e.g., display the user's movie lists
-                console.log(data);
-                displayMovieList(data);
+        data.forEach(movie => {
+            // ... (same code as before)
+            const listCard = document.createElement('div');
+            listCard.classList.add('list-card');
 
-            })
-            .catch(error => console.error('Error:', error));
+            // Create list details container
+            const listDetails = document.createElement('div');
+            listDetails.classList.add('list-details');
+
+            // Create anchor element for list title with href
+            const listTitle = document.createElement('a');
+            listTitle.href = `/show-movie-list/${movie.idlist}`;
+            listTitle.textContent = movie.title;
+            listTitle.id = 'list-title';
+
+            const listDescription = document.createElement('p');
+            listDescription.textContent = `${movie.movie_count} films`;
+            listDescription.id = 'list-description';
+
+            // Append listTitle and listDescription to listDetails
+            listDetails.appendChild(listTitle);
+            listDetails.appendChild(listDescription);
+
+            // Append listDetails to listCard
+            listCard.appendChild(listDetails);
+
+            // Append listCard to listSetContainer
+            listSetContainer.appendChild(listCard);
         });
     } else {
-        // User is not logged in, hide the "LIST" link
-        document.getElementById('listLink').style.display = 'none';
+        console.error('Error: listSetContainer is null or not found.');
     }
+}
+
+// Call fetchMovieListData when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function () {
+    fetchMovieListData();
 });
 document.getElementById('listLinkhomepage').addEventListener('click', function (event) {
     event.preventDefault();
@@ -42,32 +75,3 @@ document.getElementById('listLinkhomepage').addEventListener('click', function (
     // Redirect to the user's list page or perform any other action
         window.location.href = '/movie-list';
 });
-function displayMovieList(data) {
-    const movieListContainer = document.getElementById('movieList');
-
-    // Kiểm tra xem phần tử có tồn tại không
-    if (movieListContainer) {
-        // Xóa nội dung cũ của phần tử
-        movieListContainer.innerHTML = '';
-
-        // Tạo các phần tử mới và thêm vào container
-        data.forEach(movie => {
-            // Tạo thẻ a (anchor) với href là đường dẫn mong muốn
-            const movieLink = document.createElement('a');
-            movieLink.href = `/movie-list/${movie.idlist}`; // Thay đổi đường dẫn tùy thuộc vào cấu trúc của ứng dụng
-
-            // Tạo thẻ div để chứa tiêu đề phim
-            const movieItem = document.createElement('div');
-            movieItem.textContent = movie.title;
-
-            // Gắn thẻ div vào thẻ a
-            movieLink.appendChild(movieItem);
-
-            // Thêm thẻ a vào container
-            movieListContainer.appendChild(movieLink);
-        });
-    } else {
-        console.error('Error: movieListContainer is null or not found.');
-    }
-}
-

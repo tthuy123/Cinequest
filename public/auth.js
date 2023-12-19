@@ -1,11 +1,9 @@
-
 document.addEventListener('DOMContentLoaded', function () {
-  
   const loginForm = document.getElementById('loginForm');
 
   // Check if the user is already signed in
- // const authToken = localStorage.getItem('authToken');
- // updateSignInStatus(authToken);
+  const authToken = localStorage.getItem('authToken');
+  updateSignInStatus(authToken);
 
   // Add an event listener to the login form
   loginForm.addEventListener('submit', function (event) {
@@ -39,9 +37,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
           // Update the "Sign In" link to "Sign Out"
           updateSignInStatus(data.token);
-          console.log(data.token);
-           document.getElementById('loginForm').style.display = 'none';
 
+          // Hide the login form
+          document.getElementById('loginForm').style.display = 'none';
         } else {
           // Handle login failure, show an error message or take appropriate action
           console.error('Login failed:', data.message);
@@ -53,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
   function updateSignInStatus(token) {
     const signinButton = document.getElementById('signinButton');
     const signinText = document.getElementById('signinText');
-  
+
     if (token !== null) {
       // User is signed in, update the link to "Sign Out"
       signinText.textContent = 'Sign Out';
@@ -64,14 +62,13 @@ document.addEventListener('DOMContentLoaded', function () {
       signinButton.addEventListener('click', login);
     }
   }
-  
 
   function signOut() {
     // Perform the sign-out logic, e.g., remove the token from local storage
     localStorage.removeItem('authToken');
 
-    // Update the "Sign In" link after signing out
-    updateSignInStatus(null);
+    // Redirect to the login page after signing out
+    window.location.href = '/';
   }
 
   function signIn() {
