@@ -41,6 +41,13 @@ expressApp.get('/film/:id', (req, res) => {
 expressApp.get('/show-movie-list/:id', (req, res) => {
     res.render('film-in-list');
 });
+expressApp.get('/search-by-title', (req, res) => {
+    const title = req.query.title || '';
+    res.render('search-title', { title });
+});
+expressApp.get('/search', (req, res) => {
+    res.render('search-title');
+});
 // Khởi chạy server
 const PORT = process.env.PORT || 3000;
 expressApp.listen(PORT, () => {

@@ -61,19 +61,30 @@ const filmsController = {
            res.json(reviews)
 });
     },
-    addToWatched: (req, res) => {
-        const { userName, filmId } = req.body;
-
-        Film.addToWatched(userName, filmId, (err, result) => {
-            if (err) {
-                console.error('Error adding film to watched list: ', err.stack);
-                res.status(500).send('Internal Server Error');
-                return;
-            }
-
-            res.status(200).json(result);
-        });
-    },
+    addToWatched: async (req, res) => {
+        try {
+            // Assuming you have a middleware to validate the token and attach user information to the request
+            // The user information should include the userName of the authenticated user
+    
+            const { filmId } = req.body;
+            const userName = req.user.userName; // Assuming your middleware attaches user information to req.user
+    
+            // Use the authenticated user information and other details to add the film to the watched list
+            Film.addToWatched(userName, filmId, (err, result) => {
+                if (err) {
+                    console.error('Error adding film to watched list: ', err.stack);
+                    res.status(500).send('Internal Server Error');
+                    return;
+                }
+    
+                res.status(200).json(result);
+            });
+        } catch (error) {
+            console.error('Error in addToWatched:', error);
+            res.status(500).send('Internal Server Error');
+        }
+    }
+    ,
     addReview: async (req, res) => {
         try {
             // Sử dụng middleware để xác minh token

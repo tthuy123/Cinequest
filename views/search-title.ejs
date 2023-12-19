@@ -6,26 +6,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="./assets/images/icon.png" type="image/png">
-  <title>CineQuest</title>
+  <title>CineFlix</title>
 
   <!--
     - custom css link
- 
- -->
-  <link rel="stylesheet" href="main.css">
-  <link rel="stylesheet" href="media_query.css">
+  -->
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/media_query.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
   <!--
     - google font link
   -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Shantell+Sans:wght@300&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900" rel="stylesheet" />
 </head>
 
 <body>
-
-
-
-
-  <!--
+      <!--
     - main container
   -->
   <div class="container">
@@ -71,8 +71,8 @@
 
         <div class="navbar-actions">
 
-          <form action="#" class="navbar-form" id="searchForm">
-            <input type="text" name="search" placeholder="Search for film..." class="navbar-form-search" id="searchInput">
+          <form action="#" class="navbar-form">
+            <input type="text" name="search" placeholder="Search for film..." class="navbar-form-search">
 
             <button class="navbar-form-btn">
               <ion-icon name="search-outline"></ion-icon>
@@ -167,7 +167,6 @@
 
 
 
-
     <!--
       - MAIN SECTION
     -->
@@ -176,39 +175,9 @@
       <!--
         - #BANNER SECTION
       -->
-      <section class="banner">
-        <div class="banner-card">
-
-          <img src="https://image.tmdb.org/t/p/original/w5IDXtifKntw0ajv2co7jFlTQDM.jpg" class="banner-img" alt="">
-
-          <div class="card-content">
-            <div class="card-info">
-
-              <div class="genre">
-                <ion-icon name="film"></ion-icon>
-                <span>Science Fiction/Mystery/Adventure</span>
-              </div>
-
-              <div class="year">
-                <ion-icon name="calendar"></ion-icon>
-                <span>1968</span>
-              </div>
-
-              <div class="duration">
-                <ion-icon name="time"></ion-icon>
-                <span>2h 29m</span>
-              </div>
-
-              <div class="quality">4K</div>
-
-            </div>
-
-            <h2 class="card-title">2001: A Space Odyssey</h2>
-          </div>
-
-        </div>
-      </section>
-
+      <div class = "search-result">
+        <h2>Search Result</h2>
+      </div>
 
 
 
@@ -221,7 +190,7 @@
         <!--
           - filter bar
         -->
-        <div class="filter-bar">
+        <!-- <div class="filter-bar">
 
           <div class="filter-dropdowns">
 
@@ -277,20 +246,22 @@
 
           </div>
 
-        </div>
-
+        </div> -->
 
         <!--
           - movies grid
         -->
 
-        <div class="movies-grid" id="movieGrid"></div>
+        <div class="movies-grid" id="movieGrid2"></div>
         <!--
           - load more button
         -->
-        <button id="loadMore" class="load-more">LOAD MORE</button>
+        <button id="loadMore2" class="load-more">LOAD MORE</button>
 
       </section>
+
+          
+      
 
 
 
@@ -299,188 +270,12 @@
       <!--
         - #CATEGORY SECTION
       -->
-      <section class="category" id="category">
-
-        <h2 class="section-heading">Category</h2>
-
-        <div class="category-grid">
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/oVD3ClJBoomSQHtnJPAlMfes8YD.jpg" alt="" class="card-img">
-            <div class="name">Action</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/wYMbnrdRCREjNLwFlG5SLWzBjui.jpg" alt="" class="card-img">
-            <div class="name">Adventure</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/hofnlIyF6bePkgQOpcuRWLvzf15.jpg" alt="" class="card-img">
-            <div class="name">Animation</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/dtGxDOcFssdUUTYBr6M6INXTI1e.jpg" alt="" class="card-img">
-            <div class="name">Comedy</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/kMRdsjSHifqGZPfHdZIS8YfNMk0.jpg" alt="" class="card-img">
-            <div class="name">Crime</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/7q8Hsn5tPoCgK4VDq9rqHzEjdTE.jpg" alt="" class="card-img">
-            <div class="name">Documentary</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/aCHn2TXYJfzPXQKA6r9mKPbMlUB.jpg" alt="" class="card-img">
-            <div class="name">Drama</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/original/dut5rKaIdKSuq0sGrfFFXbKrfQU.jpg" alt="" class="card-img">
-            <div class="name">Family</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/askg3SMvhqEl4OL52YuvdtY40Yb.jpg" alt="" class="card-img">
-            <div class="name">Fantasy</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/3f92DMBTFqr3wgXpfxzrb0qv8nG.jpg" alt="" class="card-img">
-            <div class="name">History</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/aYcnDyLMnpKce1FOYUpZrXtgUye.jpg" alt="" class="card-img">
-            <div class="name">Horror</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/g7KmJaGFvST5cyvA71V6epKAqIC.jpg" alt="" class="card-img">
-            <div class="name">Music</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/cBtW9PdPzReACl5zLftI0QCd94o.jpg" alt="" class="card-img">
-            <div class="name">Mystery</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/original/hND7xAaxxBgaIspp9iMsaEXOSTz.jpg" alt="" class="card-img">
-            <div class="name">Roman</div>
-          </div>
-          
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/vCkC4lHpJZNVUGzdWAF09UKK8by.jpg" alt="" class="card-img">
-            <div class="name">Science Fiction</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/4dZoc24v0cDgg5vbhqxqtQVatiw.jpg" alt="" class="card-img">
-            <div class="name">Thriller</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/g5G19q0xgkzWEvfcGo1KcL8nQOk.jpg" alt="" class="card-img">
-            <div class="name">TV Movie</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/ddIkmH3TpR6XSc47jj0BrGK5Rbz.jpg" alt="" class="card-img">
-            <div class="name">War</div>
-          </div>
-
-          <div class="category-card">
-            <img src="https://www.themoviedb.org/t/p/w1066_and_h600_bestv2/5Lbm0gpFDRAPIV1Cth6ln9iL1ou.jpg" alt="" class="card-img">
-            <div class="name">Western</div>
-          </div>
-
-        </div>
-
-      </section>
+    
 
 
 
 
-
-      <!--
-        - #LIVE SECTION
-      
-      <section class="live" id="live">
-
-        <h2 class="section-heading">Live Tv Shows</h2>
-
-        <div class="live-grid">
-
-          <div class="live-card">
-
-            <div class="card-head">
-              <img src="./assets/images/planet.jpg" alt="" class="card-img">
-              <div class="live-badge">LIVE</div>
-              <div class="total-viewers">305K viewers</div>
-              <div class="play">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </div>
-            </div>
-
-            <div class="card-body">
-              <img src="./assets/images/bbcamerica.jpg" alt="" class="avatar">
-              <h3 class="card-title">Planet Earth II <br> Season 1 - Islands</h3>
-            </div>
-
-          </div>
-
-          <div class="live-card">
-
-            <div class="card-head">
-              <img src="./assets/images/got.jpg" alt="" class="card-img">
-              <div class="live-badge">LIVE</div>
-              <div class="total-viewers">1.7M viewers</div>
-              <div class="play">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </div>
-            </div>
-
-            <div class="card-body">
-              <img src="./assets/images/HBO-Logo-square.jpg" alt="" class="avatar">
-              <h3 class="card-title">Game of Thrones <br> Season 5 - Mother's Mercy</h3>
-            </div>
-
-          </div>
-
-          <div class="live-card">
-
-            <div class="card-head">
-              <img src="./assets/images/vikins.jpg" alt="" class="card-img">
-              <div class="live-badge">LIVE</div>
-              <div class="total-viewers">468K viewers</div>
-              <div class="play">
-                <ion-icon name="play-circle-outline"></ion-icon>
-              </div>
-            </div>
-
-            <div class="card-body">
-              <img src="./assets/images/HBO-Logo-square.jpg" alt="" class="avatar">
-              <h3 class="card-title">Vikings <br> Season 4 - What Might Have Been</h3>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
-
-    </main>
-    -->
-
-
-
-
+  
     <!--
       - FOOTER SECTION
     -->
@@ -565,7 +360,7 @@
       <div class="footer-copyright">
 
         <div class="copyright">
-          <p>&copy; copyright 2021 CineQuest</p>
+          <p>&copy; copyright 2021 CineFlix</p>
         </div>
 
         <div class="wrapper">
@@ -583,16 +378,13 @@
 
 
 
+
   <!--
     - custom js link
   -->
-  <script src="main.js"></script>
-  <script src="mainTestWithNewest.js"></script>
-  <script src="auth.js"></script>
-  <script src="list.js"></script>
-  <script src="mainWithTitle.js"></script>
-  
-
+  <script src="/main.js"></script>
+  <script src="/auth.js"></script>
+  <script src="/mainWithTitle.js"></script>
   <!--
     - ionicon link
   -->

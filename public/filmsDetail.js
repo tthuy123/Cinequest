@@ -21,6 +21,10 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("filmBackdrop").src = film.backdrop;
         document.getElementById("logPoster").src = film.poster;
         document.getElementById("logDirector").innerText = film.director;
+        updateStarRating(film.rating);
+        document.getElementById('watched-action').addEventListener('click', () => {
+          addToWatched(filmId);
+      });
   
         // Initial load of film details
         displayContent("cast", film.cast);
@@ -29,7 +33,33 @@ document.addEventListener("DOMContentLoaded", () => {
         console.error("Error fetching film details:", error);
       }
     };
-  
+    function addToWatched(filmId) {
+      // Make a POST request to your server endpoint
+      fetch('http://localhost:3000/films/watched', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + token, // Include your authentication token if required
+          },
+          body: JSON.stringify({ filmId: filmId }),
+      })
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          // Handle success
+          console.log('Film added to watched:', data);
+          // You can update the UI or perform additional actions here
+      })
+      .catch(error => {
+          // Handle error
+          console.error('Error adding film to watched:', error);
+      });
+  }
+    
     // Function to display content (cast, genres, studio, crew)
     const displayContent = (contentType) => {
       const contentSection = document.getElementById("Detailcontents");
@@ -64,27 +94,40 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     };
   
-    // Event listeners for each link
     document.getElementById('cast-link').addEventListener('click', async () => {
       await fetchFilmDetails();
       displayContent("cast");
+      updateLinkClass('cast');
     });
-  
+    
     document.getElementById('crew-link').addEventListener('click', async () => {
       await fetchFilmDetails();
       displayContent("crew");
+      updateLinkClass('crew');
     });
-  
+    
     document.getElementById('genres-link').addEventListener('click', async () => {
       await fetchFilmDetails();
       displayContent("genres");
+      updateLinkClass('genres');
     });
-  
+    
     document.getElementById('studio-link').addEventListener('click', async () => {
       await fetchFilmDetails();
       displayContent("studio");
+      updateLinkClass('studio');
     });
-  
+    function updateLinkClass(clickedLinkId) {
+      // Remove 'selected' class from all links
+      const allLinks = document.querySelectorAll('.cast-crew-list li');
+      allLinks.forEach(link => {
+        link.classList.remove('selected');
+      });
+    
+      // Add 'selected' class to the clicked link
+      const clickedLink = document.getElementById(clickedLinkId);
+      clickedLink.classList.add('selected');
+    }
     // Function to fetch reviews
     const fetchReviews = async () => {
       const apiUrl = `http://localhost:3000/reviews/${filmId}`;
@@ -187,7 +230,6 @@ const createReviewElement = (review) => {
 
     reviewForm.addEventListener("submit", async (event) => {
         event.preventDefault(); // Prevent the default form submission
-
         // Get values from the form
         //const watchDate = reviewForm.querySelector('.watch-date').value;
         const reviewContent = reviewForm.querySelector('.add-review').value;
@@ -212,6 +254,11 @@ const createReviewElement = (review) => {
             if (response.ok) {
                 console.log('Review added successfully');
                 // Optionally, you can reload the reviews after adding a new one
+                alert("Review added successfully");
+                fetchFilmDetails();
+                updateStarRating(film.rating);
+                console.log(film.rating);   
+                console.log('Star rating updated immediately');     
                 fetchReviews();
             } else {
                 console.error('Failed to add review:', response.status);
@@ -225,4 +272,19 @@ const createReviewElement = (review) => {
     fetchFilmDetails();
     fetchReviews();
   });
+  function updateStarRating(rating) {
+    const starRating = document.querySelector('.rating-group');
+  
+    // Uncheck all radio buttons
+    const radioButtons = document.querySelectorAll('.rating__label');
+    radioButtons.forEach((radio) => (radio.checked = false));
+  
+    // Check the appropriate radio button based on the rating
+    const selectedRating = parseFloat(rating);
+    const closestRating = Math.round(selectedRating * 2) / 2; // Round to the nearest 0.5
+    const selectedRadio = document.getElementById(`rating2-${closestRating * 10}`);
+    if (selectedRadio) {
+      selectedRadio.checked = true;
+    }
+  }
   
