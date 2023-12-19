@@ -199,16 +199,17 @@
                     </p>
                     <div class="rating-group">
                       <fieldset class="rate">
-                        <input type="radio" id="rating10" name="rating" value="5" /><label for="rating10" title="5 stars"></label>
-                        <input type="radio" id="rating9" name="rating" value="4.5" /><label class="half" for="rating9" title="4 1/2 stars"></label>
-                        <input type="radio" id="rating8" name="rating" value="4" /><label for="rating8" title="4 stars"></label>
-                        <input type="radio" id="rating7" name="rating" value="3.5" /><label class="half" for="rating7" title="3 1/2 stars"></label>
-                        <input type="radio" id="rating6" name="rating" value="3" /><label for="rating6" title="3 stars"></label>
-                        <input type="radio" id="rating5" name="rating" value="2.5" /><label class="half" for="rating5" title="2 1/2 stars"></label>
-                        <input type="radio" id="rating4" name="rating" value="2" /><label for="rating4" title="2 stars"></label>
-                        <input type="radio" id="rating3" name="rating" value="1.5" /><label class="half" for="rating3" title="1 1/2 stars"></label>
-                        <input type="radio" id="rating2" name="rating" value="1" /><label for="rating2" title="1 star"></label>
-                        <input type="radio" id="rating1" name="rating" value="0.5" /><label class="half" for="rating1" title="1/2 star"></label>
+                        <input type="radio" id="rating10" name="rating" value="10" /><label for="rating10" title="5 stars"></label>
+                        <input type="radio" id="rating9" name="rating" value="9" /><label class="half" for="rating9" title="4 1/2 stars"></label>
+                        <input type="radio" id="rating8" name="rating" value="8" /><label for="rating8" title="4 stars"></label>
+                        <input type="radio" id="rating7" name="rating" value="7" /><label class="half" for="rating7" title="3 1/2 stars"></label>
+                        <input type="radio" id="rating6" name="rating" value="6" /><label for="rating6" title="3 stars"></label>
+                        <input type="radio" id="rating5" name="rating" value="5" /><label class="half" for="rating5" title="2 1/2 stars"></label>
+                        <input type="radio" id="rating4" name="rating" value="4" /><label for="rating4" title="2 stars"></label>
+                        <input type="radio" id="rating3" name="rating" value="3" /><label class="half" for="rating3" title="1 1/2 stars"></label>
+                        <input type="radio" id="rating2" name="rating" value="2" /><label for="rating2" title="1 star"></label>
+                        <input type="radio" id="rating1" name="rating" value="1" /><label class="half" for="rating1" title="1/2 star"></label>
+                        </fieldset>
                     </div>
                 </div>
                 
@@ -255,205 +256,245 @@ The adventures of a group of explorers who make use of a newly discovered wormho
 
           <div class = "cast-crew-wrapper">
             <div class = "title">
-              <ul class = "cast-crew-list" >
-                <li id = "cast">
-                  <a href = "#cast">CAST</a>
-                </li>
-                <li class = "selected" id = "crew">
-                  <a href = "detail_crew.html#crew">CREW</a>
-                </li>
-                <li class = "" id = "details">
-                  <a href = "detail_details.html#details">DETAILS</a>
-                </li>
-                <li class = "" id = "genres">
-                  <a href = "detail_genre.html#genres">GENRES</a>
-                </li>
-              </ul>
+              <div class = "navigation-bar">
+                <button class="category" onclick="showContent('cast')">CAST</button>
+                <button class="category" onclick="showContent('crew')">CREW</button>
+                <button class="category" onclick="showContent('details')">DETAILS</button>
+                <button class="category" onclick="showContent('genres')">GENRES</button>
+              </div>
             </div>
 
-
-            <div class = "contents">
-                <div class = "info">
-                    <div class = "role-context">
-                        <span class = "role">Director</span>
-                    </div>
-                    <div class = "role-content">
-                        <a href = "ChristopherNolan.html" class = "director">Christopher Nolan</a>
-                    </div>
+            <div id="content" class = "contents">
+              <!-- The content section for category 1 -->
+              <div id="cast" class="w3-hide">
+                <div class = "role-content">
+                  <a href = "ChristopherNolan.html" class = "casting">Christopher Nolan</a>
                 </div>
-                <div class = "info">
-                    <div class = "role-context">
-                        <span class = "role">Asst. Director</span>
-                    </div>
-                    <div class = "role-content">
-                        <a href = "" class = "asst.director">Gary Hawes</a>
-                        <a href="" class="asst.director">Nilo Otero</a>
-                        <a href="" class = "asst.director">Brandon Lambdin</a>
-                    </div>
-                </div>
-                <div class = "info">
-                    <div class = "role-context">
-                        <span class = "role">Producer</span>
-                    </div>
-                    <div class = "role-content">
-                        <a href = "" class = "producer">Gary Hawes</a>
-                    </div>
-                </div>
-                <div class = "info">
-                    <div class = "role-context">
-                        <span class = "role">Exec. Producer</span>
-                    </div>
-                    <div class = "role-content">
-                        <a href = "" class = "exec.producer">Gary Hawes</a>
-                    </div>
-                </div>
-                <div class = "info">
-                    <div class = "role-context">
-                        <span class = "role">Writer</span>
-                    </div>
-                    <div class = "role-content">
-                        <a href = "" class = "writer">Gary Hawes</a>
-                    </div>
-                </div>
-                <div class = "info">
-                    <div class = "role-context">
-                        <span class = "role">Casting</span>
-                    </div>
-                    <div class = "role-content">
-                        <a href = "" class = "casting">Gary Hawes</a>
-                    </div>
-                </div>
-                <div class = "info">
-                    <div class = "role-context">
-                        <span class = "role">Editor</span>
-                    </div>
-                    <div class = "role-content">
-                        <a href = "" class = "editor">Gary Hawes</a>
-                    </div>
-                </div>
-                <div class = "info">
-                    <div class = "role-context">
-                        <span class = "role">Cinematography</span>
-                    </div>
-                    <div class = "role-content">
-                        <a href = "" class = "cinematography">Gary Hawes</a>
-                    </div>
-                </div>
+              </div>
+              <!-- The content section for category 2 -->
+              <div id="crew" class="w3-hide">
                 <div class = "info">
                   <div class = "role-context">
-                      <span class = "role">Camera Operator</span>
+                      <span class = "role">Director</span>
                   </div>
                   <div class = "role-content">
-                      <a href = "" class = "camera-operator">Gary Hawes</a>
+                      <a href = "ChristopherNolan.html" class = "director">Christopher Nolan</a>
+                  </div>
+                </div>
+
+                <div class = "info">
+                  <div class = "role-context">
+                      <span class = "role">Asst. Director</span>
+                  </div>
+                  <div class = "role-content">
+                      <a href = "" class = "asst.director">Gary Hawes</a>
+                      <a href="" class="asst.director">Nilo Otero</a>
+                      <a href="" class = "asst.director">Brandon Lambdin</a>
+                  </div>
+              </div>
+              <div class = "info">
+                  <div class = "role-context">
+                      <span class = "role">Producer</span>
+                  </div>
+                  <div class = "role-content">
+                      <a href = "" class = "producer">Gary Hawes</a>
+                  </div>
+              </div>
+              <div class = "info">
+                  <div class = "role-context">
+                      <span class = "role">Exec. Producer</span>
+                  </div>
+                  <div class = "role-content">
+                      <a href = "" class = "exec.producer">Gary Hawes</a>
+                  </div>
+              </div>
+              <div class = "info">
+                  <div class = "role-context">
+                      <span class = "role">Writer</span>
+                  </div>
+                  <div class = "role-content">
+                      <a href = "" class = "writer">Gary Hawes</a>
+                  </div>
+              </div>
+              <div class = "info">
+                  <div class = "role-context">
+                      <span class = "role">Casting</span>
+                  </div>
+                  <div class = "role-content">
+                      <a href = "" class = "casting">Gary Hawes</a>
+                  </div>
+              </div>
+              <div class = "info">
+                  <div class = "role-context">
+                      <span class = "role">Editor</span>
+                  </div>
+                  <div class = "role-content">
+                      <a href = "" class = "editor">Gary Hawes</a>
+                  </div>
+              </div>
+              <div class = "info">
+                  <div class = "role-context">
+                      <span class = "role">Cinematography</span>
+                  </div>
+                  <div class = "role-content">
+                      <a href = "" class = "cinematography">Gary Hawes</a>
                   </div>
               </div>
               <div class = "info">
                 <div class = "role-context">
-                    <span class = "role">Lighting</span>
+                    <span class = "role">Camera Operator</span>
                 </div>
                 <div class = "role-content">
-                    <a href = "" class = "lighting">Gary Hawes</a>
+                    <a href = "" class = "camera-operator">Gary Hawes</a>
                 </div>
             </div>
             <div class = "info">
               <div class = "role-context">
-                  <span class = "role">Add. Photography</span>
+                  <span class = "role">Lighting</span>
               </div>
               <div class = "role-content">
-                  <a href = "" class = "add.photography">Gary Hawes</a>
+                  <a href = "" class = "lighting">Gary Hawes</a>
               </div>
-          </div>
-          <div class = "info">
-            <div class = "role-context">
+            </div>
+            <div class = "info">
+              <div class = "role-context">
+                <span class = "role">Add. Photography</span>
+              </div>
+              <div class = "role-content">
+                <a href = "" class = "add.photography">Gary Hawes</a>
+              </div>
+            </div>
+            <div class = "info">
+              <div class = "role-context">
                 <span class = "role">Production Design</span>
-            </div>
-            <div class = "role-content">
+              </div>
+              <div class = "role-content">
                 <a href = "" class = "production-design">Gary Hawes</a>
+              </div>
             </div>
+            <div class = "info">
+        <div class = "role-context">
+            <span class = "role">Art Direction</span>
         </div>
-        <div class = "info">
-          <div class = "role-context">
-              <span class = "role">Art Direction</span>
-          </div>
-          <div class = "role-content">
-              <a href = "" class = "art-direction">Gary Hawes</a>
-          </div>
+        <div class = "role-content">
+            <a href = "" class = "art-direction">Gary Hawes</a>
         </div>
-        <div class = "info">
-          <div class = "role-context">
-              <span class = "role">Set Decoration</span>
-          </div>
-          <div class = "role-content">
-              <a href = "" class = "set-decoration">Gary Hawes</a>
-          </div>
+      </div>
+      <div class = "info">
+        <div class = "role-context">
+            <span class = "role">Set Decoration</span>
         </div>
-        <div class = "info">
-          <div class = "role-context">
-              <span class = "role">Special Effects</span>
-          </div>
-          <div class = "role-content">
-              <a href = "" class = "special-effects">Gary Hawes</a>
-          </div>
+        <div class = "role-content">
+            <a href = "" class = "set-decoration">Gary Hawes</a>
         </div>
-        <div class = "info">
-          <div class = "role-context">
-              <span class = "role">Visual Effects</span>
-          </div>
-          <div class = "role-content">
-              <a href = "" class = "visual-effects">Gary Hawes</a>
-          </div>
+      </div>
+      <div class = "info">
+        <div class = "role-context">
+            <span class = "role">Special Effects</span>
         </div>
-        <div class = "info">
-          <div class = "role-context">
-              <span class = "role">Stunt</span>
-          </div>
-          <div class = "role-content">
-              <a href = "" class = "stunt">Gary Hawes</a>
-          </div>
+        <div class = "role-content">
+            <a href = "" class = "special-effects">Gary Hawes</a>
         </div>
-        <div class = "info">
-          <div class = "role-context">
-              <span class = "role">Composer</span>
-          </div>
-          <div class = "role-content">
-              <a href = "" class = "composer">Gary Hawes</a>
-          </div>
+      </div>
+      <div class = "info">
+        <div class = "role-context">
+            <span class = "role">Visual Effects</span>
         </div>
-        <div class = "info">
-          <div class = "role-context">
-              <span class = "role">Sound</span>
-          </div>
-          <div class = "role-content">
-              <a href = "" class = "sound">Gary Hawes</a>
-          </div>
+        <div class = "role-content">
+            <a href = "" class = "visual-effects">Gary Hawes</a>
         </div>
-        <div class = "info">
-          <div class = "role-context">
-              <span class = "role">Makeup</span>
-          </div>
-          <div class = "role-content">
-              <a href = "" class = "makeup">Gary Hawes</a>
-          </div>
+      </div>
+      <div class = "info">
+        <div class = "role-context">
+            <span class = "role">Stunt</span>
         </div>
-        <div class = "info">
-          <div class = "role-context">
-              <span class = "role">Costume Design</span>
-          </div>
-          <div class = "role-content">
-              <a href = "" class = "costume-design">Gary Hawes</a>
-          </div>
+        <div class = "role-content">
+            <a href = "" class = "stunt">Gary Hawes</a>
         </div>
-        <div class = "info">
-          <div class = "role-context">
-              <span class = "role">Hairstyling</span>
-          </div>
-          <div class = "role-content">
-              <a href = "" class = "hairstyling">Gary Hawes</a>
-          </div>
+      </div>
+      <div class = "info">
+        <div class = "role-context">
+            <span class = "role">Composer</span>
         </div>
+        <div class = "role-content">
+            <a href = "" class = "composer">Gary Hawes</a>
+        </div>
+      </div>
+      <div class = "info">
+        <div class = "role-context">
+            <span class = "role">Sound</span>
+        </div>
+        <div class = "role-content">
+            <a href = "" class = "sound">Gary Hawes</a>
+        </div>
+      </div>
+      <div class = "info">
+        <div class = "role-context">
+            <span class = "role">Makeup</span>
+        </div>
+        <div class = "role-content">
+            <a href = "" class = "makeup">Gary Hawes</a>
+        </div>
+      </div>
+      <div class = "info">
+        <div class = "role-context">
+            <span class = "role">Costume Design</span>
+        </div>
+        <div class = "role-content">
+            <a href = "" class = "costume-design">Gary Hawes</a>
+        </div>
+      </div>
+      <div class = "info">
+        <div class = "role-context">
+            <span class = "role">Hairstyling</span>
+        </div>
+        <div class = "role-content">
+            <a href = "" class = "hairstyling">Gary Hawes</a>
+        </div>
+      </div>
+                
 
-              
+
+
+
+              </div>
+              <!-- The content section for category 3 -->
+              <div id = "details" class = "w3-hide">
+                <div class = "info">
+                  <div class = "role-context">
+                      <span class = "role">Countries</span>
+                  </div>
+                  <div class = "role-content">
+                      <a href = "" class = "countries">USA</a>
+                      <a href = "" class = "countries">UK</a>
+                  </div>
+              </div>
+              <div class = "info">
+                  <div class = "role-context">
+                      <span class = "role">Languages</span>
+                  </div>
+                  <div class = "role-content">
+                      <a href = "" class = "languages">English</a>
+                  </div>
+              </div>
+              </div>
+              <!-- The content section for category 4 -->
+              <div id = "genres" class = "w3-hide">
+                <div class = "info">
+                  <div class = "role-context">
+                      <span class = "role">Genres</span>
+                  </div>
+                  <div class = "role-content">
+                      <a href = "" class = "science-fiction">Science Fiction</a>
+                      <a href = "" class = "drama">Drama</a>
+                      <a href = "" class = "adventure">Adventure</a>
+                  </div>
+              </div>
+              </div>
             </div>
+
+
+            
         
           </div>
 
