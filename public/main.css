@@ -994,6 +994,133 @@
    cursor: pointer;
  }
  
+ /*--Add to list--*/
+.addToList-wrapper{
+  display: none;
+  margin: auto;
+  width: 50%;
+  height: 270px;
+  background-color: rgb(53, 53, 53);
+  border: rgb(5, 114, 238) solid 2px;
+  border-radius: 5px;
+  transform: scale(1);
+}
+.addToList-wrapper h1{
+  margin: 30px 30px 20px 30px;
+  font-size: 20px;
+  display: inline-block;
+}
+.addToList-wrapper .addToList-body{
+  height: 100px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.addToList-wrapper .addToList-body .list-container .list-items{
+  display: block;
+  margin: 15px 20px;
+}
+
+.addToList-wrapper .addToList-body .list-container{
+  height: 45px;
+  display: block;
+  position: relative;
+  padding-left: 20px;
+}
+
+.addToList-wrapper .addToList-body input{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.addToList-wrapper .addToList-body .list-items .checkmark{
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 30px;
+  height: 15px;
+  width: 15px;
+  margin-right: 15px;
+  background-color: transparent;
+  vertical-align: middle;
+}
+
+.addToList-body .list-items .list-name{
+  margin-left: 30px;
+}
+.addToList-body .list-items .list-capacity{
+  position: absolute;
+  right: 20px;
+}
+.addToList-wrapper .addToList-body .list-container .list-items:hover{
+  color: rgb(5, 114, 238);
+}
+
+
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.addToList-body .list-items input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.addToList-body .list-items .checkmark:after {
+  left: 9px;
+  top: 0px;
+  width: 7px;
+  height: 15px;
+  border: solid rgb(5, 114, 238);
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.addToList-wrapper .addToList-footer{
+  height: 75px;
+}
+
+.addToList-wrapper .addToList-footer .add-action{
+  height: 30px;
+  width: 60px;
+  border-radius: 5px;
+  color: white;
+  background-color: rgb(5, 114, 238);
+  /*/
+  margin-left: 520px;
+  margin-top: 30px;
+  /*/
+  position: absolute;
+  right: 80px;
+  bottom: 30px;
+  align-items: center;
+}
+.addToList-wrapper .addToList-footer .add-action:hover{
+  cursor: pointer;
+  opacity: .8;
+}
+.addToList-wrapper .close-button{
+  background-color: rgb(5, 114, 238);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  height: 30px;
+  width: 30px;
+  border-radius: 5px;
+}
+
+ .close-button:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}
+
  /*--Sign in function--*/
  
  

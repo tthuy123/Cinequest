@@ -118,3 +118,26 @@ function showContent(cat) {
     }
   }
 }
+
+function myFunction() {
+  var checkBox = document.getElementById(".list-items");
+  var submitButton = document.getElementById(".add-button");
+  if (checkBox.checked == true){
+    submitButton.disabled = false;
+  } else {
+    submitButton.disabled = true;
+  }
+}
+
+var bookmarkIcon = document.querySelector('.bookmark-icon');
+var addToListWrapper = document.querySelector('.addToList-wrapper');
+
+bookmarkIcon.addEventListener('click', function() {
+  addToListWrapper.style.display = 'block';
+});
+
+var closeAddWrapper = document.querySelector('.addToList-wrapper .close-button');
+
+closeAddWrapper.addEventListener('click', function(){
+  addToListWrapper.style.display = 'none';
+});
