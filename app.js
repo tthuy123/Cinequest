@@ -38,6 +38,9 @@ expressApp.get('/movie-list', (req, res) => {
 expressApp.get('/create-movie-list', (req, res) => {
     res.render('create-movie-list');
 });
+expressApp.get('/user-profile', (req, res) => {
+    res.render('user-profile');
+});
 
 // Add the route for film details
 expressApp.get('/film/:id', (req, res) => {
