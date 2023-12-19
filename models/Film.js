@@ -3,7 +3,7 @@ const connection = require('../config/database');
 const Film = {
     getAllFilms: (offset, limit, callback) => {
         const query = `
-        SELECT film.idfilm, film.title, film.year,film.poster, ROUND(AVG(reviews.rating),1) AS rating
+        SELECT film.idfilm, film.title, film.year,film.poster, IFNULL(ROUND(AVG(reviews.rating), 1), 'N/A') AS rating
                  FROM film LEFT JOIN reviews ON film.idfilm = reviews.film_idfilm
                  GROUP BY film.idfilm
          LIMIT ?, ?`;
@@ -30,7 +30,7 @@ const Film = {
                 ) AS director,
                 GROUP_CONCAT(DISTINCT CONCAT(realName, ' as ', stars.character_name)) AS cast,
                 GROUP_CONCAT(DISTINCT genre.name) AS genres,
-                ROUND(AVG(reviews.rating), 1) AS rating,
+                IFNULL(ROUND(AVG(reviews.rating), 1), 'N/A') AS rating,
                 GROUP_CONCAT(DISTINCT CONCAT(crewName, ' as ', partakes.person_role)) AS crew,
                 GROUP_CONCAT(DISTINCT studio.name) AS studio
             FROM
@@ -68,10 +68,11 @@ const Film = {
         // search film by genre
         searchFilmsByGenre: (genre, offset, limit, callback) => {
             const SQLquery = `
-              SELECT film.title, film.year, film.idfilm, film.backdrop, film.poster
+              SELECT film.title, film.year, film.idfilm, film.backdrop, film.poster, IFNULL(ROUND(AVG(reviews.rating), 1), 'N/A') AS rating
               FROM film
               LEFT JOIN isgenre ON isgenre.film_idfilm = film.idfilm
               LEFT JOIN genre ON genre.idGenre = isgenre.Genre_idGenre
+              LEFT JOIN reviews ON film.idfilm = reviews.film_idfilm
               WHERE genre.name = ?
               GROUP BY film.idfilm
               LIMIT ?
@@ -82,9 +83,11 @@ const Film = {
           
         searchFilmsByActor: (actor, callback) => {
             const SQLquery = `
-                SELECT film.idfilm, film.title, film.backdrop, film.poster
+                SELECT film.idfilm, film.title, film.backdrop, film.poster, film.year, IFNULL(ROUND(AVG(reviews.rating), 1), 'N/A') AS rating
                 FROM film
                 LEFT JOIN stars ON stars.film_idfilm = film.idfilm
+
+                LEFT JOIN reviews ON film.idfilm = reviews.film_idfilm
                 WHERE stars.character_name = ?
                 GROUP BY film.idfilm`;
     
@@ -92,8 +95,9 @@ const Film = {
         },
         searchFilmsByYearRange: (fromYear,toYear, offset,limit, callback) => {
             const SQLquery = `
-              SELECT film.idfilm, film.title, film.backdrop, film.poster, film.year
-              FROM film
+              SELECT film.idfilm, film.title, film.backdrop, film.poster, film.year, IFNULL(ROUND(AVG(reviews.rating), 1), 'N/A') AS rating
+              FROM film 
+                LEFT JOIN reviews ON film.idfilm = reviews.film_idfilm
               WHERE film.year BETWEEN ? AND ?
               GROUP BY film.idfilm
               LIMIT ? 
@@ -103,10 +107,11 @@ const Film = {
           },
         searchFilmsByGenreAndYearRange: (genre, fromYear, toYear, offset, limit, callback) => {
             const SQLquery = `
-              SELECT film.idfilm, film.title, film.backdrop, film.poster, film.year
+              SELECT film.idfilm, film.title, film.backdrop, film.poster, film.year, IFNULL(ROUND(AVG(reviews.rating), 1), 'N/A') AS rating
               FROM film
               LEFT JOIN isgenre ON isgenre.film_idfilm = film.idfilm
               LEFT JOIN genre ON genre.idGenre = isgenre.Genre_idGenre
+                LEFT JOIN reviews ON film.idfilm = reviews.film_idfilm
               WHERE genre.name = ? AND film.year BETWEEN ? AND ?
               GROUP BY film.idfilm
               LIMIT ?
@@ -116,8 +121,10 @@ const Film = {
           },
         searchNewestFilm: (offset,limit,callback) => {
             const SQLquery = `
-                SELECT film.idfilm, film.title, film.year, film.backdrop, film.poster
+                SELECT film.idfilm, film.title, film.year, film.backdrop, film.poster, IFNULL(ROUND(AVG(reviews.rating), 1), 'N/A') AS rating
                 FROM film
+                LEFT JOIN reviews ON film.idfilm = reviews.film_idfilm
+                GROUP BY film.idfilm
                 ORDER BY film.year DESC
                 LIMIT ?
                 OFFSET ?`;
@@ -126,7 +133,7 @@ const Film = {
         },
         searchMostRateFilm: (offset, limit, callback) => {
             const SQLquery = `
-                SELECT film.idfilm, film.title, film.year, film.backdrop, film.poster, ROUND(AVG(reviews.rating), 1) as rating
+                SELECT film.idfilm, film.title, film.year, film.backdrop, film.poster, IFNULL(ROUND(AVG(reviews.rating), 1), 'N/A') AS rating
                 FROM film
                 INNER JOIN reviews ON film.idfilm = reviews.film_idfilm
                 GROUP BY film.idfilm
@@ -138,9 +145,10 @@ const Film = {
         },
         searchPopularFilm: (offset, limit, callback) => {
             const SQLquery = `
-                SELECT film.idfilm, film.title, film.year, film.backdrop, film.poster, COUNT(log.idLog) as Logcount
+                SELECT film.idfilm, film.title, film.year, film.backdrop, film.poster, COUNT(log.idLog) as Logcount, IFNULL(ROUND(AVG(reviews.rating), 1), 'N/A') AS rating
                 FROM film
                 INNER JOIN log ON film.idfilm = log.film_idfilm
+                LEFT JOIN reviews ON film.idfilm = reviews.film_idfilm
                 GROUP BY film.idfilm
                 ORDER BY Logcount DESC
                 LIMIT ?

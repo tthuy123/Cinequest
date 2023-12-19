@@ -58,9 +58,9 @@
         <nav class="">
           <ul class="navbar-nav">
 
-            <li> <a href="/" class="navbar-link">Home</a> </li>
+            <li> <a href="index.html" class="navbar-link">Home</a> </li>
             <li> <a href="#category" class="navbar-link">Category</a> </li>
-            <li> <a href="/" class="navbar-link  indicator" id = "listLinkhomepage">LIST</a> </li>
+            <li> <a href="#live" class="navbar-link  indicator">LIVE</a> </li>
 
           </ul>
         </nav>
@@ -71,8 +71,8 @@
 
         <div class="navbar-actions">
 
-          <form action="#" class="navbar-form" id="searchForm">
-            <input type="text" name="search" placeholder="Search for film..." class="navbar-form-search" id="searchInput">
+          <form action="#" class="navbar-form">
+            <input type="text" name="search" placeholder="I'm looking for..." class="navbar-form-search">
 
             <button class="navbar-form-btn">
               <ion-icon name="search-outline"></ion-icon>
@@ -91,81 +91,16 @@
           <button class="navbar-search-btn">
             <ion-icon name="search-outline"></ion-icon>
           </button>
-          <!-- Add this container where you want to display user information -->
-          <div id="userInfo"></div>
 
-          <a href="#" class="navbar-signin" id="signinButton">
-            <span id="signinText">Sign in</span>
+          <a href="#" class="navbar-signin">
+            <span>Sign in</span>
             <ion-icon name="log-in-outline"></ion-icon>
           </a>
 
         </div>
 
       </div>
-      <div class = "login-wrapper" id="loginForm">
-        <span class = "icon-close"><ion-icon name = "close"></ion-icon></span>
-
-        <div class = "form-box login" >
-          <h2>Login</h2>
-          <form action = "#">
-            <div class = "input-box">
-              <span class = "icon"><ion-icon name = "mail"></ion-icon></span>
-              <input type="text" id="usernameInput" required>
-              <label>Username</label>
-            </div>
-            <div class = "input-box">
-              <span class = "icon"><ion-icon name = "lock-closed"></ion-icon></span>
-              <input type = "password" id="passwordInput" required>
-              <label>Password</label>
-            </div>
-            <button type = "submit" class = "btn">Login</button>
-            <div class = "login-register">
-              <p>
-                Don't have an account?
-                <a href = "#" class = "register-link">
-                  Register
-                </a>
-              </p>
-            </div>
-          </form>
-        </div>
-
-        <div class = "form-box register">
-          <h2>Sign Up</h2>
-          <form action = "#">
-            <div class = "input-box">
-              <span class = "icon"><ion-icon name = "person"></ion-icon></span>
-              <input type = "text" required>
-              <label>Username</label>
-            </div>
-            <div class = "input-box">
-              <span class = "icon"><ion-icon name = "mail"></ion-icon></span>
-              <input type = "email" required>
-              <label>Email</label>
-            </div>
-            <div class = "input-box">
-              <span class = "icon"><ion-icon name = "lock-closed"></ion-icon></span>
-              <input type = "password" required>
-              <label>Password</label>
-            </div>
-            <button type = "submit" class = "btn">Sign Up</button>
-            <div class = "login-register">
-              <p>
-                Already have an account?
-                <a href = "#" class = "login-link">
-                  Sign In
-                </a>
-              </p>
-            </div>
-          </form>
-        </div>
-        
-      </div>
-      
     </header>
-
-
-
     <!--
         Main section
     -->
@@ -232,7 +167,7 @@
         </div>
     </div>
       <div class = "banner-card">
-        <img src = ''  class = "banner-img" id="filmBackdrop">
+        <img src = "./assets/images/pages/interstelllar/background.jpg" class = "banner-img">
       </div>
       
 
@@ -242,20 +177,20 @@
           <ion-icon name = "close" class = "close-button"></ion-icon>
         </a>
         <div class = "movie-img">
-            <img src = '' class = "profile-img" id="logPoster">
+            <img src = "assets/images/pages/interstelllar/image.jpg" class = "profile-img">
         </div>
         <div class = "log-details">
             <p>I WATCHED...</p>
-            <h1 class = "film-title" id="filmTitle">
-                
+            <h1 class = "film-title">
+                Interstellar
             </h1>
             <p>
-                 Directed by <a class = "director" id="logDirector"></a>
+                2014 Directed by <a class = "director">Christopher Nolan</a>
             </p>
-            <form action = "#" id="reviewForm">
+            <form action = "#">
                 <p class = "watch-date-data">
                     Watched on
-                    <input type ="date" class = "watch-date">
+                  <input type ="date" class = "watch-date">
                 </p>
                 <textarea placeholder="Add a review..." class = "add-review"></textarea>
                 <div class = "rating-action">
@@ -278,6 +213,7 @@
                     </div>
                 </div>
                 
+                 
                 <div>
                     <button type="submit" class = "save-button">Save</button>
                 </div>
@@ -286,48 +222,7 @@
         
       </div>
 
-      <!--Add to list-->
 
-      <div class = "addToList-wrapper">
-        <a class = "close-function">
-            <ion-icon name = "close" class = "close-button"></ion-icon>
-        </a>
-        <h1>Add '<span class = "movie-title">Interstellar</span>' to lists</h1>
-        <form ation = "#">
-            <div class = "addToList-body">
-                <div class = "list-container">
-                    <label class = "list-items">
-                        <input type = "checkbox" class = "checkbox" name = "filmlistID">
-                        <span class = "checkmark"></span>
-                        <span class = "list-label">
-                            <span class = "list-name">
-                                I'm bored
-                            </span>
-                        </span>
-                        <span class = "list-capacity">5 films</span>
-                    </label>
-                </div>
-                <div class = "list-container">
-                    <label class = "list-items">
-                        <input type = "checkbox" class = "checkbox" name = "filmlistID">
-                        <span class = "checkmark"></span>
-                        <span class = "list-label">
-                            <span class = "list-name">
-                                Hello! Welcome to Los Pollos Hermanos Family!
-                            </span>
-                        </span>
-                        <span class = "list-capacity">5 films</span>
-                    </label>
-                  </div>
-            </div>
-            <div class = "addToList-footer">
-                
-              <input type = "submit" class = "add-action" value = "ADD" disabled> 
-                
-            </div>
-        </form>
-        
-    </div>
       
        
 
@@ -336,7 +231,7 @@
       <div class = "film-profile">
         <div class = "left">
           <div class = "movie-img">
-            <img src = ' ' class = "profile-img" id="filmPoster" alt="Film Poster">
+            <img src = "assets/images/pages/interstelllar/image.jpg" class = "profile-img">
           </div>
         </div>
         
@@ -344,51 +239,56 @@
         
         <div class ="details">
           <h1 class = "film-title">
-            <span id="filmTitle2"></span>
+            Interstellar
           </h1>
           <p>
-            Directed by <a class = "director" id="filmDirector"></a>
+            <span class = "year">2014</span> Directed by <a class = "director">Christopher Nolan</a>
           </p>
           <p class = "description">
-            <span class = "description-content" id="filmDescription"></span>
+            <span class = "quote">
+              MANKIND WAS BORN ON EARTH. IT WAS NEVER MEANT TO DIE HERE.
+            </span>
+The adventures of a group of explorers who make use of a newly discovered wormhole to surpass the limitations on human space travel and conquer the vast distances involved in an interstellar voyage.
           </p>
 
 
           
 
-          <div class="cast-crew-wrapper">
-            <div class="title">
-                <ul class="cast-crew-list">
-                    <li class="selected" id="cast">
-                        <a href="#cast" id="cast-link">CAST</a>
-                    </li>
-                    <li class="" id = "crew">
-                        <a href="#crew" id="crew-link">CREW</a>
-                    </li>
-                    <li class="" id = "genres">
-                        <a href="#genres" id="genres-link">GENRES</a>
-                    </li>
-                    <li class="" id = "studio">
-                        <a href="#studio" id="studio-link">STUDIO</a>
-                    </li>
-                </ul>
+          <div class = "cast-crew-wrapper">
+            <div class = "title">
+              <ul class = "cast-crew-list" >
+                <li id = "cast">
+                  <a href = "Interstellar.html#cast">CAST</a>
+                </li>
+                <li class = "" id = "crew">
+                  <a href = "detail_crew.html#crew">CREW</a>
+                </li>
+                <li class = "" id = "details">
+                  <a href = "detail_details.html#details">DETAILS</a>
+                </li>
+                <li class = "selected" id = "genres">
+                  <a href="detail_genre.html#genres">GENRES</a>
+                </li>
+              </ul>
             </div>
 
+
+            <div class = "contents">
+                <div class = "info">
+                    <div class = "role-context">
+                        <span class = "role">Genres</span>
+                    </div>
+                    <div class = "role-content">
+                        <a href = "" class = "science-fiction">Science Fiction</a>
+                        <a href = "" class = "drama">Drama</a>
+                        <a href = "" class = "adventure">Adventure</a>
+                    </div>
+                </div>
+                
+                
+              
+            </div>
         
-
-            <div class="contents" id="Detailcontents">
-              <div class = "info">
-                <div class = "role-context">
-                    <span class = "role">Genres</span>
-                </div>
-                <div class = "role-content">
-                    <a href = "" class = "science-fiction">Science Fiction</a>
-                    <a href = "" class = "drama">Drama</a>
-                    <a href = "" class = "adventure">Adventure</a>
-                </div>
-            </div>
-          </div>
-          
           </div>
 
         </div>
@@ -399,7 +299,7 @@
             <ul>
               <li>
                 <div class = "watched-action">
-                  <a class = "action-activated" id="watched-action">
+                  <a class = "action-activated">
                     <ion-icon name = "eye" class = "watch-icon"></ion-icon>
                   </a>
                   <span class = "log">Log</span>
@@ -410,28 +310,28 @@
                 Rate
                 <div id="half-stars-example">
                   <div class="rating-group">
-                      <input class="rating__input rating__input--none" checked name="rating2" id="rating2-0" value="0" type="radio" disabled>
-                      <label aria-label="0 stars" class="rating__label" for="rating2-0" aria-checked="true">&nbsp;</label>
+                      <input class="rating__input rating__input--none" checked name="rating2" id="rating2-0" value="0" type="radio">
+                      <label aria-label="0 stars" class="rating__label" for="rating2-0">&nbsp;</label>
                       <label aria-label="0.5 stars" class="rating__label rating__label--half" for="rating2-05"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                      <input class="rating__input" name="rating2" id="rating2-05" value="0.5" type="radio" disabled>
+                      <input class="rating__input" name="rating2" id="rating2-05" value="0.5" type="radio">
                       <label aria-label="1 star" class="rating__label" for="rating2-10"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                      <input class="rating__input" name="rating2" id="rating2-10" value="1" type="radio" disabled>
+                      <input class="rating__input" name="rating2" id="rating2-10" value="1" type="radio">
                       <label aria-label="1.5 stars" class="rating__label rating__label--half" for="rating2-15"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                      <input class="rating__input" name="rating2" id="rating2-15" value="1.5" type="radio" disabled>
+                      <input class="rating__input" name="rating2" id="rating2-15" value="1.5" type="radio">
                       <label aria-label="2 stars" class="rating__label" for="rating2-20"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                      <input class="rating__input" name="rating2" id="rating2-20" value="2" type="radio" disabled>
+                      <input class="rating__input" name="rating2" id="rating2-20" value="2" type="radio">
                       <label aria-label="2.5 stars" class="rating__label rating__label--half" for="rating2-25"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                      <input class="rating__input" name="rating2" id="rating2-25" value="2.5" type="radio" disabled>
+                      <input class="rating__input" name="rating2" id="rating2-25" value="2.5" type="radio" checked>
                       <label aria-label="3 stars" class="rating__label" for="rating2-30"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                      <input class="rating__input" name="rating2" id="rating2-30" value="3" type="radio" disabled>
+                      <input class="rating__input" name="rating2" id="rating2-30" value="3" type="radio">
                       <label aria-label="3.5 stars" class="rating__label rating__label--half" for="rating2-35"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                      <input class="rating__input" name="rating2" id="rating2-35" value="3.5" type="radio" disabled>
+                      <input class="rating__input" name="rating2" id="rating2-35" value="3.5" type="radio">
                       <label aria-label="4 stars" class="rating__label" for="rating2-40"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                      <input class="rating__input" name="rating2" id="rating2-40" value="4" type="radio" disabled>
+                      <input class="rating__input" name="rating2" id="rating2-40" value="4" type="radio">
                       <label aria-label="4.5 stars" class="rating__label rating__label--half" for="rating2-45"><i class="rating__icon rating__icon--star fa fa-star-half"></i></label>
-                      <input class="rating__input" name="rating2" id="rating2-45" value="4.5" type="radio" disabled>
+                      <input class="rating__input" name="rating2" id="rating2-45" value="4.5" type="radio">
                       <label aria-label="5 stars" class="rating__label" for="rating2-50"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
-                      <input class="rating__input" name="rating2" id="rating2-50" value="5" type="radio" disabled>
+                      <input class="rating__input" name="rating2" id="rating2-50" value="5" type="radio">
                   </div>
                 </div>
               </li>
@@ -477,9 +377,13 @@
                             <strong class = "name">vangoth</strong>
                           </a>
                           <span class = "review-date">&#x2022 20 October, 2018</span>
+                          <span class = "user-rate">5</span>
+                          <ion-icon name = "star" class = "star-icon"></ion-icon>
                         </div>
-                      
-                        <p>tell me you wouldn't cry too if your son grows up to be casey affleck</p>
+                        <div>
+                          <p>tell me you wouldn't cry too if your son grows up to be casey affleck</p>
+                        </div>
+                        
                         <a class ="like-review-button">
                           <ion-icon name="heart"></ion-icon>
                           <strong>Like review</strong>
@@ -494,11 +398,16 @@
                             <strong class = "name">Evan</strong>
                           </a>
                           <span class = "review-date">&#x2022 20 October, 2018</span>
+                          <span class = "user-rate">5</span>
+                          <ion-icon name = "star" class = "star-icon"></ion-icon>
                         </div>
-                        <p>Oh. My. God. 
-                          <br>
-                          I have a headache. But it's the best headache I've ever had.
-                        </p>
+                        <div class = "body-text">
+                          <p>Oh. My. God. 
+                            <br>
+                            I have a headache. But it's the best headache I've ever had.
+                          </p>
+                        </div>
+                        
                         <a class ="like-review-button">
                           <ion-icon name="heart"></ion-icon>
                           <strong>Like review</strong>
@@ -513,8 +422,12 @@
                             <strong class = "name">elirossi1</strong>
                           </a>
                           <span class = "review-date">&#x2022 20 October, 2018</span>
+                          <span class = "user-rate">5</span>
+                          <ion-icon name = "star" class = "star-icon"></ion-icon>
                         </div>
-                        <p>Good plot and beautiful shots but I was confused for most of the movie</p>
+                        <div class = "body-text">
+                          <p>Good plot and beautiful shots but I was confused for most of the movie</p>
+                        </div>
                         <a class ="like-review-button">
                           <ion-icon name="heart"></ion-icon>
                           <strong>Like review</strong>
@@ -624,12 +537,7 @@
   </div>
 
     <script src="/main.js"></script>
-    <script src="/filmsDetail.js"></script>
-    <script src="/auth.js"></script>
-
-
 
   <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
   <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
-
