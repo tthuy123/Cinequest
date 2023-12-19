@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Toggle the visibility of the input-new-list container
             if (inputNewList.style.display === 'none') {
-                inputNewList.style.display = 'block';
+                inputNewList.style.display = 'flex';
             } else {
                 inputNewList.style.display = 'none';
             }
