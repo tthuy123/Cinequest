@@ -9,4 +9,7 @@ router.get('/recently-watched', authenticateToken, userProfileController.getUser
 // Define routes for recent reviews
 router.get('/recent-reviews', authenticateToken, userProfileController.getUserRecentReviews);
 
+// Define routes for user information
+router.get('/user-information', authenticateToken, userProfileController.getUserInformation);
+
 module.exports = router;

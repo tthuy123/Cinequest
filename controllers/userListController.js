@@ -31,7 +31,7 @@ const getMovieList = (req, res) => {
     });
 };
 const createList = (req, res) => {
-    const userName = req.user.userName; // Assuming you have user information stored in req.user after authentication
+    const userName = req.user.userName; 
     const title = req.body.title;
 
     UserList.createList(userName, title, (err, newList) => {

@@ -33,9 +33,26 @@ const getUserRecentReviews = (req, res) => {
         res.json(recentReviews);
     });
 };
+const getUserInformation = (req, res) => {
+    console.log('User info:', req.user); // Log user information
+    const userName = req.user.userName; // Assuming you have user information stored in req.user after authentication
+    console.log('userName:', userName); // Log the userName value
+
+    UserProfile.getUserInformation(userName, (err, userInformation) => {
+        if (err) {
+            console.error('Error getting user information: ', err.stack);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+
+        // Render or send the reviews in the desired format (JSON or HTML)
+        res.json(userInformation);
+    });
+};
 
 module.exports = {
     getUserRecentlyWatchedMovies,
     getUserRecentReviews,
+    getUserInformation,
     // Add other controller functions as needed
 };

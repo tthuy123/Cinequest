@@ -21,7 +21,7 @@ ORDER BY list.idlist;`;
     // chi tiet list film cua 1 list
     getMovieList: (listId, callback) => {
         const SQLquery = `
-        SELECT film.idfilm, film.title, film.poster, list.title as ListTitle
+        SELECT film.idfilm, film.title, film.poster, list.title as ListTitle, list.idlist
         FROM film
         JOIN addtolist ON film.idfilm = addtolist.film_idfilm
         JOIN list ON addtolist.List_idList = list.idList
@@ -66,7 +66,7 @@ ORDER BY list.idlist;`;
     // add film to list
     addFilmToList: (listId,userName, filmId, callback) => {
         const SQLquery = `
-        INSERT INTO addlist (List_idList,user_userName, film_idfilm, dateAdd)
+        INSERT INTO addtolist (List_idList,user_userName, film_idfilm, dateAdded)
         VALUES (?,?,?,now());`;
 
         connection().query(SQLquery, [listId, userName, filmId], (err, result) => {
@@ -77,10 +77,10 @@ ORDER BY list.idlist;`;
     
             // Fetch the updated list of films after adding a new film
             const fetchQuery = `
-                SELECT list.title as ListTitle, film.title, film.poster
+                SELECT list.title as ListTitle, film.title, film.poster, list.idlist
                 FROM film
-                JOIN addlist ON film.idfilm = addlist.film_idfilm
-                JOIN list ON addlist.List_idList = list.idList
+                JOIN addtolist ON film.idfilm = addtolist.film_idfilm
+                JOIN list ON addtolist.List_idList = list.idList
                 WHERE list.idList = ?   
                 ORDER BY film.idfilm;`;
     

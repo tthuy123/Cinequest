@@ -32,6 +32,16 @@ const UserProfile = {
         console.log('Executing SQL query:', SQLquery, 'with userName:', userName);
         connection().query(SQLquery, [userName], callback);
     },
+    // get user information
+    getUserInformation: (userName, callback) => {
+        const SQLquery = `
+        SELECT *
+        FROM user
+        WHERE userName = ?;`;
+
+        console.log('Executing SQL query:', SQLquery, 'with userName:', userName);
+        connection().query(SQLquery, [userName], callback);
+    },
     
 };
 

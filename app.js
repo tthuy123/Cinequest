@@ -56,6 +56,9 @@ expressApp.get('/search-by-title', (req, res) => {
 expressApp.get('/search', (req, res) => {
     res.render('search-title');
 });
+expressApp.get('/user', (req, res) => {
+    res.render('user-profile');
+});
 // Khởi chạy server
 const PORT = process.env.PORT || 3000;
 expressApp.listen(PORT, () => {

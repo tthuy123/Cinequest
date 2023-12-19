@@ -21,6 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("filmBackdrop").src = film.backdrop;
         document.getElementById("logPoster").src = film.poster;
         document.getElementById("logDirector").innerText = film.director;
+        document.getElementById("title3").innerText = film.title;
         updateStarRating(film.rating);
         document.getElementById('watched-action').addEventListener('click', () => {
           addToWatched(filmId);
@@ -287,4 +288,58 @@ const createReviewElement = (review) => {
       selectedRadio.checked = true;
     }
   }
-  
+  document.addEventListener("DOMContentLoaded", function () {
+    const addToFilmListContainer = document.getElementById("add-to-list");
+    const token = localStorage.getItem('authToken');
+
+
+    if (addToFilmListContainer) {
+        // Add click event listener to the "ADD" button in the film list section
+        addToFilmListContainer.addEventListener("click", async function (event) {
+            const target = event.target;
+
+            // Check if the clicked element is a checkbox
+            if (target && target.classList.contains("checkbox")) {
+                // Enable the "ADD" button when a film list is selected
+                console.log("Checkbox clicked. Checking list ID...");
+                // Rest of your logic...
+                const selectedListId = target.closest(".list-container").dataset.listId;
+                const filmId = window.location.pathname.split("/").pop();
+
+                // Example: Output the selectedListId and filmId to the console
+                console.log("Selected list ID:", selectedListId);
+                console.log("Film ID:", filmId);
+
+                // Example: Perform the fetch operation
+                try {
+                    const response = await fetch("http://localhost:3000/add-film-to-list", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`, // Thay yourAuthToken bằng token thực tế của bạn
+                        },
+                        body: JSON.stringify({
+                            filmId,
+                            listId: selectedListId,
+                        }),
+                    });
+
+                    if (response.ok) {
+                        console.log("Film added to the list successfully!");
+                        alert("Film added to the list successfully!");
+                        // Handle success as needed
+                    } else {
+                        console.error(`Error: ${response.status} - ${response.statusText}`);
+                        // Handle error as needed
+                    }
+                } catch (error) {
+                    console.error("Error adding film to the list:", error);
+                    // Handle error as needed
+                }
+            }
+        });
+    } else {
+        console.error("Error: Button or input container not found.");
+    }
+});
+
