@@ -33,7 +33,7 @@ ORDER BY list.idlist;`;
     //create list
     createList: (userName, title, callback) => {
         const SQLquery = `
-        INSERT INTO list (userName, title, dateModifier, dateCreated)
+        INSERT INTO list (userName, title, dateModified, dateCreated)
         VALUES (?,?,current_timestamp(5),now());`;
 
         connection().query(SQLquery, [userName, title], (err, result) => {
