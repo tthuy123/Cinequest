@@ -65,13 +65,51 @@ function displayMovieList(data) {
 }
 
 // Call fetchMovieListData when the DOM is loaded
+// document.addEventListener('DOMContentLoaded', function () {
+//     fetchMovieListData();
+// });
+// document.getElementById('listLinkhomepage').addEventListener('click', function (event) {
+//     event.preventDefault();
+//     console.log('Clicked on LIST link');
+
+//     // Redirect to the user's list page or perform any other action
+//         window.location.href = '/movie-list';
+// });
+
+
 document.addEventListener('DOMContentLoaded', function () {
     fetchMovieListData();
+
+    // Select the button and input container
+    const addToListButton = document.getElementById('addToListButton');
+    const inputNewList = document.getElementById('inputNewList');
+
+    // Check if the elements are found
+    if (addToListButton && inputNewList) {
+        // Hide the input-new-list initially
+        inputNewList.style.display = 'none';
+
+        // Add click event listener to the "add-to-list" button
+        addToListButton.addEventListener('click', function (event) {
+            // Prevent the default form submission
+            event.preventDefault();
+
+            // Toggle the visibility of the input-new-list container
+            if (inputNewList.style.display === 'none') {
+                inputNewList.style.display = 'block';
+            } else {
+                inputNewList.style.display = 'none';
+            }
+        });
+    } else {
+        console.error('Error: Button or input container not found.');
+    }
 });
+
 document.getElementById('listLinkhomepage').addEventListener('click', function (event) {
     event.preventDefault();
     console.log('Clicked on LIST link');
 
     // Redirect to the user's list page or perform any other action
-        window.location.href = '/movie-list';
+    window.location.href = '/movie-list';
 });
