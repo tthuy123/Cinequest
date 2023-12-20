@@ -5,27 +5,27 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="./assets/images/icon.png" type="image/png">
-  <title>CineFlix</title>
+  <link rel="shortcut icon" href="./images/logo.jpg" type="image/png">
+  <title>CineQuest</title>
 
   <!--
     - custom css link
-  -->
-  <link rel="stylesheet" href="./assets/css/main.css">
-  <link rel="stylesheet" href="./assets/css/media_query.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+ 
+ -->
+  <link rel="stylesheet" href="/main.css">
+  <link rel="stylesheet" href="/media_query.css">
   <!--
     - google font link
   -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Shantell+Sans:wght@300&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900" rel="stylesheet" />
 </head>
 
 <body>
-    <!--
+
+
+
+
+  <!--
     - main container
   -->
   <div class="container">
@@ -48,7 +48,7 @@
 
 
         <a href="#" class="navbar-brand">
-          <img src="assets/images/logo.png">
+          <img src="">
         </a>
 
         <!--
@@ -58,9 +58,10 @@
         <nav class="">
           <ul class="navbar-nav">
 
-            <li> <a href="index.html" class="navbar-link">Home</a> </li>
+            <li> <a href="/" class="navbar-link">Home</a> </li>
             <li> <a href="#category" class="navbar-link">Category</a> </li>
-            <li> <a href="#live" class="navbar-link  indicator">LIVE</a> </li>
+            <li> <a href="/" class="navbar-link " id = "listLinkhomepage">List</a> </li>
+            <li> <a href="/" class="navbar-link" id = "userLink">User</a> </li>
 
           </ul>
         </nav>
@@ -71,8 +72,8 @@
 
         <div class="navbar-actions">
 
-          <form action="#" class="navbar-form">
-            <input type="text" name="search" placeholder="I'm looking for..." class="navbar-form-search">
+          <form action="#" class="navbar-form" id="searchForm">
+            <input type="text" name="search" placeholder="Search for film..." class="navbar-form-search" id="searchInput">
 
             <button class="navbar-form-btn">
               <ion-icon name="search-outline"></ion-icon>
@@ -91,30 +92,31 @@
           <button class="navbar-search-btn">
             <ion-icon name="search-outline"></ion-icon>
           </button>
+          <!-- Add this container where you want to display user information -->
+          <div id="userInfo"></div>
 
-          <a href="#" class="navbar-signin">
-            <span>Sign in</span>
+          <a href="#" class="navbar-signin" id="signinButton">
+            <span id="signinText">Sign in</span>
             <ion-icon name="log-in-outline"></ion-icon>
           </a>
 
         </div>
 
       </div>
-      
-      <div class = "login-wrapper">
+      <div class = "login-wrapper" id="loginForm">
         <span class = "icon-close"><ion-icon name = "close"></ion-icon></span>
 
-        <div class = "form-box login">
+        <div class = "form-box login" >
           <h2>Login</h2>
           <form action = "#">
             <div class = "input-box">
               <span class = "icon"><ion-icon name = "mail"></ion-icon></span>
-              <input type = "email" required>
-              <label>Email</label>
+              <input type="text" id="usernameInput" required>
+              <label>Username</label>
             </div>
             <div class = "input-box">
               <span class = "icon"><ion-icon name = "lock-closed"></ion-icon></span>
-              <input type = "password" required>
+              <input type = "password" id="passwordInput" required>
               <label>Password</label>
             </div>
             <button type = "submit" class = "btn">Login</button>
@@ -158,72 +160,25 @@
             </div>
           </form>
         </div>
+        
       </div>
-    </div>
+      
     </header>
+
+
+
+
+
 
     <main>
         <div class = "person-wrapper">
             <div class = "film-list">
                 <div class = "starred-by-person">
                     <span class = "person-label">FILMS STARRING</span>
-                    <strong class = "director">Christopher Nolan</strong>
+                    <strong class = "director" id="actorName">Christopher Nolan</strong>
                 </div>
-                <div class="filter-bar">
-
-                    <div class="filter-dropdowns">
-
-                        <select name = "role" class = "role">
-                            <option value = "all roles">All roles</option>
-                            <option value = "actor">Actor</option>
-                            <option value = "director">Director</option>
-                            <option value = "writer">Writer</option>
-                            <option value = "producer">Producer</option>
-                            <option value = "cinematography">Cinematography</option>
-                            <option value = "editor">Editor</option>
-                            <option value = "executive-producer">Executive pPoducer</option>
-                            <option value = "composer">Composer</option>
-                            <option value = "original-writer">Original Writer</option>
-                            <option value = "set-decoration">Set Decoration</option>
-
-                        </select>
-
-                        <select name="genre" class="genre">
-                            <option value="all genres">All genres</option>
-                            <option value="action">Action</option>
-                            <option value="adventure">Adventure</option>
-                            <option value="animal">Animal</option>
-                            <option value="animation">Animation</option>
-                            <option value="biography">Biography</option>
-                        </select>
-
-                        <select name="year" class="year">
-                            <option value="all years">All the years</option>
-                            <option value="2022">2022</option>
-                            <option value="2020-2021">2020-2021</option>
-                            <option value="2010-2019">2010-2019</option>
-                            <option value="2000-2009">2000-2009</option>
-                            <option value="1980-1999">1980-1999</option>
-                        </select>
-
-                    </div>
-
-                    <div class="filter-radios">
-
-                        <input type="radio" name="grade" id="featured" checked>
-                        <label for="featured">Featured</label>
-
-                        <input type="radio" name="grade" id="popular">
-                        <label for="popular">Popular</label>
-
-                        <input type="radio" name="grade" id="newest">
-                        <label for="newest">Newest</label>
-
-                        <div class="checked-radio-bg"></div>
-
-                    </div>
-                </div>
-                <div class="movies-grid">
+              
+                <div class="movies-grid" id="filmGrid2">
 
                     <div class="movie-card">
           
@@ -841,8 +796,8 @@
                 </div>
             </div>
             <div class = "person-profile">
-                <img src = "./assets/images/person/ChristopherNolan.jpg" class = "person-img">
-                <div class = "person-description">
+                <img src = "./assets/images/person/ChristopherNolan.jpg" class = "person-img" id="personPortrait">
+                <div class = "person-description" id="personBio">
                     <p>
                         Christopher Edward Nolan CBE (born 30 July 1970) is a British and American filmmaker. Known for his Hollywood blockbusters with complex storytelling, Nolan is considered a leading filmmaker of the 21st century. His films have grossed more than $6 billion worldwide. The recipient of many accolades, he has been nominated for five Academy Awards, five BAFTA Awards and six Golden Globe Awards. In 2015, he was listed as one of the 100 most influential people in the world by Time, and in 2019, he was appointed Commander of the Order of the British Empire for his contributions to film.
                     </p>
@@ -950,7 +905,10 @@
     <!--
     - custom js link
   -->
-  <script src="./assets/js/main.js"></script>
+  <script src="/main.js"></script>
+  <script src="/filmDetail.js"></script>
+  <script src="/person.js"></script>
+  <script src="/auth.js"></script>
 
   <!--
     - ionicon link

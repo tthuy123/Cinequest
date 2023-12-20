@@ -83,14 +83,15 @@ const Film = {
           
         searchFilmsByActor: (actor, callback) => {
             const SQLquery = `
-                SELECT film.idfilm, film.title, film.backdrop, film.poster, film.year, IFNULL(ROUND(AVG(reviews.rating), 1), 'N/A') AS rating
+            SELECT film.idfilm, film.title, film.backdrop, film.poster, film.year, IFNULL(ROUND(AVG(reviews.rating), 1), 'N/A') AS rating,
+               person.name AS actorName, person.portrait, person.biography
                 FROM film
                 LEFT JOIN stars ON stars.film_idfilm = film.idfilm
-
                 LEFT JOIN reviews ON film.idfilm = reviews.film_idfilm
-                WHERE stars.character_name = ?
-                GROUP BY film.idfilm`;
-    
+                LEFT JOIN person ON stars.person_idperson = person.idperson
+                WHERE person.name = ?
+                GROUP BY person.name, film.idfilm, person.portrait, person.biography`;
+                 
             connection().query(SQLquery, [actor], callback);
         },
         searchFilmsByYearRange: (fromYear,toYear, offset,limit, callback) => {
