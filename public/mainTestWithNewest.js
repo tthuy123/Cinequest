@@ -195,3 +195,11 @@ function renderMovies(startIndex, batchSize) {
   
     return movieCard;
   }
+
+  document.getElementById('userLink').addEventListener('click', function (event) {
+    event.preventDefault();
+    console.log('Clicked on user link');
+
+    // Redirect to the user's list page or perform any other action
+    window.location.href = '/user';
+});

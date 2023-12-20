@@ -6,26 +6,26 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="shortcut icon" href="./assets/images/icon.png" type="image/png">
-  <title>CineFlix</title>
+  <title>CineQuest</title>
 
   <!--
     - custom css link
-  -->
-  <link rel="stylesheet" href="/main.css">
-  <link rel="stylesheet" href="/media_query.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+ 
+ -->
+  <link rel="stylesheet" href="main.css">
+  <link rel="stylesheet" href="media_query.css">
   <!--
     - google font link
   -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond&family=Shantell+Sans:wght@300&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900" rel="stylesheet" />
 </head>
 
 <body>
-      <!--
+
+
+
+
+  <!--
     - main container
   -->
   <div class="container">
@@ -57,9 +57,11 @@
 
         <nav class="">
           <ul class="navbar-nav">
-            <li> <a href="index.html" class="navbar-link">Home</a> </li>
+
+            <li> <a href="/" class="navbar-link">Home</a> </li>
             <li> <a href="#category" class="navbar-link">Category</a> </li>
-            <li> <a href="#live" class="navbar-link  indicator">LIVE</a> </li>
+            <li> <a href="/" class="navbar-link " id = "listLinkhomepage">List</a> </li>
+            <li> <a href="/" class="navbar-link" id = "userLink">User</a> </li>
 
           </ul>
         </nav>
@@ -70,8 +72,8 @@
 
         <div class="navbar-actions">
 
-          <form action="#" class="navbar-form">
-            <input type="text" name="search" placeholder="I'm looking for..." class="navbar-form-search">
+          <form action="#" class="navbar-form" id="searchForm">
+            <input type="text" name="search" placeholder="Search for film..." class="navbar-form-search" id="searchInput">
 
             <button class="navbar-form-btn">
               <ion-icon name="search-outline"></ion-icon>
@@ -90,29 +92,31 @@
           <button class="navbar-search-btn">
             <ion-icon name="search-outline"></ion-icon>
           </button>
+          <!-- Add this container where you want to display user information -->
+          <div id="userInfo"></div>
 
-          <a href="#" class="navbar-signin">
-            <span>Sign in</span>
+          <a href="#" class="navbar-signin" id="signinButton">
+            <span id="signinText">Sign in</span>
             <ion-icon name="log-in-outline"></ion-icon>
           </a>
 
         </div>
 
       </div>
-      <div class = "login-wrapper">
+      <div class = "login-wrapper" id="loginForm">
         <span class = "icon-close"><ion-icon name = "close"></ion-icon></span>
 
-        <div class = "form-box login">
+        <div class = "form-box login" >
           <h2>Login</h2>
           <form action = "#">
             <div class = "input-box">
               <span class = "icon"><ion-icon name = "mail"></ion-icon></span>
-              <input type = "email" required>
-              <label>Email</label>
+              <input type="text" id="usernameInput" required>
+              <label>Username</label>
             </div>
             <div class = "input-box">
               <span class = "icon"><ion-icon name = "lock-closed"></ion-icon></span>
-              <input type = "password" required>
+              <input type = "password" id="passwordInput" required>
               <label>Password</label>
             </div>
             <button type = "submit" class = "btn">Login</button>
@@ -158,19 +162,17 @@
         </div>
         
       </div>
+      
     </header>
 
     <body>
         <main>
             <div class = "user-wrapper">
                 <div class = "user-profile">
-                    <img src = "./assets/images/user/user1/avatar.jpg" class = "user-avatar">
+                    <img src = "./assets/images/user/user1/avatar.jpg" class = "user-avatar" id="userAvatar">
                     <div class = "user-bio">
-                      <h3 class = "user-name">Kunkun</h3>
-                      <a class = "edit-button">
-                        <ion-icon name="pencil" ></ion-icon>
-                      </a>
-                      <p class = "user-description">
+                      <h3 class = "user-name" id="userName">Kunkun</h3>
+                      <p class = "user-description" id ="userDescription">
                         A Christopher-Nolan-works lover
                         <br>
                         I'm also a big fan of Breaking Bad series
@@ -178,278 +180,27 @@
                     </div>
                     <div class = "activities-record">
                       <a>
-                        <span class = "value">234</span>
+                        <span class = "value" id="userFilms">234</span>
                         <span class = "definition">FILMS</span>
                       </a>
                       <a>
-                        <span class = "value">1</span>
+                        <span class = "value" id="userLists">1</span>
                         <span class = "definition">LIST</span>
-                      </a>
-                      <a>
-                        <span class = "value">5</span>
-                        <span class = "definition">FOLLOWING</span>
-                      </a>
-                      <a>
-                        <span class = "value">8</span>
-                        <span class = "definition">FOLLOWERS</span>
-                      </a>
+                      </a>   
                     </div>
                 </div>
                 <div class = "recent-films">
                   <h2>Recent Films</h2>
-                  <div class = "movies-grid">
-                    <div class="movie-card">
+                  <div class = "movies-grid" id="recentMoviesGrid">
 
-                      <div class="card-head">
-                        <img src="./assets/images/movies/1917.jpg" alt="" class="card-img">
-          
-                        <div class="card-overlay">
-          
-                          <div class="bookmark">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                          </div>
-          
-                          <div class="rating">
-                            <ion-icon name="star-outline"></ion-icon>
-                            <span>8.3</span>
-                          </div>
-          
-                          <div class="play">
-                            <ion-icon name="play-circle-outline"></ion-icon>
-                          </div>
-          
-                        </div>
-                      </div>
-          
-                      <div class="card-body">
-                        <h3 class="card-title">1917</h3>
-          
-                        <div class="card-info">
-                          <span class="genre">War/Drama</span>
-                          <span class="year">2019</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="movie-card">
-
-                      <div class="card-head">
-                        <img src="./assets/images/movies/1917.jpg" alt="" class="card-img">
-          
-                        <div class="card-overlay">
-          
-                          <div class="bookmark">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                          </div>
-          
-                          <div class="rating">
-                            <ion-icon name="star-outline"></ion-icon>
-                            <span>8.3</span>
-                          </div>
-          
-                          <div class="play">
-                            <ion-icon name="play-circle-outline"></ion-icon>
-                          </div>
-          
-                        </div>
-                      </div>
-          
-                      <div class="card-body">
-                        <h3 class="card-title">1917</h3>
-          
-                        <div class="card-info">
-                          <span class="genre">War/Drama</span>
-                          <span class="year">2019</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="movie-card">
-
-                      <div class="card-head">
-                        <img src="./assets/images/movies/1917.jpg" alt="" class="card-img">
-          
-                        <div class="card-overlay">
-          
-                          <div class="bookmark">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                          </div>
-          
-                          <div class="rating">
-                            <ion-icon name="star-outline"></ion-icon>
-                            <span>8.3</span>
-                          </div>
-          
-                          <div class="play">
-                            <ion-icon name="play-circle-outline"></ion-icon>
-                          </div>
-          
-                        </div>
-                      </div>
-          
-                      <div class="card-body">
-                        <h3 class="card-title">1917</h3>
-          
-                        <div class="card-info">
-                          <span class="genre">War/Drama</span>
-                          <span class="year">2019</span>
-                        </div>
-                      </div>
-                    </div>
-                
-                    <div class="movie-card">
-
-                      <div class="card-head">
-                        <img src="./assets/images/movies/1917.jpg" alt="" class="card-img">
-          
-                        <div class="card-overlay">
-          
-                          <div class="bookmark">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                          </div>
-          
-                          <div class="rating">
-                            <ion-icon name="star-outline"></ion-icon>
-                            <span>8.3</span>
-                          </div>
-          
-                          <div class="play">
-                            <ion-icon name="play-circle-outline"></ion-icon>
-                          </div>
-          
-                        </div>
-                      </div>
-          
-                      <div class="card-body">
-                        <h3 class="card-title">1917</h3>
-          
-                        <div class="card-info">
-                          <span class="genre">War/Drama</span>
-                          <span class="year">2019</span>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div class="movie-card">
-
-                      <div class="card-head">
-                        <img src="./assets/images/movies/1917.jpg" alt="" class="card-img">
-          
-                        <div class="card-overlay">
-          
-                          <div class="bookmark">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                          </div>
-          
-                          <div class="rating">
-                            <ion-icon name="star-outline"></ion-icon>
-                            <span>8.3</span>
-                          </div>
-          
-                          <div class="play">
-                            <ion-icon name="play-circle-outline"></ion-icon>
-                          </div>
-          
-                        </div>
-                      </div>
-          
-                      <div class="card-body">
-                        <h3 class="card-title">1917</h3>
-          
-                        <div class="card-info">
-                          <span class="genre">War/Drama</span>
-                          <span class="year">2019</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="movie-card">
-
-                      <div class="card-head">
-                        <img src="./assets/images/movies/1917.jpg" alt="" class="card-img">
-          
-                        <div class="card-overlay">
-          
-                          <div class="bookmark">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                          </div>
-          
-                          <div class="rating">
-                            <ion-icon name="star-outline"></ion-icon>
-                            <span>8.3</span>
-                          </div>
-          
-                          <div class="play">
-                            <ion-icon name="play-circle-outline"></ion-icon>
-                          </div>
-          
-                        </div>
-                      </div>
-          
-                      <div class="card-body">
-                        <h3 class="card-title">1917</h3>
-          
-                        <div class="card-info">
-                          <span class="genre">War/Drama</span>
-                          <span class="year">2019</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div class="movie-card">
-
-                      <div class="card-head">
-                        <img src="./assets/images/movies/1917.jpg" alt="" class="card-img">
-          
-                        <div class="card-overlay">
-          
-                          <div class="bookmark">
-                            <ion-icon name="bookmark-outline"></ion-icon>
-                          </div>
-          
-                          <div class="rating">
-                            <ion-icon name="star-outline"></ion-icon>
-                            <span>8.3</span>
-                          </div>
-          
-                          <div class="play">
-                            <ion-icon name="play-circle-outline"></ion-icon>
-                          </div>
-          
-                        </div>
-                      </div>
-          
-                      <div class="card-body">
-                        <h3 class="card-title">1917</h3>
-          
-                        <div class="card-info">
-                          <span class="genre">War/Drama</span>
-                          <span class="year">2019</span>
-                        </div>
-                      </div>
+      
                     </div>
                   </div>
                 </div>
                 <div class = "recent-reviews">
                   <h2>Recent Reviews</h2>
-                  <div class = "reviews">
-                    <div class = "user-film">
-                      <img src = "./assets/images/movies/LOTR.jpg">
-                    </div>
-                    <div class = "review-details">
-                      <a href = "Interstellar.html" class = "film-title">
-                        Lord Of The Rings: Return Of The King
-                      </a>
-                      <span class ="year">2003</span>
-                      <div>
-                        <span class = "review-date">&#x2022 20 October, 2018</span>
-                        <span class = "user-rate">5</span>
-                        <ion-icon name = "star" class = "star-icon"></ion-icon>
-                      </div>
-                      
-                      <div class = "body-text">
-                        <p>Good plot and beautiful shots but I was confused for most of the movie</p>
-                      </div>
+                  <div class = "reviews" id = "recentReviewsGrid">
+                    
                       
                     </div>
                   </div>
@@ -565,6 +316,9 @@
     - custom js link
   -->
   <script src="/main.js"></script>
+  <script src="/user.js"></script>
+  <script src="/auth.js"></script>
+  <script src="/list.js"></script>
 
   <!--
     - ionicon link

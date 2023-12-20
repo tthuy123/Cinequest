@@ -126,3 +126,5 @@ var closeAddWrapper = document.querySelector('.addToList-wrapper .close-button')
 closeAddWrapper.addEventListener('click', function(){
   addToListWrapper.style.display = 'none';
 });
+
+

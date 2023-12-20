@@ -35,9 +35,23 @@ const UserProfile = {
     // get user information
     getUserInformation: (userName, callback) => {
         const SQLquery = `
-        SELECT *
-        FROM user
-        WHERE userName = ?;`;
+        SELECT
+    user.userName,
+    user.avatar,
+    user.bio,
+    user.date_of_birth,
+    user.displayName,
+    user.email,
+    user.gender,
+    user.password,
+    COUNT(DISTINCT log.idLog) AS films,
+    COUNT(DISTINCT list.idList) AS lists
+FROM user
+LEFT JOIN log ON user.userName = log.user_userName
+LEFT JOIN list ON user.userName = list.userName
+WHERE user.userName = ?
+GROUP BY user.userName, user.avatar, user.bio, user.date_of_birth, user.displayName, user.email, user.gender, user.password;
+`;
 
         console.log('Executing SQL query:', SQLquery, 'with userName:', userName);
         connection().query(SQLquery, [userName], callback);
