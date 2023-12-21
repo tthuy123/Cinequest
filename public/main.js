@@ -53,14 +53,11 @@ iconClose.addEventListener('click', ()=> {
 });
 
 
-// Lấy nút và div bằng class
 var button = document.querySelector('.review-action');
 var reviewWrapper = document.querySelector('.log-wrapper');
 var closeLog = document.querySelector('.close-function');
 
-// Thêm sự kiện click vào nút
 button.addEventListener('click', function() {
-  // Kiểm tra nếu div đang ẩn, hiển thị nó; nếu không, ẩn nó
     reviewWrapper.style.display = 'block';
 });
 
@@ -71,32 +68,25 @@ closeLog.addEventListener('click', function(){
 var button = document.querySelector('.watch-icon');
 var span = document.querySelector('.log');
 
-// Store the original state
 var originalText = span.textContent;
 var originalColor = button.style.color;
 
 button.addEventListener('click', function() {
     if (span.textContent === originalText) {
-        // Change to the new state
         span.textContent = 'IsLogged';
         this.style.color = 'rgb(5, 114, 238)';
     } else {
-        // Revert to the original state
         span.textContent = originalText;
         this.style.color = originalColor;
     }
 });
 
 function showContent(cat) {
-  // Get all the content sections
   var sections = document.getElementById("content").children;
-  // Loop through the sections and hide or show them
   for (var i = 0; i < sections.length; i++) {
-    // If the section id matches the category, show it
     if (sections[i].id == cat) {
       sections[i].classList.toggle("w3-show");
     }
-    // Otherwise, hide it
     else {
       sections[i].classList.remove("w3-show");
       sections[i].classList.add("w3-hide");

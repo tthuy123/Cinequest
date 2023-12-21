@@ -1,8 +1,6 @@
-// xu ly logic
 
 const Film = require('../models/Film');
-const authenticateToken = require('../routes/authMiddleware.js'); // Import your actual authentication middleware
-
+const authenticateToken = require('../routes/authMiddleware.js');
 
 const filmsController = {
     getAllFilms: (req, res) => {
@@ -17,18 +15,6 @@ const filmsController = {
         }
         res.json(films);
             
-          // res.render('films/list', { film });
-
-            // Tạo một đoạn HTML đơn giản để hiển thị danh sách phim
-    // let htmlContent = '<h1>Films List</h1><ul>';
-    // film.forEach(film => {
-    //   htmlContent += `<li>${film.title}</li>`;
-    // });
-    // htmlContent += '</ul>';
-
-    // // Trả về nội dung HTML trực tiếp
-    // res.send(htmlContent);
-           
         });
     },
     getFilmDetails: (req, res) => {
@@ -42,7 +28,7 @@ const filmsController = {
             }
             //res.json(films);
             if (films.length > 0) {
-                const film = films[0];  // Access the first element of the array
+                const film = films[0];
                 res.json(film);
             } else {
                 res.status(404).send('Film not found');
@@ -63,13 +49,10 @@ const filmsController = {
     },
     addToWatched: async (req, res) => {
         try {
-            // Assuming you have a middleware to validate the token and attach user information to the request
-            // The user information should include the userName of the authenticated user
-    
+            
             const { filmId } = req.body;
-            const userName = req.user.userName; // Assuming your middleware attaches user information to req.user
+            const userName = req.user.userName;
     
-            // Use the authenticated user information and other details to add the film to the watched list
             Film.addToWatched(userName, filmId, (err, result) => {
                 if (err) {
                     console.error('Error adding film to watched list: ', err.stack);
@@ -87,13 +70,10 @@ const filmsController = {
     ,
     addReview: async (req, res) => {
         try {
-            // Sử dụng middleware để xác minh token
             authenticateToken(req, res, async () => {
-                // Nếu token hợp lệ, bạn có thể tiếp tục xử lý thêm review
                 const { filmId, rating, review } = req.body;
-                const userInfo = req.user.userName; // Lấy thông tin người dùng từ middleware
+                const userInfo = req.user.userName; 
 
-                // Sử dụng thông tin người dùng và các thông tin khác để thêm review
                 Film.addReview(userInfo, filmId, rating, review, (err, result) => {
                     if (err) {
                         console.error('Error adding review: ', err.stack);

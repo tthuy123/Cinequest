@@ -1,10 +1,9 @@
-// userController.js
 const UserList = require('../models/UserList');
 
 const getUserMovieLists = (req, res) => {
-    console.log('User info:', req.user); // Log user information
-    const userName = req.user.userName; // Assuming you have user information stored in req.user after authentication
-    console.log('userName:', userName); // Log the userName value
+    console.log('User info:', req.user); 
+    const userName = req.user.userName; 
+    console.log('userName:', userName); 
     UserList.getUserMovieLists(userName, (err, movieLists) => {
         if (err) {
             console.error('Error getting user movie lists: ', err.stack);
@@ -12,7 +11,6 @@ const getUserMovieLists = (req, res) => {
             return;
         }
 
-        // Render or send the movie lists in the desired format (JSON or HTML)
         res.json(movieLists);
     });
 };
@@ -26,7 +24,6 @@ const getMovieList = (req, res) => {
             return;
         }
 
-        // Render or send the movie list in the desired format (JSON or HTML)
         res.json({ movieList });
     });
 };
@@ -43,13 +40,12 @@ const createList = (req, res) => {
         res.status(201).json({ message: 'List created successfully', newList });
 
 
-        // Render or send the newly created list in the desired format (JSON or HTML)
     });
 };
 
 const addFilmToList = (req, res) => {
     const listId = req.body.listId;
-    const userName = req.user.userName; // Assuming you have user information stored in req.user after authentication
+    const userName = req.user.userName;
     const filmId = req.body.filmId;
 
     UserList.addFilmToList(listId,userName,filmId, (err, newList) => {
@@ -59,7 +55,6 @@ const addFilmToList = (req, res) => {
             return;
         }
 
-        // Render or send the updated list in the desired format (JSON or HTML)
         res.status(201).json({ message: 'Film added successfully', newList });
 
     });

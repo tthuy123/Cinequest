@@ -53,7 +53,6 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (response.ok) {
             const recentMovies = await response.json();
 
-            // Update the DOM with fetched data
             const recentMoviesGrid = document.getElementById("recentMoviesGrid");
 
             recentMovies.forEach(movie => {
@@ -68,23 +67,18 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 });
 
-// Helper function to create a movie card
 function createMovieCard(movie) {
-    // Create the main movie card container
     const movieCard = document.createElement("div");
     movieCard.className = "movie-card";
   
-    // Create the card head (image, overlay, bookmark, rating, play)
     const cardHead = document.createElement("div");
     cardHead.className = "card-head";
   
-    // Movie image
     const img = document.createElement("img");
-    img.src = movie.poster; // Assuming you have imgSrc in your movie object
-    img.alt = ""; // Add alt text if available
+    img.src = movie.poster; 
+    img.alt = ""; 
     img.className = "card-img";
   
-    // Card overlay
     const cardOverlay = document.createElement("div");
     cardOverlay.className = "card-overlay";
   
@@ -108,45 +102,34 @@ function createMovieCard(movie) {
     // cardOverlay.appendChild(rating);
     // cardOverlay.appendChild(play);
   
-    // Append image and overlay to card head
     cardHead.appendChild(img);
     cardHead.appendChild(cardOverlay);
   
-    // Card body
     const cardBody = document.createElement("div");
     cardBody.className = "card-body";
   
-    // Movie title (wrapped in a link)
     const cardTitle = document.createElement("a");
-    // i want the href o be dynamic change by idfilm
     cardTitle.href = 'film/' + movie.idfilm;
-   // cardTitle.href = movie.link; // Assuming you have a link in your movie object
     cardTitle.className = "card-title";
     cardTitle.textContent = movie.title;
   
-    // Card info (genre and year)
     const cardInfo = document.createElement("div");
     cardInfo.className = "card-info";
   
-    // Genre
     const genre = document.createElement("span");
     genre.className = "genre";
-    genre.textContent = movie.genre; // Assuming you have genre in your movie object
+    genre.textContent = movie.genre; 
   
-    // Year
     const movieYear = document.createElement("span");
     movieYear.className = "year";
-    movieYear.textContent = movie.year; // Assuming you have year in your movie object
+    movieYear.textContent = movie.year; 
   
-    // Append genre and year to card info
     cardInfo.appendChild(genre);
     cardInfo.appendChild(movieYear);
   
-    // Append title and card info to card body
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(cardInfo);
   
-    // Append card head and body to movie card
     movieCard.appendChild(cardHead);
     movieCard.appendChild(cardBody);
   
@@ -167,7 +150,6 @@ function createMovieCard(movie) {
             if (response.ok) {
                 const recentReviews = await response.json();
     
-                // Update the DOM with fetched data
                 const recentReviewsGrid = document.getElementById("recentReviewsGrid");
     
                 recentReviews.forEach(review => {
@@ -183,76 +165,59 @@ function createMovieCard(movie) {
     });
 
     function createReviewCard(review) {
-        // Create the main review container
         const reviewContainer = document.createElement("div");
         reviewContainer.classList.add("reviews");
     
-        // Create the user-film container
         const userFilmContainer = document.createElement("div");
         userFilmContainer.classList.add("user-film");
     
-        // Create the image element
         const filmImage = document.createElement("img");
-        filmImage.src = review.poster; // Assuming your review object has a property named 'filmImage'
+        filmImage.src = review.poster; 
     
-        // Append the image to the user-film container
         userFilmContainer.appendChild(filmImage);
     
-        // Create the review-details container
         const reviewDetailsContainer = document.createElement("div");
         reviewDetailsContainer.classList.add("review-details");
     
-        // Create the film title link
         const filmTitleLink = document.createElement("a");
-        filmTitleLink.href = 'film/' + review.idfilm; // Assuming your review object has a property named 'filmLink'
+        filmTitleLink.href = 'film/' + review.idfilm; 
         filmTitleLink.classList.add("film-title");
-        filmTitleLink.textContent = review.title; // Assuming your review object has a property named 'filmTitle'
+        filmTitleLink.textContent = review.title; 
     
-        // Create the year span
         const yearSpan = document.createElement("span");
         yearSpan.classList.add("year");
-        yearSpan.textContent = review.year; // Assuming your review object has a property named 'year'
+        yearSpan.textContent = review.year; 
     
-        // Create the review date and user rate div
         const dateRateDiv = document.createElement("div");
     
-        // Create the review date span
         const reviewDateSpan = document.createElement("span");
         reviewDateSpan.classList.add("review-date");
-        reviewDateSpan.innerHTML = `&#x2022 ${review.reviewTime}`; // Assuming your review object has a property named 'reviewDate'
-    
-        // Create the user rate span and star icon
+        reviewDateSpan.innerHTML = `&#x2022 ${review.reviewTime}`; 
         const userRateSpan = document.createElement("span");
         userRateSpan.classList.add("user-rate");
-        userRateSpan.textContent = review.rating; // Assuming your review object has a property named 'userRate'
+        userRateSpan.textContent = review.rating; 
     
         const starIcon = document.createElement("ion-icon");
         starIcon.classList.add("star-icon");
         starIcon.name = "star";
     
-        // Append the date, user rate, and star icon to the dateRateDiv
         dateRateDiv.appendChild(reviewDateSpan);
         dateRateDiv.appendChild(userRateSpan);
         dateRateDiv.appendChild(starIcon);
     
-        // Create the body-text div
         const bodyTextDiv = document.createElement("div");
         bodyTextDiv.classList.add("body-text");
     
-        // Create the review paragraph
         const reviewParagraph = document.createElement("p");
-        reviewParagraph.textContent = review.comment; // Assuming your review object has a property named 'reviewText'
+        reviewParagraph.textContent = review.comment; 
     
-        // Append the review paragraph to the body-text div
         bodyTextDiv.appendChild(reviewParagraph);
     
-        // Append all elements to the review-details container
         reviewDetailsContainer.appendChild(filmTitleLink);
         reviewDetailsContainer.appendChild(yearSpan);
         reviewDetailsContainer.appendChild(dateRateDiv);
         reviewDetailsContainer.appendChild(bodyTextDiv);
     
-        // Append user-film container and review-details container to the main review container
         reviewContainer.appendChild(userFilmContainer);
         reviewContainer.appendChild(reviewDetailsContainer);
     

@@ -1,6 +1,4 @@
-// Function to fetch movie list data
 function fetchMovieListData() {
-    // Check if the user is logged in and has a token
     const token = localStorage.getItem('authToken');
 
     if (token !== null) {
@@ -9,12 +7,10 @@ function fetchMovieListData() {
             headers: {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json',
-                // Add other headers as needed
             },
         })
         .then(response => response.json())
         .then(data => {
-            // Call the displayMovieList function with the fetched data
             displayMovieList(data);
             displayFilmLists(data);
         })
@@ -24,7 +20,6 @@ function fetchMovieListData() {
     }
 }
 
-// Function to display movie list
 function displayMovieList(data) {
     const listSetContainer = document.getElementById('list-set');
 
@@ -69,12 +64,11 @@ function displayFilmLists(data) {
     const filmListContainer = document.getElementById('add-to-list');
 
     if (filmListContainer) {
-        filmListContainer.innerHTML = ''; // Clear existing content
-
+        filmListContainer.innerHTML = ''; 
         data.forEach(filmList => {
             const listContainer = document.createElement('div');
             listContainer.classList.add('list-container');
-            listContainer.dataset.listId = filmList.idlist; // Set the list ID as a data attribute
+            listContainer.dataset.listId = filmList.idlist;
 
             const listItems = document.createElement('label');
             listItems.classList.add('list-items');
@@ -98,7 +92,6 @@ function displayFilmLists(data) {
             listCapacity.classList.add('list-capacity');
             listCapacity.textContent = `${filmList.movie_count} films`;
 
-            // Append elements to the DOM
             listLabel.appendChild(listName);
             listItems.appendChild(checkbox);
             listItems.appendChild(checkmark);
@@ -114,21 +107,15 @@ function displayFilmLists(data) {
 document.addEventListener('DOMContentLoaded', function () {
     fetchMovieListData();
 
-    // Select the button and input container
     const addToListButton = document.getElementById('addToListButton');
     const inputNewList = document.getElementById('inputNewList');
 
-    // Check if the elements are found
     if (addToListButton && inputNewList) {
-        // Hide the input-new-list initially
         inputNewList.style.display = 'none';
 
-        // Add click event listener to the "add-to-list" button
         addToListButton.addEventListener('click', function (event) {
-            // Prevent the default form submission
             event.preventDefault();
 
-            // Toggle the visibility of the input-new-list container
             if (inputNewList.style.display === 'none') {
                 inputNewList.style.display = 'flex';
             } else {
@@ -144,7 +131,6 @@ document.getElementById('listLinkhomepage').addEventListener('click', function (
     event.preventDefault();
     console.log('Clicked on LIST link');
 
-    // Redirect to the user's list page or perform any other action
     window.location.href = '/movie-list';
 });
 document.addEventListener("DOMContentLoaded", () => {
@@ -154,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     addToListButton.addEventListener("click", () => {
-        // Hiển thị phần input để người dùng nhập tên danh sách mới
         inputNewList.style.display = "block";
     });
 
@@ -168,30 +153,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (title !== "") {
             try {
-                // Gửi yêu cầu tạo danh sách mới đến server
                 const response = await fetch("http://localhost:3000/create-movie-list", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`, // Thay yourAuthToken bằng token thực tế của bạn
+                        "Authorization": `Bearer ${token}`, 
                     },
                     body: JSON.stringify({ title }),
                 });
 
                 if (response.ok) {
-                    // Xử lý kết quả nếu cần
                     console.log("List created successfully!");
                     alert("List created successfully!");
-                    // Nếu muốn thực hiện các hành động khác sau khi tạo danh sách, thì bạn có thể thêm vào đây
                 } else {
                     console.error(`Error: ${response.status} - ${response.statusText}`);
-                    // Xử lý lỗi nếu có
                 }
             } catch (error) {
                 console.error("Error creating list:", error);
-                // Xử lý lỗi nếu có
             } finally {
-                // Ẩn phần input sau khi đã xử lý xong
                 inputNewList.style.display = "none";
             }
         }

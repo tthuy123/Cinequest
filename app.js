@@ -15,9 +15,7 @@ expressApp.set('views', path.join(__dirname, 'views'));
 expressApp.set('view engine', 'ejs');
 expressApp.use(cors());
 
-// Kết nối cơ sở dữ liệu
 connectDB();
-// Sử dụng tuyến đường phim
 expressApp.use('/', filmsRoutes);
 expressApp.use('/', DetailsFilmsRoutes);
 expressApp.use('/', searchRoutes);
@@ -42,7 +40,6 @@ expressApp.get('/user-profile', (req, res) => {
     res.render('user-profile');
 });
 
-// Add the route for film details
 expressApp.get('/film/:id', (req, res) => {
     res.render('filmDetail');
 });
@@ -62,7 +59,6 @@ expressApp.get('/user', (req, res) => {
 expressApp.get('/person', (req, res) => {
     res.render('person');
 });
-// Khởi chạy server
 const PORT = process.env.PORT || 3000;
 expressApp.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

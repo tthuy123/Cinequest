@@ -1,15 +1,12 @@
-// searchController.js
 const Film = require('../models/Film');
 
 const searchFilmsByGenre = (req, res) => {
     try {
         const { genre, offset, limit } = req.query;
 
-        // Set default values for offset and limit if not provided
         const parsedOffset = parseInt(offset) || 0;
-        const parsedLimit = parseInt(limit) || 10; // You can adjust the default limit
+        const parsedLimit = parseInt(limit) || 10; 
 
-        // Call the function in your model or database layer to perform the search
         Film.searchFilmsByGenre(genre, parsedOffset, parsedLimit, (err, movies) => {
             if (err) {
                 console.error('Error searching movies by genre: ', err.stack);
@@ -17,7 +14,6 @@ const searchFilmsByGenre = (req, res) => {
                 return;
             }
 
-            // Send the movies as a response
             res.json( movies );
         });
     } catch (error) {
@@ -29,11 +25,8 @@ const searchFilmsByGenreAndYearRange = (req, res) => {
     try {
         const { genre, fromYear, toYear, offset, limit } = req.query;
         console.log( genre,fromYear, toYear);
-        // Set default values for offset and limit if not provided
         const parsedOffset = parseInt(offset) || 0;
-        const parsedLimit = parseInt(limit) || 10; // You can adjust the default limit
-
-        // Call the function in your model or database layer to perform the search
+        const parsedLimit = parseInt(limit) || 10; 
         Film.searchFilmsByGenreAndYearRange(genre, fromYear, toYear, parsedOffset, parsedLimit, (err, movies) => {
             if (err) {
                 console.error('Error searching movies by genre and year rage: ', err.stack);
@@ -41,7 +34,6 @@ const searchFilmsByGenreAndYearRange = (req, res) => {
                 return;
             }
 
-            // Send the movies as a response
             res.json( movies );
         });
     } catch (error) {
@@ -52,13 +44,11 @@ const searchFilmsByGenreAndYearRange = (req, res) => {
 
 const searchFilmsByYearRange = (req, res) => {
     const { fromYear, toYear, offset, limit } = req.query;
-    // Set default values for offset and limit if not provided
     const parsedOffset = parseInt(offset) || 0;
-    const parsedLimit = parseInt(limit) || 10; // You can adjust the default limit
+    const parsedLimit = parseInt(limit) || 10; 
 
     console.log(fromYear, toYear);
 
-    // Call a function in your model or database layer to perform the search
     Film.searchFilmsByYearRange(fromYear, toYear, parsedOffset, parsedLimit, (err, movies) => {
         if (err) {
             console.error('Error searching movies by year range: ', err.stack);
@@ -66,17 +56,14 @@ const searchFilmsByYearRange = (req, res) => {
             return;
         }
 
-        // Respond with the search results in JSON format
         res.json( movies);
     });
 };
 const searchNewestFilm = (req, res) => {    
     const { offset, limit } = req.query;
-    // Set default values for offset and limit if not provided
     const parsedOffset = parseInt(offset) || 0;
     const parsedLimit = parseInt(limit) || 10; // You can adjust the default limit
 
-    // Call a function in your model or database layer to perform the search
     Film.searchNewestFilm(parsedOffset, parsedLimit, (err, movies) => {
         if (err) {
             console.error('Error searching movies by year range: ', err.stack);
@@ -84,15 +71,13 @@ const searchNewestFilm = (req, res) => {
             return;
         }
 
-        // Respond with the search results in JSON format
         res.json( movies);
     });
 }
 const searchMostRateFilm = (req, res) => {
     const { offset, limit } = req.query;
-    // Set default values for offset and limit if not provided
     const parsedOffset = parseInt(offset) || 0;
-    const parsedLimit = parseInt(limit) || 10; // You can adjust the default limit
+    const parsedLimit = parseInt(limit) || 10; 
     Film.searchMostRateFilm(parsedOffset, parsedLimit, (error, results) => {
         if (error) {
             console.error('Error:', error);
@@ -104,9 +89,8 @@ const searchMostRateFilm = (req, res) => {
 };
 const searchPopularFilm = (req, res) => {
     const { offset, limit } = req.query;
-    // Set default values for offset and limit if not provided
     const parsedOffset = parseInt(offset) || 0;
-    const parsedLimit = parseInt(limit) || 10; // You can adjust the default limit
+    const parsedLimit = parseInt(limit) || 10; 
     Film.searchPopularFilm(parsedOffset, parsedLimit, (error, results) => {
         if (error) {
             console.error('Error:', error);
@@ -120,7 +104,6 @@ const searchPopularFilm = (req, res) => {
 const searchFilmsByActor = (req, res) => {
     const { actor } = req.query;
 
-    // Call a function in your model or database layer to perform the search
     Film.searchFilmsByActor(actor, (err, movies) => {
         if (err) {
             console.error('Error searching movies by actor: ', err.stack);
@@ -128,7 +111,6 @@ const searchFilmsByActor = (req, res) => {
             return;
         }
 
-        // Respond with the search results in JSON format
         res.json(movies);
     });
 };
@@ -142,7 +124,6 @@ const searchFilmsByTitle = (req, res) => {
         return;
       }
   
-      // Respond with the search results in JSON format
       res.json(movies );
     });
   };

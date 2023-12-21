@@ -3,7 +3,6 @@
 const connection = require('../config/database');
 
 const UserProfile = {
-    // ... other functions
 
     // get user's recently watched movies
     getUserRecentlyWatchedMovies: (userName, callback) => {

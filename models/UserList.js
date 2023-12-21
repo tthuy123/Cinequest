@@ -1,9 +1,7 @@
-// models/UserList.js
 
 const connection = require('../config/database');
 
 const UserList = {
-    // ... other functions
 
     getUserMovieLists: (userName, callback) => {
         const SQLquery = `
@@ -51,7 +49,6 @@ ORDER BY list.idlist;`;
                 return;
             }
 
-            // Extract the details and return them in the callback
             const newList = {
                 id: rows[0].idList,
                 name: rows[0].title,
@@ -75,7 +72,6 @@ ORDER BY list.idlist;`;
                 return;
             }
     
-            // Fetch the updated list of films after adding a new film
             const fetchQuery = `
                 SELECT list.title as ListTitle, film.title, film.poster, list.idlist
                 FROM film
